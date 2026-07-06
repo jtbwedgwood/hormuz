@@ -4,4 +4,5 @@
 # Runtime scripts currently use only the Python standard library.
 # Test tooling lives here too so `.venv/bin/python -m pytest ...` works
 # consistently for local validation.
+pandas==3.0.3
 pytest==8.4.2

@@ -24,6 +24,7 @@ Use the repository-local virtual environment at `.venv/` for all Python work in 
 
 - Before running Python scripts, notebooks, or package installs, activate it with `source .venv/bin/activate` from the repo root, or call tools explicitly through `.venv/bin/python` and `.venv/bin/pip`.
 - Do not install project dependencies into the system Python or another virtual environment unless the user explicitly requests it.
+- If a needed Python package is missing, install it into `.venv/` and keep working. Do not stop solely because a dependency is absent.
 - Record every Python package needed for reproducible project work in `requirements.txt`, with pinned versions when practical.
 - When adding, upgrading, or removing a package, update `requirements.txt` in the same change and note why in the relevant issue file's `Work Notes`.
 - Do not commit `.venv/`; it is local runtime state. Recreate it with `python3 -m venv .venv` and then install dependencies with `.venv/bin/pip install -r requirements.txt`.

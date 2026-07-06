@@ -13,3 +13,4 @@ Docs are user-facing. Record polished findings and sources here when they are re
 - `hormuz-stockpile-buffers.md` - RQ4 strategic reserves, China SPR evidence, LNG/gas storage, fertilizer/chemical buffers, and consolidated days-of-cover caveats.
 - `hormuz-us-business-ai-costs.md` - RQ5 synthesis of U.S. business sector cost exposure, data-center power sensitivity, AI cost-per-token impact, and macro sanity checks.
 - `hormuz-historical-comparison.md` - RQ6 historical shock comparison, scoring interpretation, and main product-specific takeaway.
+- `hormuz-energy-shock-followups.md` - concise answers to follow-up framing questions on oil/LNG differences, LPG/NGL relevance, supplier-country exposure, importer adjustment, and unresolved global replacement accounting.
