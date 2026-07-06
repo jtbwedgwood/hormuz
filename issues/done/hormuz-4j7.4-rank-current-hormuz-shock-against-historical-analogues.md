@@ -2,21 +2,20 @@
 id: "hormuz-4j7.4"
 title: "Rank current Hormuz shock against historical analogues"
 type: "task"
-status: "blocked"
+status: "done"
 priority: "P2"
 parent: "hormuz-4j7"
 labels:
   - "analysis"
   - "comparisons"
   - "history"
-blocked_by:
-  - "hormuz-4j7.3"
+blocked_by: []
 blocks:
   - "hormuz-4j7.5"
 children: []
 owner: "jtbwedgwood@gmail.com"
 created_at: "2026-07-06T06:10:12Z"
-updated_at: "2026-07-06T18:25:00Z"
+updated_at: "2026-07-06T19:25:00Z"
 ---
 
 # Rank current Hormuz shock against historical analogues
@@ -32,13 +31,15 @@ Ranking is multi-dimensional, transparent, and includes at least one counterintu
 ## Dependency Notes
 
 - Parent: `hormuz-4j7` - RQ6: Compare with historical energy and shipping shocks
-- Blocked by: `hormuz-4j7.3` - Collect historical supply, price, inventory, and demand data
+- Cleared dependency: `hormuz-4j7.3` - Collect historical supply, price, inventory, and demand data
 - Blocks: `hormuz-4j7.5` - Produce historical comparison graphic
 
 ## Work Notes
 
 - 2026-07-06T06:32Z: Moved to `issues/blocked/`. This task cannot be done rigorously until `hormuz-4j7.3` produces the cited historical/current metric dataset. Future ranking should wait for normalized metrics, supply/price/inventory/demand data, and RQ1/RQ2/RQ4/RQ5 inputs rather than making qualitative claims from partial evidence.
 - 2026-07-06T18:25Z: Advanced blocked task without producing a final ranking. Reviewed `hormuz-4j7.1`, `hormuz-4j7.2`, `hormuz-kmz.6`, `data/derived/hormuz_kmz_3_preliminary_disruption_scenarios.csv`, `data/derived/hormuz_kmz_7_product_disruption_master_table_prelim.csv`, `data/derived/hormuz_2y7_public_daily_tracker.csv`, and `data/manifest.csv`. This note defines the ranking rubric, candidate hypotheses, and exact data fields needed from `hormuz-4j7.3`. Status remains `blocked` because the normalized historical/current dataset is still missing.
+- 2026-07-06T19:10Z: Unblocked after `hormuz-4j7.3` produced `data/derived/hormuz_4j7_3_historical_comparison_metric_panel.csv`. Claimed for ranking analysis. Use the panel as the authoritative input for first-pass scoring, not the older template or partial blocker notes.
+- 2026-07-06T19:25Z: Completed first-pass ranking tables: `data/derived/hormuz_4j7_4_case_ranking_scores.csv` (170 rows, 20 columns) and `data/derived/hormuz_4j7_4_hormuz_product_ranking_scores.csv` (90 rows, 20 columns). Both parse cleanly. Main supported finding: current Hormuz is not the top crude/oil analogue once oil buffers and partial bypass are included, but LPG/NGL, LNG, and sulphur rank above the crude/oil aggregate because the public panel supports weaker route substitution, thinner replacement options, and less observable buffer cover for those channels.
 
 ### Ranking Rubric Draft
 

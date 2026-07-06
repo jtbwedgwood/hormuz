@@ -2,7 +2,7 @@
 id: "hormuz-s49"
 title: "RQ4: Assess strategic stockpiles and reserve releases"
 type: "epic"
-status: "in_progress"
+status: "done"
 priority: "P1"
 parent: null
 labels:
@@ -22,7 +22,7 @@ children:
   - "hormuz-s49.6"
 owner: "jtbwedgwood@gmail.com"
 created_at: "2026-07-06T06:09:07Z"
-updated_at: "2026-07-06T07:45:00Z"
+updated_at: "2026-07-06T19:45:00Z"
 ---
 
 # RQ4: Assess strategic stockpiles and reserve releases
@@ -55,3 +55,4 @@ Reserve and inventory sources are inventoried; releases or drawdowns are quantif
 - 2026-07-06: Second parallel push launched for `s49.2`-`s49.5` after `s49.1` completion. Target outputs are issue-note conclusions plus table-ready derived CSVs where useful: reserve response, China SPR evidence matrix, LNG/gas buffer table, and fertilizer/chemical buffer table.
 - 2026-07-06: Post-swarm cleanup moved the epic from `in-progress` to `blocked`. Useful partial outputs exist, but final closure depends on importer-adjustment work under `hormuz-f6r` and a consolidated `hormuz-s49.6` buffer table.
 - 2026-07-06: F6R is now complete for the public-source stage and `hormuz-s49.3`/`.4` are done. Moved the epic back to `in-progress`; remaining closure work is the consolidated `hormuz-s49.6` buffer-duration table.
+- 2026-07-06: Closure check passed. All listed children `hormuz-s49.1` through `hormuz-s49.6` are in `issues/done/`; `hormuz-f6r` is also in `issues/done/` with `status: "done"`, so the prior blocker is cleared by local issue state. RQ4 is complete for the current public-source stage. Key outputs are the source inventory, OECD/U.S. reserve response table, China SPR evidence matrix, LNG/gas buffer table, fertilizer/chemical buffer table, and consolidated `data/derived/hormuz_s49_6_stockpile_buffer_duration.csv`.

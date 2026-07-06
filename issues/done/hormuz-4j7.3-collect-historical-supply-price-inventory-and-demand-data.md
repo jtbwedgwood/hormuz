@@ -2,21 +2,20 @@
 id: "hormuz-4j7.3"
 title: "Collect historical supply, price, inventory, and demand data"
 type: "task"
-status: "blocked"
+status: "done"
 priority: "P2"
 parent: "hormuz-4j7"
 labels:
   - "comparisons"
   - "data"
   - "history"
-blocked_by:
-  - "hormuz-s49.6"
+blocked_by: []
 blocks:
   - "hormuz-4j7.4"
 children: []
 owner: "jtbwedgwood@gmail.com"
 created_at: "2026-07-06T06:10:10Z"
-updated_at: "2026-07-06T15:55:00Z"
+updated_at: "2026-07-06T19:10:00Z"
 ---
 
 # Collect historical supply, price, inventory, and demand data
@@ -40,7 +39,7 @@ Dataset has cited values for each metric, with confidence flags and missing-data
 - Cleared dependency: `hormuz-kmz.6` - Reconcile disrupted volumes with global market balances
 - Cleared dependency: `hormuz-kmz.3` - Estimate supply removed, delayed, or rerouted
 - Cleared dependency: `hormuz-l8m.1` - Define commodity price shock scenarios
-- Blocked by: `hormuz-s49.6` - Estimate stockpile buffer duration by country/product
+- Cleared dependency: `hormuz-s49.6` - Estimate stockpile buffer duration by country/product
 - Blocks: `hormuz-4j7.4` - Rank current Hormuz shock against historical analogues
 
 ## Work Notes
@@ -53,9 +52,12 @@ Dataset has cited values for each metric, with confidence flags and missing-data
 
 | Blocker | Current repo state | What it should contribute before this task can finish |
 |---|---:|---|
-| `hormuz-s49.6` - Estimate stockpile buffer duration by country/product | `blocked` | Days of cover and drawdown assumptions for oil, refined products, LNG/gas storage, fertilizer/chemical inventories, and strategic reserve releases. |
+| No external blocker remains | `done` | Built the cited metric panel using completed RQ1/RQ2/RQ3/RQ4/RQ5 inputs plus historical source collection. |
 
 Cleared inputs now usable in the collection plan: `hormuz-2y7.6`, `hormuz-4j7.2`, `hormuz-fyp.2`, `hormuz-fyp.3`, `hormuz-fyp.6`, `hormuz-kmz.6`, and `hormuz-l8m.1`.
+
+- 2026-07-06: S49 is now complete and `data/derived/hormuz_s49_6_stockpile_buffer_duration.csv` is available. Claimed this task for active historical/current metric collection.
+- 2026-07-06T19:10Z: Completed the first cited metric panel for RQ6. Three subagents collected disjoint slices for historical oil shocks, historical route/shipping shocks, and current Hormuz multi-product exposure. Normalized them into `data/derived/hormuz_4j7_3_historical_comparison_metric_panel.csv` with 24 rows and 24 columns, preserving source-slice provenance, confidence, source URLs, and caveats. Supporting slice files are `data/derived/hormuz_4j7_3_oil_shock_metric_slice.csv`, `data/derived/hormuz_4j7_3_route_shock_metric_slice.csv`, and `data/derived/hormuz_4j7_3_current_hormuz_metric_slice.csv`. CSV validation passed for all four files. Remaining caveats: historical oil denominators are harmonized enough for ranking but not a definitive total-liquids reconstruction; route shocks are not physical supply-loss analogues; current Hormuz rows are scenario/exposure rows and overlapping product chains should not be summed.
 
 ### Partial Collection Plan From Newly Available Inputs
 

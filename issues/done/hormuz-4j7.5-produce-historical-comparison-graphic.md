@@ -2,23 +2,21 @@
 id: "hormuz-4j7.5"
 title: "Produce historical comparison graphic"
 type: "task"
-status: "blocked"
+status: "done"
 priority: "P2"
 parent: "hormuz-4j7"
 labels:
   - "comparisons"
   - "history"
   - "visuals"
-blocked_by:
-  - "hormuz-4j7.4"
-  - "hormuz-4j7.3"
+blocked_by: []
 blocks:
   - "hormuz-ccx.2"
   - "hormuz-ccx.3"
 children: []
 owner: "jtbwedgwood@gmail.com"
 created_at: "2026-07-06T06:10:13Z"
-updated_at: "2026-07-06T09:30:00Z"
+updated_at: "2026-07-06T19:40:00Z"
 ---
 
 # Produce historical comparison graphic
@@ -34,8 +32,8 @@ Graphic is publication-ready and includes caveats for non-comparable dimensions.
 ## Dependency Notes
 
 - Parent: `hormuz-4j7` - RQ6: Compare with historical energy and shipping shocks
-- Blocked by: `hormuz-4j7.4` - Rank current Hormuz shock against historical analogues
-- Blocked by: `hormuz-4j7.3` - Collect historical supply, price, inventory, and demand data
+- Cleared dependency: `hormuz-4j7.4` - Rank current Hormuz shock against historical analogues
+- Cleared dependency: `hormuz-4j7.3` - Collect historical supply, price, inventory, and demand data
 - Cleared dependency: `hormuz-kmz.3` - Estimate supply removed, delayed, or rerouted
 - Cleared dependency: `hormuz-fyp.7` - Define chart and map standards for the project
 - Blocks: `hormuz-ccx.2` - Develop blog narrative outline
@@ -45,6 +43,8 @@ Graphic is publication-ready and includes caveats for non-comparable dimensions.
 
 - 2026-07-06T06:32Z: Moved to `issues/blocked/`. This task should remain blocked until `hormuz-4j7.4` produces the multi-dimensional ranking and `hormuz-fyp.7` chart standards are applied to a real figure dataset. No graphic should be produced from placeholder values.
 - 2026-07-06T09:30Z: Advanced the publication figure specification without generating a placeholder chart. `hormuz-fyp.7` is now done and its chart standards can be applied, but this issue must remain blocked until `hormuz-4j7.4` ranks the current Hormuz shock using real historical/current data. The real-data blocker is currently `hormuz-4j7.3` for historical supply/price/inventory/demand fields and buffer-duration values.
+- 2026-07-06T19:25Z: Unblocked after `hormuz-4j7.3` and `hormuz-4j7.4` produced the evidence panel and ranking score tables. Claimed for production of the first publication graphic using real ranking data.
+- 2026-07-06T19:40Z: Completed first-pass publication figure using real ranking data. Added `scripts/build_4j7_historical_comparison_chart.py`, `figures/fig-4j7-historical-shock-comparison-data.csv`, and `figures/fig-4j7-historical-shock-comparison.svg`. Validation passed: regenerated outputs, compiled the script, parsed the figure CSV, and parsed the SVG as XML. The graphic explicitly labels current Hormuz rows as exposure/scenario rankings, preserves confidence and missing-value signals, and warns that route shocks, physical supply shocks, and overlapping product channels are not mechanically additive.
 
 ### Publication-Ready Figure Concept
 

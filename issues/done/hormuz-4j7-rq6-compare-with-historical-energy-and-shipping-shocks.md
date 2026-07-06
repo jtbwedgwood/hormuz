@@ -2,14 +2,13 @@
 id: "hormuz-4j7"
 title: "RQ6: Compare with historical energy and shipping shocks"
 type: "epic"
-status: "blocked"
+status: "done"
 priority: "P2"
 parent: null
 labels:
   - "comparisons"
   - "history"
-blocked_by:
-  - "hormuz-s49"
+blocked_by: []
 blocks:
   - "hormuz-ccx"
 children:
@@ -20,7 +19,7 @@ children:
   - "hormuz-4j7.5"
 owner: "jtbwedgwood@gmail.com"
 created_at: "2026-07-06T06:09:10Z"
-updated_at: "2026-07-06T06:09:10Z"
+updated_at: "2026-07-06T19:40:00Z"
 ---
 
 # RQ6: Compare with historical energy and shipping shocks
@@ -37,7 +36,7 @@ Comparable metrics are normalized; selected analogues are justified; the compari
 
 - Cleared dependency: `hormuz-kmz` - RQ2: Quantify products and supply disrupted
 - Cleared dependency: `hormuz-l8m` - RQ5: Estimate US business and AI cost impacts
-- Blocked by: `hormuz-s49` - RQ4: Assess strategic stockpiles and reserve releases
+- Cleared dependency: `hormuz-s49` - RQ4: Assess strategic stockpiles and reserve releases
 - Blocks: `hormuz-ccx` - Synthesis: blog-ready argument, visuals, and uncertainty
 - Child: `hormuz-4j7.1` - Select historical shock comparison cases
 - Child: `hormuz-4j7.2` - Define normalized comparison metrics
@@ -62,4 +61,7 @@ Comparable metrics are normalized; selected analogues are justified; the compari
   - `hormuz-4j7.4`: define a transparent ranking rubric and hypotheses without producing final rankings from incomplete data.
   - `hormuz-4j7.5`: specify the final historical comparison graphic without fake placeholder values.
   Subsequent local refresh found `hormuz-2y7.6`, `hormuz-kmz.3`, and `hormuz-l8m.1` are now done, so `hormuz-4j7.3` was updated to use the public 2019+ PortWatch backfill boundary, current low/base/high disruption tables, and current low/base/high price-scenario inputs. Remaining hard blocker is `hormuz-s49.6` for stockpile buffer duration.
-- 2026-07-06 cleanup clarification: RQ6 is now blocked only by `hormuz-s49`, specifically the consolidated buffer-duration work in `hormuz-s49.6`. Historical metric collection itself is tracked as child task `hormuz-4j7.3`.
+- 2026-07-06 cleanup clarification: RQ6 was blocked only by `hormuz-s49`, specifically the consolidated buffer-duration work in `hormuz-s49.6`. Historical metric collection itself is tracked as child task `hormuz-4j7.3`.
+- 2026-07-06: Claimed after S49 completion. `hormuz-4j7.3` is now active; downstream ranking (`hormuz-4j7.4`) and figure (`hormuz-4j7.5`) remain blocked until the metric panel lands.
+- 2026-07-06T19:12Z: `hormuz-4j7.3` is done with the normalized evidence panel at `data/derived/hormuz_4j7_3_historical_comparison_metric_panel.csv`. `hormuz-4j7.4` is now in progress against that panel. `hormuz-4j7.5` remains blocked until the ranking score tables exist.
+- 2026-07-06T19:40Z: Completed the RQ6 epic. Done artifacts now include the normalized metric panel, case and product/channel score tables, and a publication SVG plus machine-readable figure data. Main result for synthesis: current Hormuz is not the most severe crude/oil analogue once partial bypass, stocks, and policy buffers are included; the more eye-catching stress is product-specific, with LPG/NGL, LNG, and sulphur ranking above the crude aggregate because public evidence supports weaker route substitution and buffer cover for those channels.
