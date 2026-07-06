@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="740" viewBox="0 0 1180 740">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#202020}.title{font-size:28px;font-weight:700}.sub{font-size:15px;fill:#4a4a4a}.label{font-size:15px}.small{font-size:12px;fill:#555}.axis{font-size:12px;fill:#555}.note{font-size:11px;fill:#666}</style>
+<text x="54" y="52" class="title">How major importers cushion Hormuz crude exposure</text>
+<text x="54" y="80" class="sub">Base-case flow-equivalent adjustment for direct crude/product exposure, mb/d. Values are scenario estimates, not cargo accounting.</text>
+<rect x="54" y="98" width="16" height="16" fill="#2f6f73"/>
+<text x="76" y="111" class="small">replacement supply</text>
+<rect x="224" y="98" width="16" height="16" fill="#b5832d"/>
+<text x="246" y="111" class="small">inventory draw</text>
+<rect x="394" y="98" width="16" height="16" fill="#8f4f6f"/>
+<text x="416" y="111" class="small">demand reduction</text>
+<rect x="564" y="98" width="16" height="16" fill="#c8c8c8"/>
+<text x="586" y="111" class="small">unresolved / other</text>
+<line x1="210.0" y1="120" x2="210.0" y2="532" stroke="#e7e7e7"/>
+<text x="210.0" y="552" text-anchor="middle" class="axis">0</text>
+<line x1="374.0" y1="120" x2="374.0" y2="532" stroke="#e7e7e7"/>
+<text x="374.0" y="552" text-anchor="middle" class="axis">1</text>
+<line x1="538.0" y1="120" x2="538.0" y2="532" stroke="#e7e7e7"/>
+<text x="538.0" y="552" text-anchor="middle" class="axis">2</text>
+<line x1="702.0" y1="120" x2="702.0" y2="532" stroke="#e7e7e7"/>
+<text x="702.0" y="552" text-anchor="middle" class="axis">3</text>
+<line x1="866.0" y1="120" x2="866.0" y2="532" stroke="#e7e7e7"/>
+<text x="866.0" y="552" text-anchor="middle" class="axis">4</text>
+<line x1="1030.0" y1="120" x2="1030.0" y2="532" stroke="#e7e7e7"/>
+<text x="1030.0" y="552" text-anchor="middle" class="axis">5</text>
+<text x="620.0" y="577" text-anchor="middle" class="axis">mb/d</text>
+<text x="196" y="158" text-anchor="end" class="label">China</text>
+<text x="196" y="177" text-anchor="end" class="small">4.79 mb/d exposed</text>
+<rect x="210.0" y="138" width="229.6" height="26" fill="#2f6f73"/>
+<text x="324.8" y="156" text-anchor="middle" class="small" fill="#202020">1.4</text>
+<rect x="439.6" y="138" width="164.0" height="26" fill="#b5832d"/>
+<text x="521.6" y="156" text-anchor="middle" class="small" fill="#202020">1</text>
+<rect x="603.6" y="138" width="164.0" height="26" fill="#8f4f6f"/>
+<text x="685.6" y="156" text-anchor="middle" class="small" fill="#202020">1</text>
+<rect x="767.6" y="138" width="227.1" height="26" fill="#c8c8c8"/>
+<text x="881.2" y="156" text-anchor="middle" class="small" fill="#202020">1.4</text>
+<line x1="994.7" y1="133" x2="994.7" y2="169" stroke="#111" stroke-width="2"/>
+<text x="196" y="224" text-anchor="end" class="label">India</text>
+<text x="196" y="243" text-anchor="end" class="small">1.89 mb/d exposed</text>
+<rect x="210.0" y="204" width="147.6" height="26" fill="#2f6f73"/>
+<text x="283.8" y="222" text-anchor="middle" class="small" fill="#202020">0.9</text>
+<rect x="357.6" y="204" width="41.0" height="26" fill="#b5832d"/>
+<text x="378.1" y="222" text-anchor="middle" class="small" fill="#202020">0.25</text>
+<rect x="398.6" y="204" width="16.4" height="26" fill="#8f4f6f"/>
+<rect x="415.0" y="204" width="104.1" height="26" fill="#c8c8c8"/>
+<text x="467.1" y="222" text-anchor="middle" class="small" fill="#202020">0.64</text>
+<line x1="519.1" y1="199" x2="519.1" y2="235" stroke="#111" stroke-width="2"/>
+<text x="196" y="290" text-anchor="end" class="label">Japan</text>
+<text x="196" y="309" text-anchor="end" class="small">1.51 mb/d exposed</text>
+<rect x="210.0" y="270" width="172.2" height="26" fill="#2f6f73"/>
+<text x="296.1" y="288" text-anchor="middle" class="small" fill="#202020">1.1</text>
+<rect x="382.2" y="270" width="65.6" height="26" fill="#b5832d"/>
+<text x="415.0" y="288" text-anchor="middle" class="small" fill="#202020">0.4</text>
+<rect x="447.8" y="270" width="8.2" height="26" fill="#8f4f6f"/>
+<rect x="456.0" y="270" width="2.5" height="26" fill="#c8c8c8"/>
+<line x1="458.5" y1="265" x2="458.5" y2="301" stroke="#111" stroke-width="2"/>
+<text x="196" y="356" text-anchor="end" class="label">South Korea</text>
+<text x="196" y="375" text-anchor="end" class="small">1.73 mb/d exposed</text>
+<rect x="210.0" y="336" width="123.0" height="26" fill="#2f6f73"/>
+<text x="271.5" y="354" text-anchor="middle" class="small" fill="#202020">0.75</text>
+<rect x="333.0" y="336" width="65.6" height="26" fill="#b5832d"/>
+<text x="365.8" y="354" text-anchor="middle" class="small" fill="#202020">0.4</text>
+<rect x="398.6" y="336" width="32.8" height="26" fill="#8f4f6f"/>
+<rect x="431.4" y="336" width="61.8" height="26" fill="#c8c8c8"/>
+<text x="462.3" y="354" text-anchor="middle" class="small" fill="#202020">0.38</text>
+<line x1="493.2" y1="331" x2="493.2" y2="367" stroke="#111" stroke-width="2"/>
+<text x="196" y="422" text-anchor="end" class="label">Europe and Mediterranean</text>
+<text x="196" y="441" text-anchor="end" class="small">0.72 mb/d exposed</text>
+<rect x="210.0" y="402" width="98.4" height="26" fill="#2f6f73"/>
+<text x="259.2" y="420" text-anchor="middle" class="small" fill="#202020">0.6</text>
+<rect x="308.4" y="402" width="32.8" height="26" fill="#b5832d"/>
+<rect x="341.2" y="402" width="13.1" height="26" fill="#8f4f6f"/>
+<line x1="328.2" y1="397" x2="328.2" y2="433" stroke="#111" stroke-width="2"/>
+<text x="196" y="488" text-anchor="end" class="label">United States</text>
+<text x="196" y="507" text-anchor="end" class="small">0.48 mb/d exposed</text>
+<rect x="210.0" y="468" width="73.8" height="26" fill="#2f6f73"/>
+<text x="246.9" y="486" text-anchor="middle" class="small" fill="#202020">0.45</text>
+<rect x="283.8" y="468" width="57.4" height="26" fill="#b5832d"/>
+<text x="312.5" y="486" text-anchor="middle" class="small" fill="#202020">0.35</text>
+<rect x="341.2" y="468" width="8.2" height="26" fill="#8f4f6f"/>
+<line x1="289.4" y1="463" x2="289.4" y2="499" stroke="#111" stroke-width="2"/>
+<text x="54" y="650" class="note">Black tick marks show the direct 2024 route-exposure baseline for each importer/region. Stacked colors show base-case adjustment channels from the F6R.5 matrix.</text>
+<text x="54" y="670" class="note">Source: F6R importer exposure and replacement/demand-response matrices; EIA/Vortexa, METI, Government of India, EU Commission, S49 reserve tables; calculations by author. Accessed 2026-07-06.</text>
+<text x="54" y="690" class="note">Caveat: replacement, inventory, and demand buckets are inferred scenario allocations; do not sum with LNG, LPG, fertilizer, sulfur, or aluminium rows.</text>
+</svg>

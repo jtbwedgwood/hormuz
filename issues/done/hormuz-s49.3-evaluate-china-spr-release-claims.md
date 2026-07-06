@@ -2,7 +2,7 @@
 id: "hormuz-s49.3"
 title: "Evaluate China SPR release claims"
 type: "task"
-status: "blocked"
+status: "done"
 priority: "P1"
 parent: "hormuz-s49"
 labels:
@@ -10,14 +10,13 @@ labels:
   - "energy-security"
   - "spr"
   - "stockpiles"
-blocked_by:
-  - "hormuz-f6r.2"
+blocked_by: []
 blocks:
   - "hormuz-s49.6"
 children: []
 owner: "jtbwedgwood@gmail.com"
 created_at: "2026-07-06T06:09:52Z"
-updated_at: "2026-07-06T07:35:00Z"
+updated_at: "2026-07-06T18:23:16Z"
 ---
 
 # Evaluate China SPR release claims
@@ -33,7 +32,7 @@ Conclusion assigns confidence to China SPR release magnitude and explains altern
 ## Dependency Notes
 
 - Parent: `hormuz-s49` - RQ4: Assess strategic stockpiles and reserve releases
-- Blocked by: `hormuz-f6r.2` - Analyze China exposure and substitution behavior
+- Cleared blocker: `hormuz-f6r.2` - Analyze China exposure and substitution behavior. Upstream is now done and supports the same core reading: China adjustment is observable through import timing, refinery-run cuts, product-export controls, and opaque commercial/operational inventory behavior, but public data do not isolate a large government SPR draw.
 - Unblocked: `hormuz-s49.1` - Inventory reserve and stockpile data sources
 - Blocks: `hormuz-s49.6` - Estimate stockpile buffer duration by country/product
 
@@ -90,3 +89,32 @@ Conclusion assigns confidence to China SPR release magnitude and explains altern
     - https://www.energyconnects.com/news/oil/2026/june/china-taps-commercial-oil-stockpiles-to-help-weather-gulf-shock/
     - https://www.kayrros.com/blog/anatomy-of-a-fall/
     - https://www.jodidata.org/oil/
+
+- 2026-07-06 final synthesis after `hormuz-f6r.2` cleared, access date 2026-07-06:
+  - Acceptance criterion resolved: public evidence does not support a high-confidence claim that China is releasing a large government SPR volume. Best estimate for confirmed government SPR release magnitude is 0 barrels publicly confirmed; confidence in a large government-SPR release is low (about 20/100). Confidence that some limited government-SPR or underground-to-commercial transfer could be occurring is low-to-medium (about 35/100) because Kpler/Bloomberg explicitly cannot rule it out, but public sources do not provide an ownership bridge or magnitude.
+  - Most defensible magnitude claim: secondary market reporting supports commercial/operational crude-stock draws near 1 mb/d during the spring/summer 2026 shock, with Energy Aspects/Kayrros estimating about 25 million barrels drawn in the month to 2026-06-07. Confidence in this commercial/operational draw channel is high (about 85/100). This should not be described as a government SPR release.
+  - Government SPR versus commercial stocks: EIA's public estimate intentionally treats China's government-held and commercial inventories together as "strategic oil inventories" because China directed NOCs to hold emergency oil in commercial stockpiles. EIA separately estimates about 360 million barrels government-held and about 1.0 billion barrels commercial crude inventories as of Dec. 2025. Therefore "China has 1.4 billion barrels of strategic inventories" is not equivalent to "China has 1.4 billion barrels in a government SPR."
+  - Official/agency evidence against a large SPR claim: EIA says China added about 1.1 mb/d to strategic oil inventories in 2025 and preliminary data indicated continued inventory builds before the Iran conflict. IEA's April 2026 OMR says China added 40 million barrels of crude to tanks in March 2026 even as global stocks were falling. IEA's June 2026 OMR says crude imports into China and Japan fell sharply and refinery crude runs in China and other regions were down materially in 2Q26, supporting run cuts/import timing as adjustment channels.
+  - Upstream `hormuz-f6r.2` interpretation: China had large Hormuz-linked crude exposure but also large buffers. CGEP/Erica Downs estimates 45-50% of China's crude imports transit Hormuz and notes 1.39 billion barrels of oil in China storage as of 2026-03-02, plus Iranian barrels in floating and bonded storage. That upstream evidence supports "buffer plus substitution/demand adjustment," not a clean SPR draw.
+  - Alternative explanations to keep separate in the blog:
+    - Commercial/operational inventories: supported by Bloomberg/Energy Connects, Straits Times/Bloomberg, Vortexa, Kpler, Energy Aspects, Kayrros; not official Chinese inventory data.
+    - Bonded and floating storage: Iranian barrels in bonded storage at Dalian/Zhoushan and floating storage in Asia may be usable by Chinese refiners without being Chinese government SPR.
+    - Import timing and origin relabeling: GAC data miss sanctioned Iranian barrels; Malaysia/Indonesia/Iraq/Oman/UAE labels may include relabeled oil, so customs-origin shifts are not clean substitution evidence.
+    - Refinery runs: NBS reports crude processing down 5.8% y/y in April 2026 and down 9.1% y/y in May 2026; IEA reports large China/Asia run cuts. This directly reduces crude needs.
+    - Product-export controls: Reuters/Bloomberg/CGEP reporting says China restricted refined-product exports to preserve domestic supply; this rebalances internal product markets without proving SPR use.
+  - Blog-safe wording: "China appears to have cushioned the Hormuz shock mainly by drawing commercial/operational stocks, cutting refinery runs, timing imports, using bonded/floating sanctioned barrels, and restricting refined-product exports. A limited opaque SPR contribution is possible, but public evidence does not support the stronger claim that Beijing has released a large government SPR volume."
+  - Remaining caveats: China does not publish a clean SPR series; satellite/tanker estimates observe tanks and flows, not legal ownership; EIA's "strategic" definition for China deliberately differs from the U.S. SPR definition; secondary reports may use "reserves" loosely; and exact stock movements after June 2026 remain subject to revisions in tanker/satellite datasets.
+  - Source breadcrumbs added/verified in final pass:
+    - EIA Today in Energy, 2026-05-12: https://www.eia.gov/todayinenergy/detail.php?id=67504
+    - EIA Global Energy Security Data methodology: https://www.eia.gov/outlooks/steo/report/energysecurity/article.php
+    - IEA Oil Market Report April 2026: https://www.iea.org/reports/oil-market-report-april-2026
+    - IEA Oil Market Report June 2026: https://www.iea.org/reports/oil-market-report-june-2026
+    - IEA Middle East and Global Energy Markets topic page: https://www.iea.org/topics/the-middle-east-and-global-energy-markets
+    - JODI oil highlights, April 2026 China crude imports: https://www.jodidata.org/
+    - NBS Energy Production in April 2026: https://www.stats.gov.cn/english/PressRelease/202605/t20260519_1963756.html
+    - NBS Energy Production in May 2026: https://www.stats.gov.cn/english/PressRelease/202606/t20260617_1963970.html
+    - CGEP/Erica Downs on China energy security and Hormuz exposure: https://www.energypolicy.columbia.edu/implications-of-the-conflict-in-the-middle-east-for-chinas-energy-security/
+    - CGEP/Erica Downs on 2025 China crude imports and stockpiling: https://www.energypolicy.columbia.edu/where-china-gets-its-oil-crude-imports-in-2025-reveal-stockpiling-and-changing-fortunes-of-certain-suppliers-including-those-sanctioned/
+    - CGEP/Palacios and Downs on China refining/petrochemical adjustment: https://www.energypolicy.columbia.edu/disruptions-in-the-middle-east-reinforce-chinas-aim-for-greater-self-sufficiency-in-refining-and-petrochemicals/
+    - Bloomberg via Energy Connects on commercial stockpiles, 2026-06-10: https://www.energyconnects.com/news/oil/2026/june/china-taps-commercial-oil-stockpiles-to-help-weather-gulf-shock/
+    - Bloomberg via Straits Times on commercial reserves versus SPR: https://www.straitstimes.com/asia/china-allows-state-oil-firms-to-tap-reserves-as-middle-east-war-drags

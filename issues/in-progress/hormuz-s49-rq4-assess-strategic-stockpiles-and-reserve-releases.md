@@ -2,15 +2,14 @@
 id: "hormuz-s49"
 title: "RQ4: Assess strategic stockpiles and reserve releases"
 type: "epic"
-status: "blocked"
+status: "in_progress"
 priority: "P1"
 parent: null
 labels:
   - "energy-security"
   - "spr"
   - "stockpiles"
-blocked_by:
-  - "hormuz-f6r"
+blocked_by: []
 blocks:
   - "hormuz-4j7"
   - "hormuz-ccx"
@@ -38,7 +37,7 @@ Reserve and inventory sources are inventoried; releases or drawdowns are quantif
 
 ## Dependency Notes
 
-- Blocked by: `hormuz-f6r` - RQ3: Map destinations and importer adjustment
+- Cleared dependency: `hormuz-f6r` - RQ3: Map destinations and importer adjustment
 - Blocks: `hormuz-4j7` - RQ6: Compare with historical energy and shipping shocks
 - Blocks: `hormuz-ccx` - Synthesis: blog-ready argument, visuals, and uncertainty
 - Cleared downstream dependency: `hormuz-l8m` - RQ5 completed with stockpile buffering treated as a caveat rather than a blocker.
@@ -55,3 +54,4 @@ Reserve and inventory sources are inventoried; releases or drawdowns are quantif
 - 2026-07-06: Spawned independent subagents for source inventory (`s49.1`), OECD/US reserve response (`s49.2`), China SPR claims (`s49.3`), LNG/gas storage buffering (`s49.4`), and fertilizer/chemical inventory buffers (`s49.5`). Downstream tasks should treat `s49.2`-`s49.5` notes as preliminary until `s49.1` source inventory is reconciled.
 - 2026-07-06: Second parallel push launched for `s49.2`-`s49.5` after `s49.1` completion. Target outputs are issue-note conclusions plus table-ready derived CSVs where useful: reserve response, China SPR evidence matrix, LNG/gas buffer table, and fertilizer/chemical buffer table.
 - 2026-07-06: Post-swarm cleanup moved the epic from `in-progress` to `blocked`. Useful partial outputs exist, but final closure depends on importer-adjustment work under `hormuz-f6r` and a consolidated `hormuz-s49.6` buffer table.
+- 2026-07-06: F6R is now complete for the public-source stage and `hormuz-s49.3`/`.4` are done. Moved the epic back to `in-progress`; remaining closure work is the consolidated `hormuz-s49.6` buffer-duration table.

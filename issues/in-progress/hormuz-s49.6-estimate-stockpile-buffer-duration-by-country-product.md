@@ -10,17 +10,15 @@ labels:
   - "modeling"
   - "spr"
   - "stockpiles"
-blocked_by:
-  - "hormuz-s49.3"
-  - "hormuz-s49.4"
+blocked_by: []
 blocks:
   - "hormuz-4j7.3"
   - "hormuz-ccx.2"
 children: []
 owner: "jtbwedgwood@gmail.com"
 created_at: "2026-07-06T06:09:57Z"
-status: "blocked"
-updated_at: "2026-07-06T06:56:35Z"
+status: "in_progress"
+updated_at: "2026-07-06T19:05:00Z"
 ---
 
 # Estimate stockpile buffer duration by country/product
@@ -39,8 +37,8 @@ Buffer table states assumptions, replenishment limits, demand seasonality, and c
 - Unblocked: `hormuz-fyp.2` - Build canonical disruption chronology
 - Unblocked: `hormuz-kmz.3` - Estimate supply removed, delayed, or rerouted
 - Unblocked: `hormuz-s49.2` - Quantify OECD and US reserve response
-- Blocked by: `hormuz-s49.3` - Evaluate China SPR release claims
-- Blocked by: `hormuz-s49.4` - Assess LNG and gas storage buffering
+- Cleared blocker: `hormuz-s49.3` - Evaluate China SPR release claims
+- Cleared blocker: `hormuz-s49.4` - Assess LNG and gas storage buffering
 - Unblocked: `hormuz-s49.5` - Assess fertilizer and chemical inventory buffers
 - Blocks: `hormuz-4j7.3` - Collect historical supply, price, inventory, and demand data
 - Blocks: `hormuz-ccx.2` - Develop blog narrative outline
@@ -60,3 +58,4 @@ Buffer table states assumptions, replenishment limits, demand seasonality, and c
   - The open sibling tasks are still the source of truth for the missing pieces: `hormuz-s49.2` for OECD/US/Japan/Korea/Europe oil reserves, `hormuz-s49.3` for China SPR uncertainty, `hormuz-s49.4` for LNG/gas denominators, and `hormuz-s49.5` for fertilizer/chemicals.
 - Until those are reconciled into one table, any country-by-product day-count would be stitched together from mixed bases and would not meet the rigor bar for closure.
 - 2026-07-06 cleanup status: moved to `blocked`. Removed stale `hormuz-l8m.3` block because RQ5 completed that sensitivity table with stockpile buffering recorded as a caveat rather than a blocker.
+- 2026-07-06 F6R follow-up: upstream China and LNG/gas adjustment tasks are now done, and this issue is back in `in-progress`. Remaining work is synthesis, not external unblock: reconcile S49 oil, China, LNG/gas, fertilizer/chemical, and F6R replacement/demand-response rows into one conservative buffer-duration table.
