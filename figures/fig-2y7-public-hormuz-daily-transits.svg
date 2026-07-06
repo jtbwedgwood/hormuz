@@ -18,10 +18,6 @@
     <text x="862" y="129" font-size="16" fill="#111827">Total transits, 7-day avg</text>
     <line x1="806" y1="154" x2="850" y2="154" stroke="#b45309" stroke-width="4"/>
     <text x="862" y="159" font-size="16" fill="#111827">Tanker transits, 7-day avg</text>
-    <text x="72" y="636" font-size="16" font-weight="700" fill="#111827">Known</text>
-    <text x="132" y="636" font-size="16" fill="#374151">Daily transit calls by broad vessel class through IMF PortWatch's Hormuz chokepoint boundary.</text>
-    <text x="72" y="664" font-size="16" font-weight="700" fill="#111827">Unknown</text>
-    <text x="152" y="664" font-size="16" fill="#374151">Vessel identity, direction, AIS-dark movements, and actual cargo onboard.</text>
-    <text x="72" y="704" font-size="14" fill="#6b7280">Source: IMF PortWatch Daily_Chokepoints_Data, chokepoint6; calculations by project. Capacity fields are metric-ton estimates, not barrels.</text>
+    <text x="72" y="636" font-size="14" fill="#6b7280">Source: IMF PortWatch Daily_Chokepoints_Data, chokepoint6; calculations by project. Caveats: see figures/README.md.</text>
   </g>
 </svg>

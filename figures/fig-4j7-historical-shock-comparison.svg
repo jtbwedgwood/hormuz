@@ -583,10 +583,7 @@
 <rect x="1190.0" y="642.0" width="191.6" height="10" rx="2" fill="#8b2f2f" opacity="0.78"/>
 <circle cx="1381.6" cy="647.0" r="6" fill="#8b2f2f" stroke="#8b2f2f" stroke-width="1.8"/>
 <text x="1462.0" y="651.0" class="label">73.7</text>
-<text x="58.0" y="978.0" class="note">Caveat: Current Hormuz rows are exposure/scenario rankings, not observed realized losses. Do not sum product rows; crude, refined products, LPG/NGLs, petrochemicals, fertilizer inputs,</text>
-<text x="58.0" y="992.0" class="note">sulphur, aluminium, and freight channels overlap.</text>
-<text x="58.0" y="1010.0" class="note">Source: data/derived/hormuz_4j7_4_case_ranking_scores.csv and data/derived/hormuz_4j7_4_hormuz_product_ranking_scores.csv; underlying IEA, EIA, World Bank/IMF, UN/industry and project-</text>
-<text x="58.0" y="1024.0" class="note">derived tables listed in the score files; calculations by author. Accessed 2026-07-06.</text>
-<text x="58.0" y="1042.0" class="note">Low-conf. labels and hollow markers indicate low-confidence/proxy rows. Dimension cells show 0-4 rubric scores; n/a means the score table did not carry a meaningful value for that dimension.</text>
+<text x="58.0" y="978.0" class="note">Source: 4J7.4 score tables; underlying IEA, EIA, World Bank/IMF, UN/industry, and project-derived tables listed in the score files; calculations by project.</text>
+<text x="58.0" y="996.0" class="note">Hollow markers indicate low-confidence/proxy rows. Caveats on scenario rows, non-additive products, and route-vs-supply comparisons: see figures/README.md.</text>
 <metadata>Figure ID: fig-4j7-historical-shock-comparison; author/script: scripts/build_4j7_historical_comparison_chart.py; generated from 4J7.4 ranking score tables; unit: normalized severity score 0-100 plus dimension rubric scores 0-4.</metadata>
 </svg>

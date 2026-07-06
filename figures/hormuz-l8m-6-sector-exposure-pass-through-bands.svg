@@ -51,7 +51,5 @@
 <circle cx="323.2" cy="344" r="5" fill="#15803d"/>
 <text x="368.4" y="349.0" font-family="Arial, sans-serif" font-size="13" fill="#374151">$0.29bn to $2.11bn</text>
 <rect x="72" y="656" width="1056" height="1" fill="#e5e7eb"/>
-<text x="72" y="682" font-family="Arial, sans-serif" font-size="13" fill="#4b5563">Assumptions: 15% / 25% / 40% normalized direct-energy shock; pass-through bands from l8m.2 (direct fuel/electricity 35% / 60% / 90%; tier-2 inputs and freight 20% / 35% / 55%).</text>
-<text x="72" y="702" font-family="Arial, sans-serif" font-size="13" fill="#4b5563">Sources: EIA MECS 2022 and the l8m.2 issue note. This is a presentation band, not a final sector output estimate.</text>
-<text x="72" y="722" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Key source URLs: https://www.eia.gov/consumption/manufacturing/data/2022/ • see issue note for the full l8m.2 source list • updated 2026-07-06.</text>
+<text x="72" y="682" font-family="Arial, sans-serif" font-size="13" fill="#6b7280">Source: EIA MECS 2022 and l8m.2/l8m.6 scenario tables. Caveats: see figures/README.md.</text>
 </svg>

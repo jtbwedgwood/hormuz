@@ -11,14 +11,13 @@ labels:
   - "confidence"
   - "synthesis"
   - "visuals"
-blocked_by:
-  - "hormuz-fyp.1"
+blocked_by: []
 blocks:
   - "hormuz-ccx.4"
 children: []
 owner: "jtbwedgwood@gmail.com"
 created_at: "2026-07-06T06:10:14Z"
-updated_at: "2026-07-06T06:10:14Z"
+updated_at: "2026-07-06T20:30:00Z"
 ---
 
 # Maintain claim register with confidence levels
@@ -34,9 +33,9 @@ Register covers key quantitative claims and surprising qualitative claims; weak 
 ## Dependency Notes
 
 - Parent: `hormuz-ccx` - Synthesis: blog-ready argument, visuals, and uncertainty
-- Blocked by: `hormuz-fyp.1` - Define citation and source-quality rubric
+- Cleared dependency: `hormuz-fyp.1` - Define citation and source-quality rubric
 - Blocks: `hormuz-ccx.4` - Audit citations and uncertainty before drafting
 
 ## Work Notes
 
-- Add research notes, source links, decisions, and open questions here as work progresses.
+- 2026-07-06T20:30Z: Cleared stale `hormuz-fyp.1` blocker. This is now a synthesis task: build a claim register from completed research outputs before citation audit.

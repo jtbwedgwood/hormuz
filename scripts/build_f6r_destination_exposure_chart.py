@@ -94,8 +94,8 @@ def write_csv(rows: list[dict[str, str]]) -> None:
 
 
 def write_svg(rows: list[dict[str, str]]) -> None:
-    width = 1180
-    height = 740
+    width = 1200
+    height = 760
     margin_left = 210
     chart_top = 138
     row_h = 66
@@ -106,12 +106,12 @@ def write_svg(rows: list[dict[str, str]]) -> None:
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<rect width="100%" height="100%" fill="#ffffff"/>',
-        '<style>text{font-family:Arial,Helvetica,sans-serif;fill:#202020}.title{font-size:28px;font-weight:700}.sub{font-size:15px;fill:#4a4a4a}.label{font-size:15px}.small{font-size:12px;fill:#555}.axis{font-size:12px;fill:#555}.note{font-size:11px;fill:#666}</style>',
-        '<text x="54" y="52" class="title">How major importers cushion Hormuz crude exposure</text>',
-        '<text x="54" y="80" class="sub">Base-case flow-equivalent adjustment for direct crude/product exposure, mb/d. Values are scenario estimates, not cargo accounting.</text>',
+        '<style>text{font-family:Arial,Helvetica,sans-serif;fill:#111827}.title{font-size:28px;font-weight:700}.sub{font-size:16px;fill:#4b5563}.label{font-size:15px}.small{font-size:12px;fill:#4b5563}.axis{font-size:12px;fill:#4b5563}.note{font-size:12px;fill:#6b7280}</style>',
+        '<text x="72" y="38" class="title">How major importers cushion Hormuz crude exposure</text>',
+        '<text x="72" y="62" class="sub">Base-case flow-equivalent adjustment for direct crude/product exposure, mb/d</text>',
     ]
 
-    legend_x = 54
+    legend_x = 72
     legend_y = 110
     for key in ["replacement_supply_base", "inventory_draw_base", "demand_destruction_base", "residual_or_other_base"]:
         parts.append(f'<rect x="{legend_x}" y="{legend_y - 12}" width="16" height="16" fill="{COLORS[key]}"/>')
@@ -144,9 +144,7 @@ def write_svg(rows: list[dict[str, str]]) -> None:
             x0 += w
         x_exposure = margin_left + exposure / max_x * chart_w
         parts.append(f'<line x1="{x_exposure:.1f}" y1="{y - 5}" x2="{x_exposure:.1f}" y2="{y + bar_h + 5}" stroke="#111" stroke-width="2"/>')
-    parts.append('<text x="54" y="650" class="note">Black tick marks show the direct 2024 route-exposure baseline for each importer/region. Stacked colors show base-case adjustment channels from the F6R.5 matrix.</text>')
-    parts.append('<text x="54" y="670" class="note">Source: F6R importer exposure and replacement/demand-response matrices; EIA/Vortexa, METI, Government of India, EU Commission, S49 reserve tables; calculations by author. Accessed 2026-07-06.</text>')
-    parts.append('<text x="54" y="690" class="note">Caveat: replacement, inventory, and demand buckets are inferred scenario allocations; do not sum with LNG, LPG, fertilizer, sulfur, or aluminium rows.</text>')
+    parts.append('<text x="72" y="682" class="note">Source: F6R importer exposure and replacement/demand-response matrices; calculations by project. Caveats: see figures/README.md.</text>')
     parts.append("</svg>")
     OUT_SVG.write_text("\n".join(parts) + "\n")
 

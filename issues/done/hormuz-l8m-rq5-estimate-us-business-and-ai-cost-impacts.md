@@ -22,7 +22,7 @@ children:
   - "hormuz-l8m.6"
 owner: "jtbwedgwood@gmail.com"
 created_at: "2026-07-06T06:09:09Z"
-updated_at: "2026-07-06T17:45:00Z"
+updated_at: "2026-07-06T18:12:24Z"
 ---
 
 # RQ5: Estimate US business and AI cost impacts
@@ -52,8 +52,9 @@ Price shock scenarios are defined; US cost pass-through channels are quantified;
 - 2026-07-06T16:00Z: Claimed epic for parallel work on RQ5. Upstream `hormuz-kmz` and `hormuz-s49` remain active blockers for final estimates, so current work should produce scenario-ready methods, provisional ranges, and source breadcrumbs rather than final blog claims.
 - 2026-07-06T17:45Z: Closed RQ5 after all six child tasks moved to `issues/done/`. The package now includes scenario inputs (`hormuz-l8m.1`), sector cost method/table (`hormuz-l8m.2`), data-center regional power sensitivity (`hormuz-l8m.3`), AI cost-per-token sensitivity (`hormuz-l8m.4`), macro cross-checks (`hormuz-l8m.5`), and two visual/data deliverables (`hormuz-l8m.6`). `hormuz-s49.6` remains open for the broader stockpile-buffer narrative, but `hormuz-l8m.3` records why that is a caveat rather than a blocker for the RQ5 power-price sensitivity table.
 - 2026-07-06 cleanup: removed stale `blocked_by` entries after confirming RQ5 was closed as a provisional scenario-sensitivity package, not as a final realized-cost model.
+- 2026-07-06 docs pass: compiled the user-facing synthesis in `docs/hormuz-us-business-ai-costs.md`, focused on the most blog-relevant results: sector concentration of business costs, regional data-center power sensitivity, small direct AI electricity cost per token, and macro pass-through sanity checks.
 
 ## Completion Note
 
 - Acceptance criteria met: price shock scenarios are defined; U.S. cost pass-through channels are quantified in a scenario-ready sector table; AI inference/training electricity sensitivity is estimated separately from capex/GPU/labor costs with transparent assumptions; and initial publication visuals exist as SVG plus machine-readable CSV.
-- Key output paths: `data/derived/hormuz_l8m_6_sector_exposure_bands.csv`, `data/derived/hormuz_l8m_6_ai_electricity_cost_sensitivity.csv`, `figures/hormuz-l8m-6-sector-exposure-pass-through-bands.svg`, and `figures/hormuz-l8m-6-ai-electricity-cost-sensitivity.svg`.
+- Key output paths: `docs/hormuz-us-business-ai-costs.md`, `data/derived/hormuz_l8m_6_sector_exposure_bands.csv`, `data/derived/hormuz_l8m_6_ai_electricity_cost_sensitivity.csv`, `figures/hormuz-l8m-6-sector-exposure-pass-through-bands.svg`, and `figures/hormuz-l8m-6-ai-electricity-cost-sensitivity.svg`.

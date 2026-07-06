@@ -9,13 +9,7 @@ labels:
   - "blog"
   - "synthesis"
   - "visuals"
-blocked_by:
-  - "hormuz-2y7"
-  - "hormuz-4j7"
-  - "hormuz-f6r"
-  - "hormuz-kmz"
-  - "hormuz-l8m"
-  - "hormuz-s49"
+blocked_by: []
 blocks: []
 children:
   - "hormuz-ccx.1"
@@ -25,7 +19,7 @@ children:
   - "hormuz-ccx.5"
 owner: "jtbwedgwood@gmail.com"
 created_at: "2026-07-06T06:09:10Z"
-updated_at: "2026-07-06T06:09:10Z"
+updated_at: "2026-07-06T20:25:00Z"
 ---
 
 # Synthesis: blog-ready argument, visuals, and uncertainty
@@ -40,12 +34,12 @@ A draft-ready outline exists; key figures have owners and source trails; claims 
 
 ## Dependency Notes
 
-- Blocked by: `hormuz-2y7` - RQ1: Build reliable daily Hormuz ship tracker
-- Blocked by: `hormuz-4j7` - RQ6: Compare with historical energy and shipping shocks
-- Blocked by: `hormuz-f6r` - RQ3: Map destinations and importer adjustment
-- Blocked by: `hormuz-kmz` - RQ2: Quantify products and supply disrupted
-- Blocked by: `hormuz-l8m` - RQ5: Estimate US business and AI cost impacts
-- Blocked by: `hormuz-s49` - RQ4: Assess strategic stockpiles and reserve releases
+- Cleared dependency: `hormuz-2y7` - RQ1: Build reliable daily Hormuz ship tracker
+- Cleared dependency: `hormuz-4j7` - RQ6: Compare with historical energy and shipping shocks
+- Cleared dependency: `hormuz-f6r` - RQ3: Map destinations and importer adjustment
+- Cleared dependency: `hormuz-kmz` - RQ2: Quantify products and supply disrupted
+- Cleared dependency: `hormuz-l8m` - RQ5: Estimate US business and AI cost impacts
+- Cleared dependency: `hormuz-s49` - RQ4: Assess strategic stockpiles and reserve releases
 - Child: `hormuz-ccx.1` - Maintain claim register with confidence levels
 - Child: `hormuz-ccx.2` - Develop blog narrative outline
 - Child: `hormuz-ccx.3` - Assemble final figure package
@@ -54,4 +48,4 @@ A draft-ready outline exists; key figures have owners and source trails; claims 
 
 ## Work Notes
 
-- Add research notes, source links, decisions, and open questions here as work progresses.
+- 2026-07-06T20:25Z: All upstream research epics are done. `hormuz-ccx.3` is also done after the figure-package pass and Sankey additions. Remaining open work is synthesis-specific: claim register, narrative outline, citation/uncertainty audit, and blog draft.

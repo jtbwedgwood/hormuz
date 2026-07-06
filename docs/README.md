@@ -9,3 +9,7 @@ Docs are user-facing. Record polished findings and sources here when they are re
 - `foundation-data-inventory.md` - data layout, commodity taxonomy, and market price series.
 - `hormuz-ship-tracker.md` - public daily IMF PortWatch tracker summary and caveats.
 - `hormuz-product-disruptions.md` - RQ2 product disruption synthesis, key results, tables, and blog-ready caveats.
+- `hormuz-importer-adjustment.md` - RQ3 importer exposure, substitution, inventory draw, demand response, and crude adjustment figure.
+- `hormuz-stockpile-buffers.md` - RQ4 strategic reserves, China SPR evidence, LNG/gas storage, fertilizer/chemical buffers, and consolidated days-of-cover caveats.
+- `hormuz-us-business-ai-costs.md` - RQ5 synthesis of U.S. business sector cost exposure, data-center power sensitivity, AI cost-per-token impact, and macro sanity checks.
+- `hormuz-historical-comparison.md` - RQ6 historical shock comparison, scoring interpretation, and main product-specific takeaway.

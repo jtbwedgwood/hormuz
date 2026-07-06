@@ -389,9 +389,8 @@ def write_svg(comparison_rows: list[dict[str, str]], product_rows: list[dict[str
 
     note_y = 978
     notes = [
-        "Caveat: Current Hormuz rows are exposure/scenario rankings, not observed realized losses. Do not sum product rows; crude, refined products, LPG/NGLs, petrochemicals, fertilizer inputs, sulphur, aluminium, and freight channels overlap.",
-        "Source: data/derived/hormuz_4j7_4_case_ranking_scores.csv and data/derived/hormuz_4j7_4_hormuz_product_ranking_scores.csv; underlying IEA, EIA, World Bank/IMF, UN/industry and project-derived tables listed in the score files; calculations by author. Accessed 2026-07-06.",
-        "Low-conf. labels and hollow markers indicate low-confidence/proxy rows. Dimension cells show 0-4 rubric scores; n/a means the score table did not carry a meaningful value for that dimension.",
+        "Source: 4J7.4 score tables; underlying IEA, EIA, World Bank/IMF, UN/industry, and project-derived tables listed in the score files; calculations by project.",
+        "Hollow markers indicate low-confidence/proxy rows. Caveats on scenario rows, non-additive products, and route-vs-supply comparisons: see figures/README.md.",
     ]
     for note in notes:
         for line in svg_wrapped_text(left, note_y, note, width_chars=190, cls="note", line_height=14):
