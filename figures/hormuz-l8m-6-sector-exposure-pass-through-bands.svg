@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="72" y="38" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#111827">Illustrative US Sector Cost Exposure Bands</text>
+<text x="72" y="62" font-family="Arial, sans-serif" font-size="16" fill="#4b5563">Normalized 15% / 25% / 40% direct-energy shock, with sector pass-through bands from l8m.2; values are annual added cost at risk, in $bn.</text>
+<line x1="300.0" y1="96" x2="300.0" y2="640" stroke="#eef2f7" stroke-width="1"/>
+<text x="300.0" y="668" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#4b5563">0</text>
+<line x1="438.3" y1="96" x2="438.3" y2="640" stroke="#eef2f7" stroke-width="1"/>
+<text x="438.3" y="668" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#4b5563">5</text>
+<line x1="576.7" y1="96" x2="576.7" y2="640" stroke="#eef2f7" stroke-width="1"/>
+<text x="576.7" y="668" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#4b5563">10</text>
+<line x1="715.0" y1="96" x2="715.0" y2="640" stroke="#eef2f7" stroke-width="1"/>
+<text x="715.0" y="668" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#4b5563">15</text>
+<line x1="853.3" y1="96" x2="853.3" y2="640" stroke="#eef2f7" stroke-width="1"/>
+<text x="853.3" y="668" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#4b5563">20</text>
+<line x1="991.7" y1="96" x2="991.7" y2="640" stroke="#eef2f7" stroke-width="1"/>
+<text x="991.7" y="668" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#4b5563">25</text>
+<line x1="1130.0" y1="96" x2="1130.0" y2="640" stroke="#eef2f7" stroke-width="1"/>
+<text x="1130.0" y="668" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#4b5563">30</text>
+<line x1="300" y1="96" x2="300" y2="640" stroke="#111827" stroke-width="1.3"/>
+<line x1="300" y1="640" x2="1130" y2="640" stroke="#111827" stroke-width="1.3"/>
+<text x="715.0" y="740" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#374151">Annual added cost at risk ($bn)</text>
+<text x="72" y="88" font-family="Arial, sans-serif" font-size="15" fill="#6b7280">Bars show low-to-high range; dark marker is the base case. Values are illustrative, not a final BEA crosswalk.</text>
+<text x="72" y="102" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">Chemicals</text>
+<text x="72" y="124" font-family="Arial, sans-serif" font-size="13" fill="#6b7280">MECS 2022 direct energy: $77.1bn • direct fuel/electricity</text>
+<rect x="412.0" y="86.0" width="655.9" height="20" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.2" opacity="0.95"/>
+<line x1="412.0" y1="96" x2="1067.9" y2="96" stroke="#1d4ed8" stroke-width="3" opacity="0.7"/>
+<circle cx="620.0" cy="96" r="5" fill="#1d4ed8"/>
+<text x="1077.9" y="101.0" font-family="Arial, sans-serif" font-size="13" fill="#374151">$4.05bn to $27.76bn</text>
+<text x="72" y="164" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">Petroleum and coal products</text>
+<text x="72" y="186" font-family="Arial, sans-serif" font-size="13" fill="#6b7280">MECS 2022 direct energy: $26.3bn • direct fuel/electricity</text>
+<rect x="338.2" y="148.0" width="223.7" height="20" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.2" opacity="0.95"/>
+<line x1="338.2" y1="158" x2="561.9" y2="158" stroke="#1d4ed8" stroke-width="3" opacity="0.7"/>
+<circle cx="409.1" cy="158" r="5" fill="#1d4ed8"/>
+<text x="571.9" y="163.0" font-family="Arial, sans-serif" font-size="13" fill="#374151">$1.38bn to $9.47bn</text>
+<text x="72" y="226" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">Primary metals</text>
+<text x="72" y="248" font-family="Arial, sans-serif" font-size="13" fill="#6b7280">MECS 2022 direct energy: $16.5bn • direct fuel/electricity</text>
+<rect x="324.0" y="210.0" width="140.4" height="20" rx="6" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.2" opacity="0.95"/>
+<line x1="324.0" y1="220" x2="464.3" y2="220" stroke="#1d4ed8" stroke-width="3" opacity="0.7"/>
+<circle cx="368.5" cy="220" r="5" fill="#1d4ed8"/>
+<text x="474.3" y="225.0" font-family="Arial, sans-serif" font-size="13" fill="#374151">$0.87bn to $5.94bn</text>
+<text x="72" y="288" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">Food</text>
+<text x="72" y="310" font-family="Arial, sans-serif" font-size="13" fill="#6b7280">MECS 2022 direct energy: $12.4bn • tier-2 inputs/freight</text>
+<rect x="310.3" y="272.0" width="65.2" height="20" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.2" opacity="0.95"/>
+<line x1="310.3" y1="282" x2="375.5" y2="282" stroke="#15803d" stroke-width="3" opacity="0.7"/>
+<circle cx="330.0" cy="282" r="5" fill="#15803d"/>
+<text x="385.5" y="287.0" font-family="Arial, sans-serif" font-size="13" fill="#374151">$0.37bn to $2.73bn</text>
+<text x="72" y="350" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">Paper</text>
+<text x="72" y="372" font-family="Arial, sans-serif" font-size="13" fill="#6b7280">MECS 2022 direct energy: $9.6bn • tier-2 inputs/freight</text>
+<rect x="308.0" y="334.0" width="50.5" height="20" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="1.2" opacity="0.95"/>
+<line x1="308.0" y1="344" x2="358.4" y2="344" stroke="#15803d" stroke-width="3" opacity="0.7"/>
+<circle cx="323.2" cy="344" r="5" fill="#15803d"/>
+<text x="368.4" y="349.0" font-family="Arial, sans-serif" font-size="13" fill="#374151">$0.29bn to $2.11bn</text>
+<rect x="72" y="656" width="1056" height="1" fill="#e5e7eb"/>
+<text x="72" y="682" font-family="Arial, sans-serif" font-size="13" fill="#4b5563">Assumptions: 15% / 25% / 40% normalized direct-energy shock; pass-through bands from l8m.2 (direct fuel/electricity 35% / 60% / 90%; tier-2 inputs and freight 20% / 35% / 55%).</text>
+<text x="72" y="702" font-family="Arial, sans-serif" font-size="13" fill="#4b5563">Sources: EIA MECS 2022 and the l8m.2 issue note. This is a presentation band, not a final sector output estimate.</text>
+<text x="72" y="722" font-family="Arial, sans-serif" font-size="12" fill="#6b7280">Key source URLs: https://www.eia.gov/consumption/manufacturing/data/2022/ • see issue note for the full l8m.2 source list • updated 2026-07-06.</text>
+</svg>

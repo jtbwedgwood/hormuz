@@ -1,0 +1,7 @@
+# Project Python dependencies.
+# Add every required package here, preferably pinned, when project code needs it.
+#
+# Runtime scripts currently use only the Python standard library.
+# Test tooling lives here too so `.venv/bin/python -m pytest ...` works
+# consistently for local validation.
+pytest==8.4.2

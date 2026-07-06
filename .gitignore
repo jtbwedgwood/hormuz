@@ -1,0 +1,44 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python runtime and tooling
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment secrets and local config
+.env
+.env.*
+!.env.example
+
+# Logs, caches, and scratch space
+*.log
+.cache/
+tmp/
+temp/
+
+# Beads / Dolt leftovers from the old tracker
+.dolt/
+*.db
+.beads-credential-key
+
+# Large or licensed source-data drops should stay local unless explicitly curated.
+data/raw/*
+!data/raw/.gitkeep
+data/private/
+data/cache/
