@@ -14,7 +14,6 @@ blocked_by:
 blocks:
   - "hormuz-4j7"
   - "hormuz-ccx"
-  - "hormuz-l8m"
 children:
   - "hormuz-s49.1"
   - "hormuz-s49.2"
@@ -42,7 +41,7 @@ Reserve and inventory sources are inventoried; releases or drawdowns are quantif
 - Blocked by: `hormuz-f6r` - RQ3: Map destinations and importer adjustment
 - Blocks: `hormuz-4j7` - RQ6: Compare with historical energy and shipping shocks
 - Blocks: `hormuz-ccx` - Synthesis: blog-ready argument, visuals, and uncertainty
-- Blocks: `hormuz-l8m` - RQ5: Estimate US business and AI cost impacts
+- Cleared downstream dependency: `hormuz-l8m` - RQ5 completed with stockpile buffering treated as a caveat rather than a blocker.
 - Child: `hormuz-s49.1` - Inventory reserve and stockpile data sources
 - Child: `hormuz-s49.2` - Quantify OECD and US reserve response
 - Child: `hormuz-s49.3` - Evaluate China SPR release claims

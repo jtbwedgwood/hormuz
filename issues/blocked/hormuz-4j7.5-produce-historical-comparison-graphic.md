@@ -12,7 +12,6 @@ labels:
 blocked_by:
   - "hormuz-4j7.4"
   - "hormuz-4j7.3"
-  - "hormuz-kmz.3"
 blocks:
   - "hormuz-ccx.2"
   - "hormuz-ccx.3"
@@ -37,7 +36,7 @@ Graphic is publication-ready and includes caveats for non-comparable dimensions.
 - Parent: `hormuz-4j7` - RQ6: Compare with historical energy and shipping shocks
 - Blocked by: `hormuz-4j7.4` - Rank current Hormuz shock against historical analogues
 - Blocked by: `hormuz-4j7.3` - Collect historical supply, price, inventory, and demand data
-- Blocked by: `hormuz-kmz.3` - Estimate supply removed, delayed, or rerouted
+- Cleared dependency: `hormuz-kmz.3` - Estimate supply removed, delayed, or rerouted
 - Cleared dependency: `hormuz-fyp.7` - Define chart and map standards for the project
 - Blocks: `hormuz-ccx.2` - Develop blog narrative outline
 - Blocks: `hormuz-ccx.3` - Assemble final figure package
@@ -45,7 +44,7 @@ Graphic is publication-ready and includes caveats for non-comparable dimensions.
 ## Work Notes
 
 - 2026-07-06T06:32Z: Moved to `issues/blocked/`. This task should remain blocked until `hormuz-4j7.4` produces the multi-dimensional ranking and `hormuz-fyp.7` chart standards are applied to a real figure dataset. No graphic should be produced from placeholder values.
-- 2026-07-06T09:30Z: Advanced the publication figure specification without generating a placeholder chart. `hormuz-fyp.7` is now done and its chart standards can be applied, but this issue must remain blocked until `hormuz-4j7.4` ranks the current Hormuz shock using real historical/current data. The real-data blockers are currently `hormuz-4j7.3` for historical supply/price/inventory/demand fields and `hormuz-kmz.3` for validated current disrupted supply by product/country from the ship-tracker-backed workflow.
+- 2026-07-06T09:30Z: Advanced the publication figure specification without generating a placeholder chart. `hormuz-fyp.7` is now done and its chart standards can be applied, but this issue must remain blocked until `hormuz-4j7.4` ranks the current Hormuz shock using real historical/current data. The real-data blocker is currently `hormuz-4j7.3` for historical supply/price/inventory/demand fields and buffer-duration values.
 
 ### Publication-Ready Figure Concept
 

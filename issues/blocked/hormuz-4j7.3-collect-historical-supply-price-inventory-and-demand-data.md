@@ -10,7 +10,6 @@ labels:
   - "data"
   - "history"
 blocked_by:
-  - "hormuz-kmz.3"
   - "hormuz-s49.6"
 blocks:
   - "hormuz-4j7.4"
@@ -39,7 +38,7 @@ Dataset has cited values for each metric, with confidence flags and missing-data
 - Cleared dependency: `hormuz-fyp.3` - Define baseline periods and scenario taxonomy
 - Cleared dependency: `hormuz-fyp.6` - Inventory market price series and units
 - Cleared dependency: `hormuz-kmz.6` - Reconcile disrupted volumes with global market balances
-- Blocked by: `hormuz-kmz.3` - Estimate supply removed, delayed, or rerouted
+- Cleared dependency: `hormuz-kmz.3` - Estimate supply removed, delayed, or rerouted
 - Cleared dependency: `hormuz-l8m.1` - Define commodity price shock scenarios
 - Blocked by: `hormuz-s49.6` - Estimate stockpile buffer duration by country/product
 - Blocks: `hormuz-4j7.4` - Rank current Hormuz shock against historical analogues
@@ -48,14 +47,13 @@ Dataset has cited values for each metric, with confidence flags and missing-data
 
 - 2026-07-06T15:30Z: Moved to `issues/blocked/` because the acceptance criterion requires a cited metric dataset, but key upstream inputs are not ready. This note intentionally does **not** claim the dataset is complete; it is a bounded source map and schema proposal for the next pass.
 - 2026-07-06T15:55Z: Partial collection plan updated after reading completed `hormuz-4j7.1`, `hormuz-4j7.2`, `hormuz-kmz.6`, `hormuz-kmz.7`, `hormuz-s49.1`, and available derived data. Created `data/derived/hormuz_4j7_metric_collection_template.csv` as a small collection template only; it is **not** completed data and should not be used as a final evidence table.
-- 2026-07-06: Refreshed blockers after more upstream work landed. `hormuz-2y7.6` is now done and provides the public historical-traffic availability boundary: daily IMF PortWatch Hormuz traffic is usable from 2019-01-01 onward, while pre-2019 analogues require lower-resolution flow/price/inventory/news/insurance proxies. `hormuz-l8m.1` is now done and provides low/base/high price-scenario inputs for oil, refined products, gas/electricity, fertilizer, aluminium/metals, freight, and war-risk insurance. `hormuz-s49.2` is done and provides OECD/U.S. reserve-response rows, while `s49.3`-`s49.5` have useful provisional derived tables but remain in progress. The task remains blocked by final current disruption estimates from `hormuz-kmz.3` and stockpile buffer-duration values from `hormuz-s49.6`.
+- 2026-07-06: Refreshed blockers after more upstream work landed. `hormuz-2y7.6` is now done and provides the public historical-traffic availability boundary: daily IMF PortWatch Hormuz traffic is usable from 2019-01-01 onward, while pre-2019 analogues require lower-resolution flow/price/inventory/news/insurance proxies. `hormuz-kmz.3` is now done and provides current-stage low/base/high country-product disruption estimates. `hormuz-l8m.1` is now done and provides low/base/high price-scenario inputs for oil, refined products, gas/electricity, fertilizer, aluminium/metals, freight, and war-risk insurance. `hormuz-s49.2` is done and provides OECD/U.S. reserve-response rows, while `s49.3`-`s49.5` have useful provisional derived tables but are blocked pending importer-adjustment reconciliation. The task remains blocked by stockpile buffer-duration values from `hormuz-s49.6`.
 
 ### Current Blockers
 
 | Blocker | Current repo state | What it should contribute before this task can finish |
 |---|---:|---|
-| `hormuz-kmz.3` - Estimate supply removed, delayed, or rerouted | `blocked` | Final realized removed/delayed/rerouted current-Hormuz volumes; needed to replace scenario/provisional rows from `hormuz_kmz_3_preliminary_disruption_scenarios.csv`. |
-| `hormuz-s49.6` - Estimate stockpile buffer duration by country/product | `in_progress` | Days of cover and drawdown assumptions for oil, refined products, LNG/gas storage, fertilizer/chemical inventories, and strategic reserve releases. |
+| `hormuz-s49.6` - Estimate stockpile buffer duration by country/product | `blocked` | Days of cover and drawdown assumptions for oil, refined products, LNG/gas storage, fertilizer/chemical inventories, and strategic reserve releases. |
 
 Cleared inputs now usable in the collection plan: `hormuz-2y7.6`, `hormuz-4j7.2`, `hormuz-fyp.2`, `hormuz-fyp.3`, `hormuz-fyp.6`, `hormuz-kmz.6`, and `hormuz-l8m.1`.
 

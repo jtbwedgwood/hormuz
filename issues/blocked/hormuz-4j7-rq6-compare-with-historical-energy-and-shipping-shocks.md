@@ -9,8 +9,6 @@ labels:
   - "comparisons"
   - "history"
 blocked_by:
-  - "hormuz-kmz"
-  - "hormuz-l8m"
   - "hormuz-s49"
 blocks:
   - "hormuz-ccx"
@@ -37,8 +35,8 @@ Comparable metrics are normalized; selected analogues are justified; the compari
 
 ## Dependency Notes
 
-- Blocked by: `hormuz-kmz` - RQ2: Quantify products and supply disrupted
-- Blocked by: `hormuz-l8m` - RQ5: Estimate US business and AI cost impacts
+- Cleared dependency: `hormuz-kmz` - RQ2: Quantify products and supply disrupted
+- Cleared dependency: `hormuz-l8m` - RQ5: Estimate US business and AI cost impacts
 - Blocked by: `hormuz-s49` - RQ4: Assess strategic stockpiles and reserve releases
 - Blocks: `hormuz-ccx` - Synthesis: blog-ready argument, visuals, and uncertainty
 - Child: `hormuz-4j7.1` - Select historical shock comparison cases
@@ -63,4 +61,5 @@ Comparable metrics are normalized; selected analogues are justified; the compari
   - `hormuz-4j7.3`: map newly available current-Hormuz denominators and partial data into the historical metric collection plan.
   - `hormuz-4j7.4`: define a transparent ranking rubric and hypotheses without producing final rankings from incomplete data.
   - `hormuz-4j7.5`: specify the final historical comparison graphic without fake placeholder values.
-  Subsequent local refresh found `hormuz-2y7.6` and `hormuz-l8m.1` are now done, so `hormuz-4j7.3` was updated to use the public 2019+ PortWatch backfill boundary and current low/base/high price-scenario inputs. Remaining hard blockers are `hormuz-kmz.3` for final current removed/delayed/rerouted supply and `hormuz-s49.6` for stockpile buffer duration. `data/derived/hormuz_kmz_3_preliminary_disruption_scenarios.csv` remains a provisional current-Hormuz scenario scaffold that can be used only with clear caveats.
+  Subsequent local refresh found `hormuz-2y7.6`, `hormuz-kmz.3`, and `hormuz-l8m.1` are now done, so `hormuz-4j7.3` was updated to use the public 2019+ PortWatch backfill boundary, current low/base/high disruption tables, and current low/base/high price-scenario inputs. Remaining hard blocker is `hormuz-s49.6` for stockpile buffer duration.
+- 2026-07-06 cleanup clarification: RQ6 is now blocked only by `hormuz-s49`, specifically the consolidated buffer-duration work in `hormuz-s49.6`. Historical metric collection itself is tracked as child task `hormuz-4j7.3`.
