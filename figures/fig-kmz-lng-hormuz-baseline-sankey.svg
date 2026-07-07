@@ -1,63 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
-<rect width="100%" height="100%" fill="#ffffff"/>
-<style>text{font-family:Arial,Helvetica,sans-serif;fill:#111827}.title{font-size:28px;font-weight:700}.sub{font-size:16px;fill:#4b5563}.label{font-size:14px;font-weight:700}.small{font-size:12px;fill:#4b5563}.note{font-size:12px;fill:#6b7280}</style>
-<text x="72" y="42" class="title">2024 Hormuz LNG Flow Baseline</text>
-<text x="72" y="68" class="sub">Liquefied natural gas moving through Hormuz, by origin and destination market</text>
-<text x="72" y="96" class="small">Exporter totals</text>
-<text x="699.0" y="96" class="small" text-anchor="middle">Strait of Hormuz</text>
-<text x="1328" y="96" class="small" text-anchor="end">Destination totals</text>
-<path d="M 228.0 334.4 C 482.1 334.4, 435.9 347.9, 690.0 347.9" stroke="#0f766e" stroke-width="46.0" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 228.0 575.9 C 482.1 575.9, 435.9 555.3, 690.0 555.3" stroke="#2563eb" stroke-width="3.5" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 228.0 611.5 C 482.1 611.5, 435.9 577.4, 690.0 577.4" stroke="#b45309" stroke-width="2.0" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 708.0 206.0 C 874.1 206.0, 843.9 171.8, 1010.0 171.8" stroke="#7c3aed" stroke-width="12.2" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 708.0 293.0 C 874.1 293.0, 843.9 268.0, 1010.0 268.0" stroke="#dc2626" stroke-width="8.6" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 708.0 345.2 C 874.1 345.2, 843.9 328.9, 1010.0 328.9" stroke="#15803d" stroke-width="3.9" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 708.0 386.6 C 874.1 386.6, 843.9 378.8, 1010.0 378.8" stroke="#6b7280" stroke-width="6.0" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 708.0 429.5 C 874.1 429.5, 843.9 430.3, 1010.0 430.3" stroke="#0891b2" stroke-width="4.3" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 708.0 479.5 C 874.1 479.5, 843.9 489.1, 1010.0 489.1" stroke="#9333ea" stroke-width="7.7" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 708.0 525.1 C 874.1 525.1, 843.9 543.3, 1010.0 543.3" stroke="#0f766e" stroke-width="3.2" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 708.0 554.1 C 874.1 554.1, 843.9 580.7, 1010.0 580.7" stroke="#2563eb" stroke-width="3.7" fill="none" opacity="0.34" stroke-linecap="round"/>
-<path d="M 708.0 577.4 C 874.1 577.4, 843.9 612.3, 1010.0 612.3" stroke="#b45309" stroke-width="2.0" fill="none" opacity="0.34" stroke-linecap="round"/>
-<rect x="210" y="120.0" width="18" height="428.8" rx="3" fill="#0f766e"/>
-<text x="200" y="331.4" class="label" text-anchor="end">Qatar</text>
-<text x="200" y="347.4" class="small" text-anchor="end">9.3 Bcf/d</text>
-<rect x="210" y="559.8" width="18" height="32.2" rx="3" fill="#2563eb"/>
-<text x="200" y="572.9" class="label" text-anchor="end">United Arab Emirates</text>
-<text x="200" y="588.9" class="small" text-anchor="end">0.70 Bcf/d</text>
-<rect x="210" y="603.0" width="18" height="17.0" rx="3" fill="#b45309"/>
-<text x="200" y="608.5" class="label" text-anchor="end">Other origins</text>
-<text x="200" y="624.5" class="small" text-anchor="end">0.37 Bcf/d</text>
-<rect x="690" y="155.0" width="18" height="430.0" rx="4" fill="#374151"/>
-<text x="699.0" y="611.0" class="label" text-anchor="middle">Total 10.3 Bcf/d</text>
-<rect x="1010" y="120.0" width="18" height="103.5" rx="3" fill="#7c3aed"/>
-<text x="1038" y="168.8" class="label">China</text>
-<text x="1038" y="184.8" class="small">2.5 Bcf/d</text>
-<rect x="1010" y="231.5" width="18" height="72.9" rx="3" fill="#dc2626"/>
-<text x="1038" y="265.0" class="label">India</text>
-<text x="1038" y="281.0" class="small">1.7 Bcf/d</text>
-<rect x="1010" y="312.4" width="18" height="32.9" rx="3" fill="#15803d"/>
-<text x="1038" y="325.9" class="label">Taiwan</text>
-<text x="1038" y="341.9" class="small">0.78 Bcf/d</text>
-<rect x="1010" y="353.3" width="18" height="50.9" rx="3" fill="#6b7280"/>
-<text x="1038" y="375.8" class="label">South Korea</text>
-<text x="1038" y="391.8" class="small">1.2 Bcf/d</text>
-<rect x="1010" y="412.3" width="18" height="36.2" rx="3" fill="#0891b2"/>
-<text x="1038" y="427.3" class="label">Pakistan</text>
-<text x="1038" y="443.3" class="small">0.86 Bcf/d</text>
-<rect x="1010" y="456.4" width="18" height="65.2" rx="3" fill="#9333ea"/>
-<text x="1038" y="486.1" class="label">Other Asia</text>
-<text x="1038" y="502.1" class="small">1.5 Bcf/d</text>
-<rect x="1010" y="529.7" width="18" height="27.2" rx="3" fill="#0f766e"/>
-<text x="1038" y="540.3" class="label">Italy</text>
-<text x="1038" y="556.3" class="small">0.65 Bcf/d</text>
-<rect x="1010" y="564.9" width="18" height="31.7" rx="3" fill="#2563eb"/>
-<text x="1038" y="577.7" class="label">Other Europe</text>
-<text x="1038" y="593.7" class="small">0.75 Bcf/d</text>
-<rect x="1010" y="604.5" width="18" height="15.5" rx="3" fill="#b45309"/>
-<text x="1038" y="609.3" class="label">Other</text>
-<text x="1038" y="625.3" class="small">0.37 Bcf/d</text>
-<rect x="72" y="654" width="1256" height="1" fill="#e5e7eb"/>
-<text x="72" y="682" class="note">Source: EIA Today in Energy figure data based on Vortexa; 2024 annual average; calculations by project. Caveats: see figures/README.md.</text>
-<text x="72" y="704" class="note">Origin and destination totals are separate aggregates, not country-pair cargo matching. Rounding gap: 0.000 Bcf/d.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="980" viewBox="0 0 1440 980">
+<rect width="100%" height="100%" fill="#f6f7f9"/>
+<rect x="24" y="24" width="1392" height="932" rx="8" fill="#ffffff" stroke="#dfe4ec"/>
+<style>text{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033;letter-spacing:0}.title{font-size:30px;font-weight:760}.label{font-size:15px;font-weight:740}.small{font-size:13px;font-weight:560;fill:#5d687a}.total{font-size:14px;font-weight:720;fill:#172033}.note{font-size:13px;font-weight:560;fill:#5d687a}</style>
+<text x="72" y="66" class="title">LNG Flow through the Strait of Hormuz, 2024</text>
+<path d="M 272.0 108.0 C 511.8 108.0, 468.2 108.0, 708.0 108.0 L 708.0 789.8 C 468.2 789.8, 511.8 746.8, 272.0 746.8 Z" fill="#087f75" opacity="0.34"/>
+<path d="M 272.0 770.8 C 511.8 770.8, 468.2 789.8, 708.0 789.8 L 708.0 841.0 C 468.2 841.0, 511.8 818.7, 272.0 818.7 Z" fill="#315c99" opacity="0.34"/>
+<path d="M 272.0 842.7 C 511.8 842.7, 468.2 841.0, 708.0 841.0 L 708.0 868.0 C 468.2 868.0, 511.8 868.0, 272.0 868.0 Z" fill="#b56b12" opacity="0.34"/>
+<path d="M 730.0 108.0 C 888.4 108.0, 859.6 108.0, 1018.0 108.0 L 1018.0 229.6 C 859.6 229.6, 888.4 288.4, 730.0 288.4 Z" fill="#6d5bd0" opacity="0.34"/>
+<path d="M 730.0 288.4 C 888.4 288.4, 859.6 260.6, 1018.0 260.6 L 1018.0 346.2 C 859.6 346.2, 888.4 415.5, 730.0 415.5 Z" fill="#b42318" opacity="0.34"/>
+<path d="M 730.0 415.5 C 888.4 415.5, 859.6 377.2, 1018.0 377.2 L 1018.0 415.8 C 859.6 415.8, 888.4 472.9, 730.0 472.9 Z" fill="#2f7d48" opacity="0.34"/>
+<path d="M 730.0 472.9 C 888.4 472.9, 859.6 446.8, 1018.0 446.8 L 1018.0 506.6 C 859.6 506.6, 888.4 561.7, 730.0 561.7 Z" fill="#6b7280" opacity="0.34"/>
+<path d="M 730.0 561.7 C 888.4 561.7, 859.6 537.6, 1018.0 537.6 L 1018.0 580.1 C 859.6 580.1, 888.4 624.7, 730.0 624.7 Z" fill="#2084a0" opacity="0.34"/>
+<path d="M 730.0 624.7 C 888.4 624.7, 859.6 611.1, 1018.0 611.1 L 1018.0 687.7 C 859.6 687.7, 888.4 738.4, 730.0 738.4 Z" fill="#8c5a2b" opacity="0.34"/>
+<path d="M 730.0 738.4 C 888.4 738.4, 859.6 718.7, 1018.0 718.7 L 1018.0 750.7 C 859.6 750.7, 888.4 785.9, 730.0 785.9 Z" fill="#087f75" opacity="0.34"/>
+<path d="M 730.0 785.9 C 888.4 785.9, 859.6 781.7, 1018.0 781.7 L 1018.0 818.8 C 859.6 818.8, 888.4 841.0, 730.0 841.0 Z" fill="#315c99" opacity="0.34"/>
+<path d="M 730.0 841.0 C 888.4 841.0, 859.6 849.8, 1018.0 849.8 L 1018.0 868.0 C 859.6 868.0, 888.4 868.0, 730.0 868.0 Z" fill="#b56b12" opacity="0.34"/>
+<rect x="250" y="108.0" width="22" height="638.8" fill="#087f75"/>
+<text x="236" y="423.4" class="label" text-anchor="end">Qatar</text>
+<text x="236" y="440.4" class="small" text-anchor="end">9.3 Bcf/d</text>
+<rect x="250" y="770.8" width="22" height="48.0" fill="#315c99"/>
+<text x="236" y="790.7" class="label" text-anchor="end">United Arab Emirates</text>
+<text x="236" y="807.7" class="small" text-anchor="end">0.70 Bcf/d</text>
+<rect x="250" y="842.7" width="22" height="25.3" fill="#b56b12"/>
+<text x="236" y="851.4" class="label" text-anchor="end">Other origins</text>
+<text x="236" y="868.4" class="small" text-anchor="end">0.37 Bcf/d</text>
+<rect x="708" y="108.0" width="22" height="760.0" fill="#172033"/>
+<text x="719.0" y="896.0" class="total" text-anchor="middle">10.3 Bcf/d</text>
+<rect x="1018" y="108.0" width="22" height="121.6" fill="#6d5bd0"/>
+<text x="1054" y="164.8" class="label">China</text>
+<text x="1054" y="181.8" class="small">2.5 Bcf/d</text>
+<rect x="1018" y="260.6" width="22" height="85.6" fill="#b42318"/>
+<text x="1054" y="299.4" class="label">India</text>
+<text x="1054" y="316.4" class="small">1.7 Bcf/d</text>
+<rect x="1018" y="377.2" width="22" height="38.6" fill="#2f7d48"/>
+<text x="1054" y="392.5" class="label">Taiwan</text>
+<text x="1054" y="409.5" class="small">0.78 Bcf/d</text>
+<rect x="1018" y="446.8" width="22" height="59.8" fill="#6b7280"/>
+<text x="1054" y="472.7" class="label">South Korea</text>
+<text x="1054" y="489.7" class="small">1.2 Bcf/d</text>
+<rect x="1018" y="537.6" width="22" height="42.5" fill="#2084a0"/>
+<text x="1054" y="554.9" class="label">Pakistan</text>
+<text x="1054" y="571.9" class="small">0.86 Bcf/d</text>
+<rect x="1018" y="611.1" width="22" height="76.6" fill="#8c5a2b"/>
+<text x="1054" y="645.4" class="label">Other Asia</text>
+<text x="1054" y="662.4" class="small">1.5 Bcf/d</text>
+<rect x="1018" y="718.7" width="22" height="31.9" fill="#087f75"/>
+<text x="1054" y="730.7" class="label">Italy</text>
+<text x="1054" y="747.7" class="small">0.65 Bcf/d</text>
+<rect x="1018" y="781.7" width="22" height="37.2" fill="#315c99"/>
+<text x="1054" y="796.2" class="label">Other Europe</text>
+<text x="1054" y="813.2" class="small">0.75 Bcf/d</text>
+<rect x="1018" y="849.8" width="22" height="18.2" fill="#b56b12"/>
+<text x="1054" y="854.9" class="label">Other</text>
+<text x="1054" y="871.9" class="small">0.37 Bcf/d</text>
+<rect x="72" y="916" width="1296" height="1" fill="#d8dee8"/>
+<text x="72" y="944" class="note">Source: EIA/Vortexa</text>
 <metadata>Figure generated by scripts/build_hormuz_baseline_sankeys.py; commodity=liquefied natural gas; source=https://www.eia.gov/todayinenergy/images/2025.06.24/fig2.xlsx; unit=Bcf/d; year=2024.</metadata>
 </svg>

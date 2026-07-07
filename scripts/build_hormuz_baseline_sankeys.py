@@ -25,12 +25,13 @@ LNG_SVG = ROOT / "figures/fig-kmz-lng-hormuz-baseline-sankey.svg"
 NS = {"a": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 
 FIGURE_STYLE = (
-    "text{font-family:Arial,Helvetica,sans-serif;fill:#111827}"
-    ".title{font-size:28px;font-weight:700}"
-    ".sub{font-size:16px;fill:#4b5563}"
-    ".label{font-size:14px;font-weight:700}"
-    ".small{font-size:12px;fill:#4b5563}"
-    ".note{font-size:12px;fill:#6b7280}"
+    "text{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;"
+    "fill:#172033;letter-spacing:0}"
+    ".title{font-size:30px;font-weight:760}"
+    ".label{font-size:15px;font-weight:740}"
+    ".small{font-size:13px;font-weight:560;fill:#5d687a}"
+    ".total{font-size:14px;font-weight:720;fill:#172033}"
+    ".note{font-size:13px;font-weight:560;fill:#5d687a}"
 )
 
 
@@ -205,93 +206,106 @@ def node_layout(rows: list[tuple[str, float]], top: float, height: float, min_ga
     return layout
 
 
-def cubic_path(x1: float, y1: float, x2: float, y2: float) -> str:
+def band_path(
+    x1: float,
+    y1_top: float,
+    y1_bottom: float,
+    x2: float,
+    y2_top: float,
+    y2_bottom: float,
+) -> str:
     dx = (x2 - x1) * 0.55
-    return f"M {x1:.1f} {y1:.1f} C {x1 + dx:.1f} {y1:.1f}, {x2 - dx:.1f} {y2:.1f}, {x2:.1f} {y2:.1f}"
+    return (
+        f"M {x1:.1f} {y1_top:.1f} "
+        f"C {x1 + dx:.1f} {y1_top:.1f}, {x2 - dx:.1f} {y2_top:.1f}, {x2:.1f} {y2_top:.1f} "
+        f"L {x2:.1f} {y2_bottom:.1f} "
+        f"C {x2 - dx:.1f} {y2_bottom:.1f}, {x1 + dx:.1f} {y1_bottom:.1f}, {x1:.1f} {y1_bottom:.1f} "
+        "Z"
+    )
 
 
 def draw_sankey(
     path: Path,
     title: str,
-    subtitle: str,
     commodity: str,
     unit: str,
     url: str,
     origins: list[tuple[str, float]],
     destinations: list[tuple[str, float]],
 ) -> None:
-    width, height = 1400, 760
-    top, chart_h = 120, 500
-    left_x, mid_x, right_x = 210, 690, 1010
-    node_w = 18
+    width, height = 1440, 980
+    top, chart_h = 108, 760
+    left_x, mid_x, right_x = 250, 708, 1018
+    node_w = 22
     source_total = sum(v for _n, v in origins)
     dest_total = sum(v for _n, v in destinations)
     total = (source_total + dest_total) / 2
-    max_width = 46
-    stroke_scale = max_width / max(max(value for _name, value in origins), max(value for _name, value in destinations))
-    left = node_layout(origins, top, chart_h, 11)
-    right = node_layout(destinations, top, chart_h, 8)
-    mid_h = chart_h * 0.86
-    mid_y = top + (chart_h - mid_h) / 2
+    left = node_layout(origins, top, chart_h, 24)
+    right = node_layout(destinations, top, chart_h, 31)
+    mid_h = chart_h
+    mid_y = top
 
-    colors = ["#0f766e", "#2563eb", "#b45309", "#7c3aed", "#dc2626", "#15803d", "#6b7280", "#0891b2", "#9333ea"]
+    colors = [
+        "#087f75",
+        "#315c99",
+        "#b56b12",
+        "#6d5bd0",
+        "#b42318",
+        "#2f7d48",
+        "#6b7280",
+        "#2084a0",
+        "#8c5a2b",
+    ]
     origin_color = {name: colors[i % len(colors)] for i, (name, _value) in enumerate(origins)}
     dest_color = {name: colors[(i + 3) % len(colors)] for i, (name, _value) in enumerate(destinations)}
 
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
-        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        '<rect width="100%" height="100%" fill="#f6f7f9"/>',
+        f'<rect x="24" y="24" width="{width - 48}" height="{height - 48}" rx="8" fill="#ffffff" stroke="#dfe4ec"/>',
         f"<style>{FIGURE_STYLE}</style>",
-        f'<text x="72" y="42" class="title">{escape(title)}</text>',
-        f'<text x="72" y="68" class="sub">{escape(subtitle)}</text>',
-        '<text x="72" y="96" class="small">Exporter totals</text>',
-        f'<text x="{mid_x + node_w / 2:.1f}" y="96" class="small" text-anchor="middle">Strait of Hormuz</text>',
-        f'<text x="{width - 72}" y="96" class="small" text-anchor="end">Destination totals</text>',
+        f'<text x="72" y="66" class="title">{escape(title)}</text>',
     ]
 
     origin_cursor = mid_y
     for name, value in origins:
         y, h = left[name]
-        stroke_w = max(2.0, value * stroke_scale)
+        mid_top = origin_cursor
+        mid_bottom = origin_cursor + value / source_total * mid_h
         parts.append(
-            f'<path d="{cubic_path(left_x + node_w, y + h / 2, mid_x, origin_cursor + value / source_total * mid_h / 2)}" '
-            f'stroke="{origin_color[name]}" stroke-width="{stroke_w:.1f}" fill="none" opacity="0.34" stroke-linecap="round"/>'
+            f'<path d="{band_path(left_x + node_w, y, y + h, mid_x, mid_top, mid_bottom)}" '
+            f'fill="{origin_color[name]}" opacity="0.34"/>'
         )
-        origin_cursor += value / source_total * mid_h
+        origin_cursor = mid_bottom
 
     dest_cursor = mid_y
     for name, value in destinations:
         y, h = right[name]
-        stroke_w = max(2.0, value * stroke_scale)
+        mid_top = dest_cursor
+        mid_bottom = dest_cursor + value / dest_total * mid_h
         parts.append(
-            f'<path d="{cubic_path(mid_x + node_w, dest_cursor + value / dest_total * mid_h / 2, right_x, y + h / 2)}" '
-            f'stroke="{dest_color[name]}" stroke-width="{stroke_w:.1f}" fill="none" opacity="0.34" stroke-linecap="round"/>'
+            f'<path d="{band_path(mid_x + node_w, mid_top, mid_bottom, right_x, y, y + h)}" '
+            f'fill="{dest_color[name]}" opacity="0.34"/>'
         )
-        dest_cursor += value / dest_total * mid_h
+        dest_cursor = mid_bottom
 
     for name, value in origins:
         y, h = left[name]
-        parts.append(f'<rect x="{left_x}" y="{y:.1f}" width="{node_w}" height="{h:.1f}" rx="3" fill="{origin_color[name]}"/>')
-        parts.append(f'<text x="{left_x - 10}" y="{y + h / 2 - 3:.1f}" class="label" text-anchor="end">{escape(name)}</text>')
-        parts.append(f'<text x="{left_x - 10}" y="{y + h / 2 + 13:.1f}" class="small" text-anchor="end">{fmt(value, unit)}</text>')
+        parts.append(f'<rect x="{left_x}" y="{y:.1f}" width="{node_w}" height="{h:.1f}" fill="{origin_color[name]}"/>')
+        parts.append(f'<text x="{left_x - 14}" y="{y + h / 2 - 4:.1f}" class="label" text-anchor="end">{escape(name)}</text>')
+        parts.append(f'<text x="{left_x - 14}" y="{y + h / 2 + 13:.1f}" class="small" text-anchor="end">{fmt(value, unit)}</text>')
 
-    parts.append(f'<rect x="{mid_x}" y="{mid_y:.1f}" width="{node_w}" height="{mid_h:.1f}" rx="4" fill="#374151"/>')
-    parts.append(f'<text x="{mid_x + node_w / 2:.1f}" y="{mid_y + mid_h + 26:.1f}" class="label" text-anchor="middle">Total {fmt(total, unit)}</text>')
+    parts.append(f'<rect x="{mid_x}" y="{mid_y:.1f}" width="{node_w}" height="{mid_h:.1f}" fill="#172033"/>')
+    parts.append(f'<text x="{mid_x + node_w / 2:.1f}" y="{mid_y + mid_h + 28:.1f}" class="total" text-anchor="middle">{fmt(total, unit)}</text>')
 
     for name, value in destinations:
         y, h = right[name]
-        parts.append(f'<rect x="{right_x}" y="{y:.1f}" width="{node_w}" height="{h:.1f}" rx="3" fill="{dest_color[name]}"/>')
-        parts.append(f'<text x="{right_x + node_w + 10}" y="{y + h / 2 - 3:.1f}" class="label">{escape(name)}</text>')
-        parts.append(f'<text x="{right_x + node_w + 10}" y="{y + h / 2 + 13:.1f}" class="small">{fmt(value, unit)}</text>')
+        parts.append(f'<rect x="{right_x}" y="{y:.1f}" width="{node_w}" height="{h:.1f}" fill="{dest_color[name]}"/>')
+        parts.append(f'<text x="{right_x + node_w + 14}" y="{y + h / 2 - 4:.1f}" class="label">{escape(name)}</text>')
+        parts.append(f'<text x="{right_x + node_w + 14}" y="{y + h / 2 + 13:.1f}" class="small">{fmt(value, unit)}</text>')
 
-    diff = abs(source_total - dest_total)
-    parts.append(f'<rect x="72" y="654" width="{width - 144}" height="1" fill="#e5e7eb"/>')
-    parts.append(
-        '<text x="72" y="682" class="note">Source: EIA Today in Energy figure data based on Vortexa; 2024 annual average; calculations by project. Caveats: see figures/README.md.</text>'
-    )
-    parts.append(
-        f'<text x="72" y="704" class="note">Origin and destination totals are separate aggregates, not country-pair cargo matching. Rounding gap: {diff:.3f} {unit}.</text>'
-    )
+    parts.append(f'<rect x="72" y="916" width="{width - 144}" height="1" fill="#d8dee8"/>')
+    parts.append('<text x="72" y="944" class="note">Source: EIA/Vortexa</text>')
     metadata = (
         f"Figure generated by scripts/build_hormuz_baseline_sankeys.py; commodity={commodity}; "
         f"source={url}; unit={unit}; year=2024."
@@ -308,8 +322,7 @@ def build_oil() -> None:
     write_link_csv(OIL_CSV, "crude oil and condensate", "mb/d", "2024", OIL_URL, origins, destinations)
     draw_sankey(
         OIL_SVG,
-        "2024 Hormuz Oil Flow Baseline",
-        "Crude oil and condensate moving through Hormuz, by origin and destination market",
+        "Oil Flow through the Strait of Hormuz, 2024",
         "crude oil and condensate",
         "mb/d",
         OIL_URL,
@@ -325,8 +338,7 @@ def build_lng() -> None:
     write_link_csv(LNG_CSV, "liquefied natural gas", "Bcf/d", "2024", LNG_URL, origins, destinations)
     draw_sankey(
         LNG_SVG,
-        "2024 Hormuz LNG Flow Baseline",
-        "Liquefied natural gas moving through Hormuz, by origin and destination market",
+        "LNG Flow through the Strait of Hormuz, 2024",
         "liquefied natural gas",
         "Bcf/d",
         LNG_URL,
