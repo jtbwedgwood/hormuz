@@ -14,6 +14,7 @@ from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parents[1]
 
+OIL_TOTAL_URL = "https://www.eia.gov/todayinenergy/images/2025.06.16/fig1.xlsx"
 OIL_URL = "https://www.eia.gov/todayinenergy/images/2025.06.16/fig3.xlsx"
 LNG_URL = "https://www.eia.gov/todayinenergy/images/2025.06.24/fig2.xlsx"
 
@@ -33,6 +34,25 @@ FIGURE_STYLE = (
     ".total{font-size:14px;font-weight:720;fill:#172033}"
     ".note{font-size:13px;font-weight:560;fill:#5d687a}"
 )
+
+PRODUCT_PROXY_SOURCES = {
+    "Saudi Arabia": "https://www.eia.gov/international/analysis/country/SAU",
+    "United Arab Emirates": "https://www.eia.gov/international/content/analysis/countries_long/United_Arab_Emirates/uae_2023.pdf",
+    "Iraq": "https://www.eia.gov/international/analysis/country/irq",
+    "Qatar": "https://www.eia.gov/international/analysis/country/QAT",
+    "Iran": "https://www.eia.gov/international/content/analysis/countries_long/Iran/pdf/Iran%20CAB%202024.pdf",
+    "Kuwait": "https://www.eia.gov/international/analysis/country/kwt",
+}
+
+PRODUCT_PROXY_VALUES = {
+    # Country product-export proxies from hormuz-kmz.1. The route-total product
+    # control comes from EIA/Vortexa fig1; Kuwait is the balancing residual.
+    "Saudi Arabia": 1.300,
+    "United Arab Emirates": 1.500,
+    "Iraq": 0.479,
+    "Qatar": 0.805,
+    "Iran": 1.000,
+}
 
 
 def download(url: str) -> Path:
@@ -178,6 +198,49 @@ def write_link_csv(
         writer.writerows(rows)
 
 
+def write_oil_csv(
+    path: Path,
+    origins: list[dict[str, float | str]],
+    destinations: list[dict[str, float | str]],
+) -> None:
+    fields = [
+        "figure_id",
+        "commodity",
+        "product_group",
+        "year",
+        "flow_side",
+        "source",
+        "target",
+        "value",
+        "unit",
+        "source_url",
+        "caveat",
+    ]
+    figure_id = path.stem.replace("-data", "")
+    rows: list[dict[str, str]] = []
+    for row in origins + destinations:
+        rows.append(
+            {
+                "figure_id": figure_id,
+                "commodity": "oil and petroleum products",
+                "product_group": str(row["product_group"]),
+                "year": "2024",
+                "flow_side": str(row["flow_side"]),
+                "source": str(row["source"]),
+                "target": str(row["target"]),
+                "value": f"{float(row['value']):.6f}",
+                "unit": "mb/d",
+                "source_url": str(row["source_url"]),
+                "caveat": str(row["caveat"]),
+            }
+        )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
 def escape(text: str) -> str:
     return (
         text.replace("&", "&amp;")
@@ -222,6 +285,207 @@ def band_path(
         f"C {x2 - dx:.1f} {y2_bottom:.1f}, {x1 + dx:.1f} {y1_bottom:.1f}, {x1:.1f} {y1_bottom:.1f} "
         "Z"
     )
+
+
+def row_value(rows: list[tuple[str, float]], name: str) -> float:
+    for row_name, value in rows:
+        if row_name == name:
+            return value
+    return 0.0
+
+
+def scaled_component(
+    node_y: float,
+    node_h: float,
+    component_value: float,
+    node_total: float,
+) -> tuple[float, float]:
+    if component_value <= 0 or node_total <= 0:
+        return node_y, 0.0
+    return node_y, component_value / node_total * node_h
+
+
+def product_origin_allocation(product_total: float, country_order: list[str]) -> dict[str, float]:
+    product = {country: 0.0 for country in country_order}
+    proxy_sum = 0.0
+    for country, value in PRODUCT_PROXY_VALUES.items():
+        if country in product:
+            product[country] = value
+            proxy_sum += value
+
+    residual = product_total - proxy_sum
+    if residual < -0.01:
+        raise ValueError(
+            f"Product proxy sum {proxy_sum:.3f} exceeds EIA product total {product_total:.3f}"
+        )
+    if "Kuwait" in product:
+        product["Kuwait"] += max(0.0, residual)
+    elif "Other" in product:
+        product["Other"] += max(0.0, residual)
+    return product
+
+
+def draw_product_overlay(parts: list[str], d: str, opacity: float = 0.46) -> None:
+    parts.append(f'<path d="{d}" fill="url(#productHatch)" opacity="{opacity:.2f}"/>')
+
+
+def draw_oil_sankey(
+    path: Path,
+    crude_origins: list[tuple[str, float]],
+    product_origins: dict[str, float],
+    crude_destinations: list[tuple[str, float]],
+    crude_total: float,
+    product_total: float,
+    oil_total: float,
+) -> None:
+    width, height = 1440, 980
+    top, chart_h = 122, 746
+    left_x, mid_x, right_x = 250, 708, 1018
+    node_w = 22
+
+    origin_totals = [(name, value + product_origins.get(name, 0.0)) for name, value in crude_origins]
+    destination_rows = crude_destinations + [("Refined/LPG destinations not public", product_total)]
+
+    left = node_layout(origin_totals, top, chart_h, 22)
+    right = node_layout(destination_rows, top, chart_h, 24)
+
+    crude_mid_y = top
+    crude_mid_h = crude_total / oil_total * chart_h
+    product_mid_y = crude_mid_y + crude_mid_h
+    product_mid_h = product_total / oil_total * chart_h
+
+    colors = [
+        "#087f75",
+        "#315c99",
+        "#b56b12",
+        "#6d5bd0",
+        "#b42318",
+        "#2f7d48",
+        "#6b7280",
+        "#2084a0",
+        "#8c5a2b",
+    ]
+    origin_color = {name: colors[i % len(colors)] for i, (name, _value) in enumerate(origin_totals)}
+    dest_color = {name: colors[(i + 3) % len(colors)] for i, (name, _value) in enumerate(crude_destinations)}
+    product_color = "#7c8798"
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
+        '<rect width="100%" height="100%" fill="#f6f7f9"/>',
+        f'<rect x="24" y="24" width="{width - 48}" height="{height - 48}" rx="8" fill="#ffffff" stroke="#dfe4ec"/>',
+        "<defs>",
+        '<pattern id="productHatch" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">',
+        '<line x1="0" y1="0" x2="0" y2="8" stroke="#172033" stroke-opacity="0.48" stroke-width="2"/>',
+        "</pattern>",
+        "</defs>",
+        f"<style>{FIGURE_STYLE}.subtitle{{font-size:14px;font-weight:600;fill:#5d687a}}</style>",
+        '<text x="72" y="64" class="title">Oil Flows through the Strait of Hormuz, 2024</text>',
+        '<text x="72" y="89" class="subtitle">Solid = crude/condensate; hatched = refined products/LPG</text>',
+        '<rect x="932" y="52" width="34" height="12" fill="#315c99" opacity="0.45"/>',
+        '<text x="976" y="63" class="small">crude/condensate</text>',
+        '<rect x="932" y="74" width="34" height="12" fill="#7c8798" opacity="0.24"/>',
+        '<rect x="932" y="74" width="34" height="12" fill="url(#productHatch)" opacity="0.58"/>',
+        '<text x="976" y="85" class="small">refined products/LPG</text>',
+    ]
+
+    crude_cursor = crude_mid_y
+    product_cursor = product_mid_y
+    for name, crude_value in crude_origins:
+        product_value = product_origins.get(name, 0.0)
+        node_total = crude_value + product_value
+        y, h = left[name]
+        crude_y, crude_h = scaled_component(y, h, crude_value, node_total)
+        product_y = crude_y + crude_h
+        product_h = scaled_component(y, h, product_value, node_total)[1]
+
+        if crude_value > 0:
+            mid_top = crude_cursor
+            mid_bottom = crude_cursor + crude_value / crude_total * crude_mid_h
+            d = band_path(left_x + node_w, crude_y, crude_y + crude_h, mid_x, mid_top, mid_bottom)
+            parts.append(f'<path d="{d}" fill="{origin_color[name]}" opacity="0.34"/>')
+            crude_cursor = mid_bottom
+
+        if product_value > 0:
+            mid_top = product_cursor
+            mid_bottom = product_cursor + product_value / product_total * product_mid_h
+            d = band_path(left_x + node_w, product_y, product_y + product_h, mid_x, mid_top, mid_bottom)
+            parts.append(f'<path d="{d}" fill="{origin_color[name]}" opacity="0.18"/>')
+            draw_product_overlay(parts, d, 0.38)
+            product_cursor = mid_bottom
+
+    crude_dest_cursor = crude_mid_y
+    for name, value in crude_destinations:
+        y, h = right[name]
+        mid_top = crude_dest_cursor
+        mid_bottom = crude_dest_cursor + value / crude_total * crude_mid_h
+        d = band_path(mid_x + node_w, mid_top, mid_bottom, right_x, y, y + h)
+        parts.append(f'<path d="{d}" fill="{dest_color[name]}" opacity="0.34"/>')
+        crude_dest_cursor = mid_bottom
+
+    product_dest_y, product_dest_h = right["Refined/LPG destinations not public"]
+    d = band_path(
+        mid_x + node_w,
+        product_mid_y,
+        product_mid_y + product_mid_h,
+        right_x,
+        product_dest_y,
+        product_dest_y + product_dest_h,
+    )
+    parts.append(f'<path d="{d}" fill="{product_color}" opacity="0.18"/>')
+    draw_product_overlay(parts, d, 0.40)
+
+    for name, total_value in origin_totals:
+        crude_value = row_value(crude_origins, name)
+        product_value = product_origins.get(name, 0.0)
+        y, h = left[name]
+        crude_y, crude_h = scaled_component(y, h, crude_value, total_value)
+        product_y = crude_y + crude_h
+        product_h = scaled_component(y, h, product_value, total_value)[1]
+        if crude_h > 0:
+            parts.append(
+                f'<rect x="{left_x}" y="{crude_y:.1f}" width="{node_w}" height="{crude_h:.1f}" '
+                f'fill="{origin_color[name]}"/>'
+            )
+        if product_h > 0:
+            parts.append(
+                f'<rect x="{left_x}" y="{product_y:.1f}" width="{node_w}" height="{product_h:.1f}" '
+                f'fill="{origin_color[name]}" opacity="0.45"/>'
+            )
+            parts.append(
+                f'<rect x="{left_x}" y="{product_y:.1f}" width="{node_w}" height="{product_h:.1f}" '
+                f'fill="url(#productHatch)" opacity="0.70"/>'
+            )
+        parts.append(f'<text x="{left_x - 14}" y="{y + h / 2 - 4:.1f}" class="label" text-anchor="end">{escape(name)}</text>')
+        parts.append(f'<text x="{left_x - 14}" y="{y + h / 2 + 13:.1f}" class="small" text-anchor="end">{fmt(total_value, "mb/d")}</text>')
+
+    parts.append(f'<rect x="{mid_x}" y="{crude_mid_y:.1f}" width="{node_w}" height="{crude_mid_h:.1f}" fill="#172033"/>')
+    parts.append(f'<rect x="{mid_x}" y="{product_mid_y:.1f}" width="{node_w}" height="{product_mid_h:.1f}" fill="#7c8798"/>')
+    parts.append(f'<rect x="{mid_x}" y="{product_mid_y:.1f}" width="{node_w}" height="{product_mid_h:.1f}" fill="url(#productHatch)" opacity="0.75"/>')
+    parts.append(f'<text x="{mid_x + node_w / 2:.1f}" y="{top + chart_h + 28:.1f}" class="total" text-anchor="middle">{fmt(oil_total, "mb/d")}</text>')
+
+    for name, value in crude_destinations:
+        y, h = right[name]
+        parts.append(f'<rect x="{right_x}" y="{y:.1f}" width="{node_w}" height="{h:.1f}" fill="{dest_color[name]}"/>')
+        parts.append(f'<text x="{right_x + node_w + 14}" y="{y + h / 2 - 4:.1f}" class="label">{escape(name)}</text>')
+        parts.append(f'<text x="{right_x + node_w + 14}" y="{y + h / 2 + 13:.1f}" class="small">{fmt(value, "mb/d")}</text>')
+
+    y, h = product_dest_y, product_dest_h
+    parts.append(f'<rect x="{right_x}" y="{y:.1f}" width="{node_w}" height="{h:.1f}" fill="{product_color}" opacity="0.55"/>')
+    parts.append(f'<rect x="{right_x}" y="{y:.1f}" width="{node_w}" height="{h:.1f}" fill="url(#productHatch)" opacity="0.70"/>')
+    parts.append(f'<text x="{right_x + node_w + 14}" y="{y + h / 2 - 4:.1f}" class="label">Refined/LPG</text>')
+    parts.append(f'<text x="{right_x + node_w + 14}" y="{y + h / 2 + 13:.1f}" class="small">destination split not public</text>')
+    parts.append(f'<text x="{right_x + node_w + 14}" y="{y + h / 2 + 30:.1f}" class="small">{fmt(product_total, "mb/d")}</text>')
+
+    parts.append(f'<rect x="72" y="916" width="{width - 144}" height="1" fill="#d8dee8"/>')
+    parts.append('<text x="72" y="944" class="note">Sources: EIA/Vortexa fig1 and fig3; country product split uses project proxies from hormuz-kmz.1</text>')
+    metadata = (
+        "Figure generated by scripts/build_hormuz_baseline_sankeys.py; commodity=oil and petroleum products; "
+        f"crude_source={OIL_URL}; total_product_source={OIL_TOTAL_URL}; unit=mb/d; year=2024. "
+        "Product origin split is indicative and destination split is not public in EIA figure data."
+    )
+    parts.append(f"<metadata>{escape(metadata)}</metadata>")
+    parts.append("</svg>")
+    path.write_text("\n".join(parts) + "\n")
 
 
 def draw_sankey(
@@ -317,17 +581,97 @@ def draw_sankey(
 
 def build_oil() -> None:
     cells = read_xlsx_cells(download(OIL_URL))
-    origins = table_from_cells(cells, 3, 9, 6)
-    destinations = table_from_cells(cells, 17, 25, 6)
-    write_link_csv(OIL_CSV, "crude oil and condensate", "mb/d", "2024", OIL_URL, origins, destinations)
-    draw_sankey(
+    total_cells = read_xlsx_cells(download(OIL_TOTAL_URL))
+    crude_origins = table_from_cells(cells, 3, 9, 6)
+    crude_destinations = table_from_cells(cells, 17, 25, 6)
+    oil_total = float(total_cells[(4, 7)])
+    crude_total = float(total_cells[(5, 7)])
+    product_total = float(total_cells[(6, 7)])
+    if not math.isclose(sum(value for _name, value in crude_origins), crude_total, rel_tol=0, abs_tol=0.01):
+        raise ValueError("Origin crude total does not match EIA fig1 crude/condensate total")
+    if not math.isclose(sum(value for _name, value in crude_destinations), crude_total, rel_tol=0, abs_tol=0.01):
+        raise ValueError("Destination crude total does not match EIA fig1 crude/condensate total")
+
+    country_order = [name for name, _value in crude_origins]
+    product_origins = product_origin_allocation(product_total, country_order)
+    if not math.isclose(sum(product_origins.values()), product_total, rel_tol=0, abs_tol=0.01):
+        raise ValueError("Product origin allocation does not match EIA fig1 product total")
+
+    origin_rows: list[dict[str, float | str]] = []
+    dest_rows: list[dict[str, float | str]] = []
+    crude_caveat = (
+        "EIA/Vortexa crude/condensate origin totals and destination totals are separate aggregates; "
+        "links are not country-pair cargo matches."
+    )
+    product_caveat = (
+        "Product/LPG origin split combines EIA's 2024 route-total petroleum-products flow with country "
+        "product-export proxies from hormuz-kmz.1; Kuwait is the residual needed to reconcile to the EIA "
+        "route total. Use as an indicative visual allocation, not cargo-level accounting."
+    )
+    for country, value in crude_origins:
+        origin_rows.append(
+            {
+                "product_group": "crude oil and condensate",
+                "flow_side": "origin_to_hormuz",
+                "source": country,
+                "target": "Strait of Hormuz",
+                "value": value,
+                "source_url": OIL_URL,
+                "caveat": crude_caveat,
+            }
+        )
+        product_value = product_origins.get(country, 0.0)
+        if product_value > 0:
+            product_sources = [OIL_TOTAL_URL]
+            if country in PRODUCT_PROXY_SOURCES:
+                product_sources.append(PRODUCT_PROXY_SOURCES[country])
+            origin_rows.append(
+                {
+                    "product_group": "refined products/LPG",
+                    "flow_side": "origin_to_hormuz",
+                    "source": country,
+                    "target": "Strait of Hormuz",
+                    "value": product_value,
+                    "source_url": "|".join(product_sources),
+                    "caveat": product_caveat,
+                }
+            )
+    for destination, value in crude_destinations:
+        dest_rows.append(
+            {
+                "product_group": "crude oil and condensate",
+                "flow_side": "hormuz_to_destination",
+                "source": "Strait of Hormuz",
+                "target": destination,
+                "value": value,
+                "source_url": OIL_URL,
+                "caveat": crude_caveat,
+            }
+        )
+    dest_rows.append(
+        {
+            "product_group": "refined products/LPG",
+            "flow_side": "hormuz_to_destination",
+            "source": "Strait of Hormuz",
+            "target": "Refined/LPG destinations not public",
+            "value": product_total,
+            "source_url": OIL_TOTAL_URL,
+            "caveat": (
+                "EIA fig1 provides the 2024 petroleum-products total through Hormuz, but the public workbook "
+                "does not provide destination-country splits for refined products/LPG."
+            ),
+        }
+    )
+
+    write_oil_csv(OIL_CSV, origin_rows, dest_rows)
+    draw_oil_sankey(
         OIL_SVG,
-        "Oil Flow through the Strait of Hormuz, 2024",
-        "crude oil and condensate",
-        "mb/d",
-        OIL_URL,
-        origins,
-        destinations,
+        crude_origins,
+        product_origins,
+        crude_destinations,
+        crude_total,
+        product_total,
+        oil_total,
     )
 
 

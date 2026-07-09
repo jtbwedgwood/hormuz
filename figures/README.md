@@ -8,6 +8,7 @@ This directory contains blog-candidate SVG figures plus machine-readable figure 
 
 - Public PortWatch traffic counts are not cargo manifests. They support transit-count and broad vessel-class claims, not exact barrels, cargo contents, destinations, or AIS-dark movements.
 - EIA/Vortexa Hormuz oil and LNG figure data provide separate origin totals and destination totals. The Sankey diagrams are origin -> Hormuz -> destination summaries, not country-pair cargo matching.
+- The oil Sankey's refined-products/LPG slice reconciles to EIA's 2024 aggregate petroleum-products total through Hormuz. The country split is an indicative project allocation from country product-export proxies, with Kuwait as the residual; product destinations are not public in the EIA figure data.
 - Scenario figures are not realized-loss accounting. Current Hormuz disruption rows combine observed baselines, modeled low/base/high assumptions, and source confidence flags.
 - Product rows are not additive. Crude, refined products, LPG/NGL, petrochemicals, fertilizer inputs, sulphur, aluminium, and freight/insurance channels overlap.
 - Route/logistics shocks and physical supply outages are different. Historical comparison scores keep them visible together, but they should not be read as one mechanical barrel-equivalent table.
@@ -18,7 +19,7 @@ This directory contains blog-candidate SVG figures plus machine-readable figure 
 | Figure | Main Use | Key Caveat |
 |---|---|---|
 | `fig-2y7-public-hormuz-daily-transits.svg` | Daily public Strait of Hormuz transit tracker. | Counts broad chokepoint calls, not cargoes or vessel identities. |
-| `fig-kmz-oil-hormuz-baseline-sankey.svg` | 2024 crude/condensate origin and destination baseline through Hormuz. | Origin and destination totals are separate EIA aggregates, not pairwise cargo routes. |
+| `fig-kmz-oil-hormuz-baseline-sankey.svg` | 2024 crude/condensate plus refined-products/LPG baseline through Hormuz. | Crude/condensate origin and destination totals are EIA aggregates; refined-products/LPG origin split is indicative and product destinations are grouped because public splits are unavailable. |
 | `fig-kmz-lng-hormuz-baseline-sankey.svg` | 2024 LNG origin and destination baseline through Hormuz. | Same origin/destination caveat; Qatar dominates exports, but exact Qatar-to-importer pairings are not public in this figure data. |
 | `fig-f6r-crude-importer-adjustment.svg` | Base-case importer adjustment buckets for direct crude/product exposure. | Scenario bridge estimates, not cargo-by-cargo replacement accounting. |
 | `fig-4j7-historical-shock-comparison.svg` | Historical comparison matrix and current Hormuz product ranking. | Scores are rubric-based and provisional where duration or price response is missing. |
