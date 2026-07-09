@@ -37,6 +37,7 @@ Revise the 2024 oil flow Sankey so it shows crude/condensate plus refined produc
 - 2026-07-09: Updated `scripts/build_hormuz_baseline_sankeys.py` so the oil Sankey now combines EIA/Vortexa fig3 crude/condensate origin and destination totals with EIA fig1's 2024 aggregate petroleum-products total. The generated figure reconciles to 20.261742 mb/d, split into 14.318614 mb/d crude/condensate and 5.943128 mb/d refined products/LPG.
 - 2026-07-09: Product/LPG country-origin split is intentionally marked as indicative. It uses country product-export proxies from `hormuz-kmz.1` for Saudi Arabia, UAE, Iraq, Qatar, and Iran, with Kuwait as the residual needed to reconcile to EIA's aggregate petroleum-products route total. The public EIA workbook does not provide product destinations, so the right side groups products into a single "destination split not public" node.
 - 2026-07-09: Regenerated `figures/fig-kmz-oil-hormuz-baseline-sankey.svg` and companion CSV. Rendered the SVG via `sips` to `/tmp/oil-sankey-sips.png` for visual QA; labels and hatching are readable. Updated `figures/README.md` and `data/manifest.csv` caveats.
+- 2026-07-09: Applied follow-up cosmetic edits: removed the redundant subtitle, simplified the visible source line to `Source: EIA/Vortexa`, changed source-country labels to show crude and product components separately, and folded the Saudi Arabia crude destination row into `Other` for a cleaner destination side.
 
 ### Source Breadcrumbs
 

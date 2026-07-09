@@ -6,9 +6,8 @@
 <line x1="0" y1="0" x2="0" y2="8" stroke="#172033" stroke-opacity="0.48" stroke-width="2"/>
 </pattern>
 </defs>
-<style>text{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033;letter-spacing:0}.title{font-size:30px;font-weight:760}.label{font-size:15px;font-weight:740}.small{font-size:13px;font-weight:560;fill:#5d687a}.total{font-size:14px;font-weight:720;fill:#172033}.note{font-size:13px;font-weight:560;fill:#5d687a}.subtitle{font-size:14px;font-weight:600;fill:#5d687a}</style>
+<style>text{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033;letter-spacing:0}.title{font-size:30px;font-weight:760}.label{font-size:15px;font-weight:740}.small{font-size:13px;font-weight:560;fill:#5d687a}.total{font-size:14px;font-weight:720;fill:#172033}.note{font-size:13px;font-weight:560;fill:#5d687a}</style>
 <text x="72" y="64" class="title">Oil Flows through the Strait of Hormuz, 2024</text>
-<text x="72" y="89" class="subtitle">Solid = crude/condensate; hatched = refined products/LPG</text>
 <rect x="932" y="52" width="34" height="12" fill="#315c99" opacity="0.45"/>
 <text x="976" y="63" class="small">crude/condensate</text>
 <rect x="932" y="74" width="34" height="12" fill="#7c8798" opacity="0.24"/>
@@ -33,87 +32,83 @@
 <path d="M 272.0 805.0 C 511.8 805.0, 468.2 831.2, 708.0 831.2 L 708.0 868.0 C 468.2 868.0, 511.8 835.3, 272.0 835.3 Z" fill="#2f7d48" opacity="0.18"/>
 <path d="M 272.0 805.0 C 511.8 805.0, 468.2 831.2, 708.0 831.2 L 708.0 868.0 C 468.2 868.0, 511.8 835.3, 272.0 835.3 Z" fill="url(#productHatch)" opacity="0.38"/>
 <path d="M 272.0 857.3 C 511.8 857.3, 468.2 636.2, 708.0 636.2 L 708.0 649.2 C 468.2 649.2, 511.8 868.0, 272.0 868.0 Z" fill="#6b7280" opacity="0.34"/>
-<path d="M 730.0 122.0 C 888.4 122.0, 859.6 122.0, 1018.0 122.0 L 1018.0 247.2 C 859.6 247.2, 888.4 298.2, 730.0 298.2 Z" fill="#6d5bd0" opacity="0.34"/>
-<path d="M 730.0 298.2 C 888.4 298.2, 859.6 271.2, 1018.0 271.2 L 1018.0 320.5 C 859.6 320.5, 888.4 367.6, 730.0 367.6 Z" fill="#b42318" opacity="0.34"/>
-<path d="M 730.0 367.6 C 888.4 367.6, 859.6 344.5, 1018.0 344.5 L 1018.0 389.6 C 859.6 389.6, 888.4 431.1, 730.0 431.1 Z" fill="#2f7d48" opacity="0.34"/>
-<path d="M 730.0 431.1 C 888.4 431.1, 859.6 413.6, 1018.0 413.6 L 1018.0 453.3 C 859.6 453.3, 888.4 486.9, 730.0 486.9 Z" fill="#6b7280" opacity="0.34"/>
-<path d="M 730.0 486.9 C 888.4 486.9, 859.6 477.3, 1018.0 477.3 L 1018.0 531.5 C 859.6 531.5, 888.4 563.2, 730.0 563.2 Z" fill="#2084a0" opacity="0.34"/>
-<path d="M 730.0 563.2 C 888.4 563.2, 859.6 555.5, 1018.0 555.5 L 1018.0 574.3 C 859.6 574.3, 888.4 589.8, 730.0 589.8 Z" fill="#8c5a2b" opacity="0.34"/>
-<path d="M 730.0 589.8 C 888.4 589.8, 859.6 598.3, 1018.0 598.3 L 1018.0 611.0 C 859.6 611.0, 888.4 607.6, 730.0 607.6 Z" fill="#087f75" opacity="0.34"/>
-<path d="M 730.0 607.6 C 888.4 607.6, 859.6 635.0, 1018.0 635.0 L 1018.0 641.0 C 859.6 641.0, 888.4 616.0, 730.0 616.0 Z" fill="#315c99" opacity="0.34"/>
-<path d="M 730.0 616.0 C 888.4 616.0, 859.6 665.0, 1018.0 665.0 L 1018.0 688.5 C 859.6 688.5, 888.4 649.2, 730.0 649.2 Z" fill="#b56b12" opacity="0.34"/>
-<path d="M 730.0 649.2 C 888.4 649.2, 859.6 712.5, 1018.0 712.5 L 1018.0 868.0 C 859.6 868.0, 888.4 868.0, 730.0 868.0 Z" fill="#7c8798" opacity="0.18"/>
-<path d="M 730.0 649.2 C 888.4 649.2, 859.6 712.5, 1018.0 712.5 L 1018.0 868.0 C 859.6 868.0, 888.4 868.0, 730.0 868.0 Z" fill="url(#productHatch)" opacity="0.40"/>
+<path d="M 730.0 122.0 C 888.4 122.0, 859.6 122.0, 1018.0 122.0 L 1018.0 252.8 C 859.6 252.8, 888.4 298.2, 730.0 298.2 Z" fill="#6d5bd0" opacity="0.34"/>
+<path d="M 730.0 298.2 C 888.4 298.2, 859.6 276.8, 1018.0 276.8 L 1018.0 328.4 C 859.6 328.4, 888.4 367.6, 730.0 367.6 Z" fill="#b42318" opacity="0.34"/>
+<path d="M 730.0 367.6 C 888.4 367.6, 859.6 352.4, 1018.0 352.4 L 1018.0 399.6 C 859.6 399.6, 888.4 431.1, 730.0 431.1 Z" fill="#2f7d48" opacity="0.34"/>
+<path d="M 730.0 431.1 C 888.4 431.1, 859.6 423.6, 1018.0 423.6 L 1018.0 465.0 C 859.6 465.0, 888.4 486.9, 730.0 486.9 Z" fill="#6b7280" opacity="0.34"/>
+<path d="M 730.0 486.9 C 888.4 486.9, 859.6 489.0, 1018.0 489.0 L 1018.0 545.7 C 859.6 545.7, 888.4 563.2, 730.0 563.2 Z" fill="#2084a0" opacity="0.34"/>
+<path d="M 730.0 563.2 C 888.4 563.2, 859.6 569.7, 1018.0 569.7 L 1018.0 589.4 C 859.6 589.4, 888.4 589.8, 730.0 589.8 Z" fill="#8c5a2b" opacity="0.34"/>
+<path d="M 730.0 589.8 C 888.4 589.8, 859.6 613.4, 1018.0 613.4 L 1018.0 626.6 C 859.6 626.6, 888.4 607.6, 730.0 607.6 Z" fill="#087f75" opacity="0.34"/>
+<path d="M 730.0 607.6 C 888.4 607.6, 859.6 650.6, 1018.0 650.6 L 1018.0 681.5 C 859.6 681.5, 888.4 649.2, 730.0 649.2 Z" fill="#315c99" opacity="0.34"/>
+<path d="M 730.0 649.2 C 888.4 649.2, 859.6 705.5, 1018.0 705.5 L 1018.0 868.0 C 859.6 868.0, 888.4 868.0, 730.0 868.0 Z" fill="#7c8798" opacity="0.18"/>
+<path d="M 730.0 649.2 C 888.4 649.2, 859.6 705.5, 1018.0 705.5 L 1018.0 868.0 C 859.6 868.0, 888.4 868.0, 730.0 868.0 Z" fill="url(#productHatch)" opacity="0.40"/>
 <rect x="250" y="122.0" width="22" height="166.0" fill="#087f75"/>
 <rect x="250" y="288.0" width="22" height="39.4" fill="#087f75" opacity="0.45"/>
 <rect x="250" y="288.0" width="22" height="39.4" fill="url(#productHatch)" opacity="0.70"/>
 <text x="236" y="220.7" class="label" text-anchor="end">Saudi Arabia</text>
-<text x="236" y="237.7" class="small" text-anchor="end">6.8 mb/d</text>
+<text x="236" y="237.7" class="small" text-anchor="end">5.5 crude + 1.3 prod mb/d</text>
 <rect x="250" y="349.4" width="22" height="57.3" fill="#315c99"/>
 <rect x="250" y="406.7" width="22" height="45.5" fill="#315c99" opacity="0.45"/>
 <rect x="250" y="406.7" width="22" height="45.5" fill="url(#productHatch)" opacity="0.70"/>
 <text x="236" y="396.8" class="label" text-anchor="end">United Arab Emirates</text>
-<text x="236" y="413.8" class="small" text-anchor="end">3.4 mb/d</text>
+<text x="236" y="413.8" class="small" text-anchor="end">1.9 crude + 1.5 prod mb/d</text>
 <rect x="250" y="474.1" width="22" height="97.7" fill="#b56b12"/>
 <rect x="250" y="571.8" width="22" height="14.5" fill="#b56b12" opacity="0.45"/>
 <rect x="250" y="571.8" width="22" height="14.5" fill="url(#productHatch)" opacity="0.70"/>
 <text x="236" y="526.2" class="label" text-anchor="end">Iraq</text>
-<text x="236" y="543.2" class="small" text-anchor="end">3.7 mb/d</text>
+<text x="236" y="543.2" class="small" text-anchor="end">3.2 crude + 0.48 prod mb/d</text>
 <rect x="250" y="608.3" width="22" height="40.2" fill="#6d5bd0"/>
 <rect x="250" y="648.5" width="22" height="26.0" fill="#6d5bd0" opacity="0.45"/>
 <rect x="250" y="648.5" width="22" height="26.0" fill="url(#productHatch)" opacity="0.70"/>
 <text x="236" y="637.4" class="label" text-anchor="end">Kuwait</text>
-<text x="236" y="654.4" class="small" text-anchor="end">2.2 mb/d</text>
+<text x="236" y="654.4" class="small" text-anchor="end">1.3 crude + 0.86 prod mb/d</text>
 <rect x="250" y="696.5" width="22" height="19.7" fill="#b42318"/>
 <rect x="250" y="716.2" width="22" height="24.4" fill="#b42318" opacity="0.45"/>
 <rect x="250" y="716.2" width="22" height="24.4" fill="url(#productHatch)" opacity="0.70"/>
 <text x="236" y="714.6" class="label" text-anchor="end">Qatar</text>
-<text x="236" y="731.6" class="small" text-anchor="end">1.5 mb/d</text>
+<text x="236" y="731.6" class="small" text-anchor="end">0.65 crude + 0.81 prod mb/d</text>
 <rect x="250" y="762.6" width="22" height="42.4" fill="#2f7d48"/>
 <rect x="250" y="805.0" width="22" height="30.3" fill="#2f7d48" opacity="0.45"/>
 <rect x="250" y="805.0" width="22" height="30.3" fill="url(#productHatch)" opacity="0.70"/>
 <text x="236" y="795.0" class="label" text-anchor="end">Iran</text>
-<text x="236" y="812.0" class="small" text-anchor="end">2.4 mb/d</text>
+<text x="236" y="812.0" class="small" text-anchor="end">1.4 crude + 1.0 prod mb/d</text>
 <rect x="250" y="857.3" width="22" height="10.7" fill="#6b7280"/>
 <text x="236" y="858.7" class="label" text-anchor="end">Other</text>
-<text x="236" y="875.7" class="small" text-anchor="end">0.35 mb/d</text>
+<text x="236" y="875.7" class="small" text-anchor="end">0.35 crude mb/d</text>
 <rect x="708" y="122.0" width="22" height="527.2" fill="#172033"/>
 <rect x="708" y="649.2" width="22" height="218.8" fill="#7c8798"/>
 <rect x="708" y="649.2" width="22" height="218.8" fill="url(#productHatch)" opacity="0.75"/>
 <text x="719.0" y="896.0" class="total" text-anchor="middle">20.3 mb/d</text>
-<rect x="1018" y="122.0" width="22" height="125.2" fill="#6d5bd0"/>
-<text x="1054" y="180.6" class="label">China</text>
-<text x="1054" y="197.6" class="small">4.8 mb/d</text>
-<rect x="1018" y="271.2" width="22" height="49.3" fill="#b42318"/>
-<text x="1054" y="291.8" class="label">India</text>
-<text x="1054" y="308.8" class="small">1.9 mb/d</text>
-<rect x="1018" y="344.5" width="22" height="45.2" fill="#2f7d48"/>
-<text x="1054" y="363.1" class="label">South Korea</text>
-<text x="1054" y="380.1" class="small">1.7 mb/d</text>
-<rect x="1018" y="413.6" width="22" height="39.6" fill="#6b7280"/>
-<text x="1054" y="429.5" class="label">Japan</text>
-<text x="1054" y="446.5" class="small">1.5 mb/d</text>
-<rect x="1018" y="477.3" width="22" height="54.2" fill="#2084a0"/>
-<text x="1054" y="500.4" class="label">Other Asia</text>
-<text x="1054" y="517.4" class="small">2.1 mb/d</text>
-<rect x="1018" y="555.5" width="22" height="18.8" fill="#8c5a2b"/>
-<text x="1054" y="560.9" class="label">Europe</text>
-<text x="1054" y="577.9" class="small">0.72 mb/d</text>
-<rect x="1018" y="598.3" width="22" height="12.7" fill="#087f75"/>
-<text x="1054" y="600.7" class="label">United States</text>
-<text x="1054" y="617.7" class="small">0.48 mb/d</text>
-<rect x="1018" y="635.0" width="22" height="6.0" fill="#315c99"/>
-<text x="1054" y="634.0" class="label">Saudi Arabia</text>
-<text x="1054" y="651.0" class="small">0.23 mb/d</text>
-<rect x="1018" y="665.0" width="22" height="23.6" fill="#b56b12"/>
-<text x="1054" y="672.7" class="label">Other</text>
-<text x="1054" y="689.7" class="small">0.90 mb/d</text>
-<rect x="1018" y="712.5" width="22" height="155.5" fill="#7c8798" opacity="0.55"/>
-<rect x="1018" y="712.5" width="22" height="155.5" fill="url(#productHatch)" opacity="0.70"/>
-<text x="1054" y="786.3" class="label">Refined/LPG</text>
-<text x="1054" y="803.3" class="small">destination split not public</text>
-<text x="1054" y="820.3" class="small">5.9 mb/d</text>
+<rect x="1018" y="122.0" width="22" height="130.8" fill="#6d5bd0"/>
+<text x="1054" y="183.4" class="label">China</text>
+<text x="1054" y="200.4" class="small">4.8 mb/d</text>
+<rect x="1018" y="276.8" width="22" height="51.5" fill="#b42318"/>
+<text x="1054" y="298.6" class="label">India</text>
+<text x="1054" y="315.6" class="small">1.9 mb/d</text>
+<rect x="1018" y="352.4" width="22" height="47.2" fill="#2f7d48"/>
+<text x="1054" y="372.0" class="label">South Korea</text>
+<text x="1054" y="389.0" class="small">1.7 mb/d</text>
+<rect x="1018" y="423.6" width="22" height="41.4" fill="#6b7280"/>
+<text x="1054" y="440.3" class="label">Japan</text>
+<text x="1054" y="457.3" class="small">1.5 mb/d</text>
+<rect x="1018" y="489.0" width="22" height="56.6" fill="#2084a0"/>
+<text x="1054" y="513.3" class="label">Other Asia</text>
+<text x="1054" y="530.3" class="small">2.1 mb/d</text>
+<rect x="1018" y="569.7" width="22" height="19.7" fill="#8c5a2b"/>
+<text x="1054" y="575.5" class="label">Europe</text>
+<text x="1054" y="592.5" class="small">0.72 mb/d</text>
+<rect x="1018" y="613.4" width="22" height="13.2" fill="#087f75"/>
+<text x="1054" y="616.0" class="label">United States</text>
+<text x="1054" y="633.0" class="small">0.48 mb/d</text>
+<rect x="1018" y="650.6" width="22" height="30.9" fill="#315c99"/>
+<text x="1054" y="662.1" class="label">Other</text>
+<text x="1054" y="679.1" class="small">1.1 mb/d</text>
+<rect x="1018" y="705.5" width="22" height="162.5" fill="#7c8798" opacity="0.55"/>
+<rect x="1018" y="705.5" width="22" height="162.5" fill="url(#productHatch)" opacity="0.70"/>
+<text x="1054" y="782.8" class="label">Refined/LPG</text>
+<text x="1054" y="799.8" class="small">destination split not public</text>
+<text x="1054" y="816.8" class="small">5.9 mb/d</text>
 <rect x="72" y="916" width="1296" height="1" fill="#d8dee8"/>
-<text x="72" y="944" class="note">Sources: EIA/Vortexa fig1 and fig3; country product split uses project proxies from hormuz-kmz.1</text>
+<text x="72" y="944" class="note">Source: EIA/Vortexa</text>
 <metadata>Figure generated by scripts/build_hormuz_baseline_sankeys.py; commodity=oil and petroleum products; crude_source=https://www.eia.gov/todayinenergy/images/2025.06.16/fig3.xlsx; total_product_source=https://www.eia.gov/todayinenergy/images/2025.06.16/fig1.xlsx; unit=mb/d; year=2024. Product origin split is indicative and destination split is not public in EIA figure data.</metadata>
 </svg>
