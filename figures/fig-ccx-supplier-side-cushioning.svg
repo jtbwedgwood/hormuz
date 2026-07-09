@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1180" viewBox="0 0 1440 1180">
+<rect width="100%" height="100%" fill="#f6f7f9"/>
+<rect x="24" y="24" width="1392" height="1132" rx="8" fill="#ffffff" stroke="#dfe4ec"/>
+<style>text{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172033;letter-spacing:0}.title{font-size:30px;font-weight:760}.subtitle{font-size:15px;font-weight:560;fill:#5d687a}.section{font-size:15px;font-weight:760;fill:#172033}.section_note{font-size:12px;font-weight:560;fill:#5d687a}.label{font-size:13px;font-weight:720;fill:#172033}.small{font-size:12px;font-weight:560;fill:#5d687a}.tiny{font-size:10.5px;font-weight:720;fill:#5d687a}.pct{font-size:10.5px;font-weight:760;fill:#ffffff}.axis{font-size:11px;font-weight:560;fill:#5d687a}.note{font-size:12px;font-weight:560;fill:#5d687a}.value{font-size:12px;font-weight:720;fill:#172033}</style>
+<text x="72" y="66" class="title">How Gulf suppliers cushion a Hormuz export shock</text>
+<text x="72" y="92" class="subtitle">Pipeline optionality protects some crude flows; LNG and industrial inputs have much thinner route cushions.</text>
+<text x="72" y="132" class="section">Observed route-capacity anchors</text>
+<rect x="72.0" y="152.0" width="302.0" height="54" rx="8" fill="#dff3ef" stroke="#087f75" stroke-opacity="0.28"/>
+<text x="88" y="172" class="tiny">OBSERVED ROUTE CAPACITY</text>
+<text x="88" y="191" class="label">Saudi East-West</text>
+<text x="358" y="191" text-anchor="end" class="value">5-7 mb/d physical route</text>
+<rect x="394.0" y="152.0" width="302.0" height="54" rx="8" fill="#dff3ef" stroke="#087f75" stroke-opacity="0.28"/>
+<text x="410" y="172" class="tiny">OBSERVED ROUTE CAPACITY</text>
+<text x="410" y="191" class="label">UAE ADCOP/Fujairah</text>
+<text x="680" y="191" text-anchor="end" class="value">~0.7 mb/d extra room</text>
+<rect x="716.0" y="152.0" width="302.0" height="54" rx="8" fill="#dff3ef" stroke="#087f75" stroke-opacity="0.28"/>
+<text x="732" y="172" class="tiny">OBSERVED ROUTE CAPACITY</text>
+<text x="732" y="191" class="label">Iraq-Ceyhan</text>
+<text x="1002" y="191" text-anchor="end" class="value">~0.25-0.4 mb/d practical</text>
+<rect x="1038.0" y="152.0" width="302.0" height="54" rx="8" fill="#fde7e5" stroke="#b42318" stroke-opacity="0.28"/>
+<text x="1054" y="172" class="tiny">OBSERVED ROUTE CONSTRAINT</text>
+<text x="1054" y="191" class="label">Qatar/UAE LNG</text>
+<text x="1324" y="191" text-anchor="end" class="value">0 practical bypass</text>
+<rect x="72" y="232" width="16" height="16" rx="3" fill="#087f75"/>
+<rect x="92" y="232" width="16" height="16" rx="3" fill="#dff3ef" stroke="#087f75" stroke-opacity="0.18"/>
+<text x="116" y="245" class="small">base disrupted where route cushion exists</text>
+<rect x="407" y="232" width="16" height="16" rx="3" fill="#b42318"/>
+<rect x="427" y="232" width="16" height="16" rx="3" fill="#fde7e5" stroke="#b42318" stroke-opacity="0.18"/>
+<text x="451" y="245" class="small">base removed / shut-in or delayed</text>
+<rect x="742" y="232" width="16" height="16" rx="3" fill="#b56b12"/>
+<rect x="762" y="232" width="16" height="16" rx="3" fill="#fff0d6" stroke="#b56b12" stroke-opacity="0.18"/>
+<text x="786" y="245" class="small">annualized industrial export delay</text>
+<line x1="430.0" y1="268" x2="430.0" y2="1012" stroke="#e8edf3"/>
+<line x1="605.0" y1="268" x2="605.0" y2="1012" stroke="#e8edf3"/>
+<line x1="780.0" y1="268" x2="780.0" y2="1012" stroke="#e8edf3"/>
+<line x1="955.0" y1="268" x2="955.0" y2="1012" stroke="#e8edf3"/>
+<line x1="1130.0" y1="268" x2="1130.0" y2="1012" stroke="#e8edf3"/>
+<text x="72" y="274" class="section">Route cushion: oil liquids with alternate pipeline or port options</text>
+<text x="72" y="292" class="section_note">Bars show modeled base disrupted share of normal exposed flow; pale remainder is not disrupted in the base case.</text>
+<text x="100" y="332" class="label">Saudi Arabia - crude + condensate</text>
+<text x="412" y="332" text-anchor="end" class="small">oil liquids</text>
+<rect x="430" y="319" width="700" height="16" rx="3" fill="#dff3ef"/>
+<rect x="430" y="319" width="191.6" height="16" rx="3" fill="#087f75"/>
+<text x="543.8" y="332" text-anchor="end" class="pct">27%</text>
+<text x="1152" y="327" class="value">1.5 of 5.5 mb/d</text>
+<text x="1152" y="343" class="small">route cushion; med conf.</text>
+<text x="100" y="368" class="label">UAE - crude/products</text>
+<text x="412" y="368" text-anchor="end" class="small">oil liquids</text>
+<rect x="430" y="355" width="700" height="16" rx="3" fill="#dff3ef"/>
+<rect x="430" y="355" width="296.3" height="16" rx="3" fill="#087f75"/>
+<text x="596.1" y="368" text-anchor="end" class="pct">42%</text>
+<text x="1152" y="363" class="value">0.80 of 1.9 mb/d</text>
+<text x="1152" y="379" class="small">route cushion; med-low conf.</text>
+<text x="100" y="404" class="label">Saudi Arabia - refined products</text>
+<text x="412" y="404" text-anchor="end" class="small">oil liquids</text>
+<rect x="430" y="391" width="700" height="16" rx="3" fill="#dff3ef"/>
+<rect x="430" y="391" width="484.6" height="16" rx="3" fill="#087f75"/>
+<text x="690.3" y="404" text-anchor="end" class="pct">69%</text>
+<text x="1152" y="399" class="value">0.90 of 1.3 mb/d</text>
+<text x="1152" y="415" class="small">route cushion; med-low conf.</text>
+<text x="100" y="440" class="label">UAE - refined products</text>
+<text x="412" y="440" text-anchor="end" class="small">oil liquids</text>
+<rect x="430" y="427" width="700" height="16" rx="3" fill="#dff3ef"/>
+<rect x="430" y="427" width="420.0" height="16" rx="3" fill="#087f75"/>
+<text x="658.0" y="440" text-anchor="end" class="pct">60%</text>
+<text x="1152" y="435" class="value">0.90 of 1.5 mb/d</text>
+<text x="1152" y="451" class="small">route cushion; med-low conf.</text>
+<text x="72" y="462" class="section">No-bypass or severe route limit: LNG and Gulf oil liquids</text>
+<text x="72" y="480" class="section_note">LNG is the clearest hard-stop case; Iraq/Kuwait/Qatar liquids lack Saudi/UAE-scale bypass.</text>
+<text x="100" y="520" class="label">Qatar - LNG</text>
+<text x="412" y="520" text-anchor="end" class="small">LNG</text>
+<rect x="430" y="507" width="700" height="16" rx="3" fill="#fde7e5"/>
+<rect x="430" y="507" width="657.3" height="16" rx="3" fill="#b42318"/>
+<text x="776.6" y="520" text-anchor="end" class="pct">94%</text>
+<text x="1152" y="515" class="value">10 of 11 Bcf/d</text>
+<text x="1152" y="531" class="small">removed; high conf.</text>
+<text x="100" y="556" class="label">UAE - LNG</text>
+<text x="412" y="556" text-anchor="end" class="small">LNG</text>
+<rect x="430" y="543" width="700" height="16" rx="3" fill="#fde7e5"/>
+<rect x="430" y="543" width="628.2" height="16" rx="3" fill="#b42318"/>
+<text x="762.1" y="556" text-anchor="end" class="pct">90%</text>
+<text x="1152" y="551" class="value">0.70 of 0.78 Bcf/d</text>
+<text x="1152" y="567" class="small">removed; high conf.</text>
+<text x="100" y="592" class="label">Iraq - crude + condensate</text>
+<text x="412" y="592" text-anchor="end" class="small">oil liquids</text>
+<rect x="430" y="579" width="700" height="16" rx="3" fill="#fde7e5"/>
+<rect x="430" y="579" width="525.0" height="16" rx="3" fill="#b42318"/>
+<text x="710.5" y="592" text-anchor="end" class="pct">75%</text>
+<text x="1152" y="587" class="value">2.4 of 3.2 mb/d</text>
+<text x="1152" y="603" class="small">shut-in/delay; med conf.</text>
+<text x="100" y="628" class="label">Kuwait - crude/products</text>
+<text x="412" y="628" text-anchor="end" class="small">oil liquids</text>
+<rect x="430" y="615" width="700" height="16" rx="3" fill="#fde7e5"/>
+<rect x="430" y="615" width="526.3" height="16" rx="3" fill="#b42318"/>
+<text x="711.2" y="628" text-anchor="end" class="pct">75%</text>
+<text x="1152" y="623" class="value">1.0 of 1.3 mb/d</text>
+<text x="1152" y="639" class="small">shut-in/delay; med-low conf.</text>
+<text x="100" y="664" class="label">Qatar - LPG/naphtha/products</text>
+<text x="412" y="664" text-anchor="end" class="small">oil liquids</text>
+<rect x="430" y="651" width="700" height="16" rx="3" fill="#fde7e5"/>
+<rect x="430" y="651" width="521.7" height="16" rx="3" fill="#b42318"/>
+<text x="708.9" y="664" text-anchor="end" class="pct">75%</text>
+<text x="1152" y="659" class="value">0.60 of 0.81 mb/d</text>
+<text x="1152" y="675" class="small">shut-in/delay; med conf.</text>
+<text x="100" y="700" class="label">Qatar - crude + condensate</text>
+<text x="412" y="700" text-anchor="end" class="small">oil liquids</text>
+<rect x="430" y="687" width="700" height="16" rx="3" fill="#fde7e5"/>
+<rect x="430" y="687" width="538.5" height="16" rx="3" fill="#b42318"/>
+<text x="717.2" y="700" text-anchor="end" class="pct">77%</text>
+<text x="1152" y="695" class="value">0.50 of 0.65 mb/d</text>
+<text x="1152" y="711" class="small">shut-in/delay; med conf.</text>
+<text x="100" y="736" class="label">Iran - crude + condensate</text>
+<text x="412" y="736" text-anchor="end" class="small">oil liquids</text>
+<rect x="430" y="723" width="700" height="16" rx="3" fill="#fde7e5"/>
+<rect x="430" y="723" width="550.0" height="16" rx="3" fill="#b42318"/>
+<text x="723.0" y="736" text-anchor="end" class="pct">79%</text>
+<text x="1152" y="731" class="value">1.1 of 1.4 mb/d</text>
+<text x="1152" y="747" class="small">shut-in/delay; med-low conf.</text>
+<text x="72" y="758" class="section">Delayed export availability: fertilizer, sulphur, aluminium</text>
+<text x="72" y="776" class="section_note">Annualized non-energy rows are scenario estimates, not cargo-manifest observations.</text>
+<text x="100" y="816" class="label">Qatar - urea</text>
+<text x="412" y="816" text-anchor="end" class="small">fertilizer</text>
+<rect x="430" y="803" width="700" height="16" rx="3" fill="#fff0d6"/>
+<rect x="430" y="803" width="529.2" height="16" rx="3" fill="#b56b12"/>
+<text x="712.6" y="816" text-anchor="end" class="pct">76%</text>
+<text x="1152" y="811" class="value">4.4 of 5.8 Mt/year</text>
+<text x="1152" y="827" class="small">industrial delay; med-low conf.</text>
+<text x="100" y="852" class="label">Saudi Arabia - urea</text>
+<text x="412" y="852" text-anchor="end" class="small">fertilizer</text>
+<rect x="430" y="839" width="700" height="16" rx="3" fill="#fff0d6"/>
+<rect x="430" y="839" width="520.3" height="16" rx="3" fill="#b56b12"/>
+<text x="708.1" y="852" text-anchor="end" class="pct">74%</text>
+<text x="1152" y="847" class="value">3.3 of 4.4 Mt/year</text>
+<text x="1152" y="863" class="small">industrial delay; med conf.</text>
+<text x="100" y="888" class="label">UAE - sulphur</text>
+<text x="412" y="888" text-anchor="end" class="small">sulphur</text>
+<rect x="430" y="875" width="700" height="16" rx="3" fill="#fff0d6"/>
+<rect x="430" y="875" width="480.4" height="16" rx="3" fill="#b56b12"/>
+<text x="688.2" y="888" text-anchor="end" class="pct">69%</text>
+<text x="1152" y="883" class="value">3.5 of 5.1 Mt/year</text>
+<text x="1152" y="899" class="small">industrial delay; med conf.</text>
+<text x="100" y="924" class="label">Qatar - ammonia</text>
+<text x="412" y="924" text-anchor="end" class="small">fertilizer</text>
+<rect x="430" y="911" width="700" height="16" rx="3" fill="#fff0d6"/>
+<rect x="430" y="911" width="528.3" height="16" rx="3" fill="#b56b12"/>
+<text x="712.2" y="924" text-anchor="end" class="pct">75%</text>
+<text x="1152" y="919" class="value">2.8 of 3.7 Mt/year</text>
+<text x="1152" y="935" class="small">industrial delay; med-low conf.</text>
+<text x="100" y="960" class="label">Qatar - sulphur</text>
+<text x="412" y="960" text-anchor="end" class="small">sulphur</text>
+<rect x="430" y="947" width="700" height="16" rx="3" fill="#fff0d6"/>
+<rect x="430" y="947" width="536.7" height="16" rx="3" fill="#b56b12"/>
+<text x="716.4" y="960" text-anchor="end" class="pct">77%</text>
+<text x="1152" y="955" class="value">2.4 of 3.1 Mt/year</text>
+<text x="1152" y="971" class="small">industrial delay; med conf.</text>
+<text x="100" y="996" class="label">Bahrain - aluminium</text>
+<text x="412" y="996" text-anchor="end" class="small">aluminium</text>
+<rect x="430" y="983" width="700" height="16" rx="3" fill="#fff0d6"/>
+<rect x="430" y="983" width="542.4" height="16" rx="3" fill="#b56b12"/>
+<text x="719.2" y="996" text-anchor="end" class="pct">77%</text>
+<text x="1152" y="991" class="value">0.75 of 0.97 Mt/year</text>
+<text x="1152" y="1007" class="small">industrial delay; med conf.</text>
+<text x="430.0" y="1028" text-anchor="middle" class="axis">0%</text>
+<text x="605.0" y="1028" text-anchor="middle" class="axis">25%</text>
+<text x="780.0" y="1028" text-anchor="middle" class="axis">50%</text>
+<text x="955.0" y="1028" text-anchor="middle" class="axis">75%</text>
+<text x="1130.0" y="1028" text-anchor="middle" class="axis">100%</text>
+<text x="780.0" y="1052" text-anchor="middle" class="axis">base disrupted share of normal exposed flow</text>
+<rect x="72" y="1076" width="1296" height="1" fill="#d8dee8"/>
+<text x="72" y="1106" class="note">Sources: EIA/Vortexa, IEA, EIA, WITS/UN Comtrade, USGS, QAFCO, and project KMZ estimates.</text>
+<text x="72" y="1128" class="note">Route callouts are observed infrastructure/capacity anchors; bars are modeled base-case disruptions; shut-in/delay labels are inferred from route constraints and traffic severity.</text>
+<metadata>Generated by scripts/build_ccx_supplier_side_cushioning.py from data/derived/hormuz_kmz_3_country_product_disruption_estimates.csv. Units differ across rows; chart compares percentage of each row baseline, not additive volumes.</metadata>
+</svg>
