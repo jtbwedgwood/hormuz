@@ -1,494 +1,259 @@
 #!/usr/bin/env python3
-"""Build the CCX supplier-side cushioning figure and source CSV."""
+"""Build the supplier-side cushioning figure and its evidence table."""
 
 from __future__ import annotations
 
 import csv
+from collections import defaultdict
 from pathlib import Path
 from xml.sax.saxutils import escape
 
 
 ROOT = Path(__file__).resolve().parents[1]
-INPUT = ROOT / "data/derived/hormuz_kmz_3_country_product_disruption_estimates.csv"
+OIL_INPUT = ROOT / "figures/fig-kmz-oil-hormuz-baseline-sankey-data.csv"
+LNG_INPUT = ROOT / "figures/fig-kmz-lng-hormuz-baseline-sankey-data.csv"
 OUT_CSV = ROOT / "figures/fig-ccx-supplier-side-cushioning-data.csv"
 OUT_SVG = ROOT / "figures/fig-ccx-supplier-side-cushioning.svg"
 
+OIL_ORDER = [
+    "Saudi Arabia",
+    "United Arab Emirates",
+    "Iraq",
+    "Kuwait",
+    "Qatar",
+    "Iran",
+    "Other",
+]
+LNG_ORDER = ["Qatar", "United Arab Emirates"]
 
-STYLE = (
-    "text{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;"
-    "fill:#172033;letter-spacing:0}"
-    ".title{font-size:30px;font-weight:760}"
-    ".subtitle{font-size:15px;font-weight:560;fill:#5d687a}"
-    ".section{font-size:15px;font-weight:760;fill:#172033}"
-    ".section_note{font-size:12px;font-weight:560;fill:#5d687a}"
-    ".label{font-size:13px;font-weight:720;fill:#172033}"
-    ".small{font-size:12px;font-weight:560;fill:#5d687a}"
-    ".tiny{font-size:10.5px;font-weight:720;fill:#5d687a}"
-    ".pct{font-size:10.5px;font-weight:760;fill:#ffffff}"
-    ".axis{font-size:11px;font-weight:560;fill:#5d687a}"
-    ".note{font-size:12px;font-weight:560;fill:#5d687a}"
-    ".value{font-size:12px;font-weight:720;fill:#172033}"
-)
+# Recoverable volumes are incremental shares of the Hormuz-routed baseline that
+# can use an operational non-Hormuz route during a sustained effective closure.
+ESTIMATES = {
+    ("oil", "Saudi Arabia"): {
+        "recoverable": 4.0,
+        "confidence": "medium",
+        "method": "Midpoint of IEA's 3-5 mb/d early-2026 spare East-West range; capped below the 5 mb/d export portion of the 7 mb/d system.",
+        "sources": "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz|https://www.aramco.com/en/news-media/news/2026/aramco-announces-first-quarter-2026-results",
+    },
+    ("oil", "United Arab Emirates"): {
+        "recoverable": 0.7,
+        "confidence": "medium-high",
+        "method": "IEA estimate of incremental room in ADCOP above roughly 1.1 mb/d already routed to Fujairah.",
+        "sources": "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz|https://www.eia.gov/todayinenergy/detail.php?id=67804",
+    },
+    ("oil", "Iraq"): {
+        "recoverable": 0.3,
+        "confidence": "medium",
+        "method": "Rounded near-term northern export capacity via Turkiye; southern Basra exports have no operational connection to it.",
+        "sources": "https://www.iea.org/commentaries/how-global-oil-supplies-have-readjusted-to-help-fill-the-huge-gap-left-by-the-strait-of-hormuz-shock|https://www.eia.gov/international/analysis/countries/IRQ/",
+    },
+    ("oil", "Iran"): {
+        "recoverable": 0.05,
+        "confidence": "low",
+        "method": "Rounded observed average from two reported Jask cargoes over roughly three months; far below its nameplate capacity.",
+        "sources": "https://www.eia.gov/international/content/analysis/special_topics/World_Oil_Transit_Chokepoints/|https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz",
+    },
+    ("oil", "Kuwait"): {
+        "recoverable": 0.0,
+        "confidence": "high",
+        "method": "No operational non-Hormuz export route; storage only delays production and refinery cuts.",
+        "sources": "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz",
+    },
+    ("oil", "Qatar"): {
+        "recoverable": 0.0,
+        "confidence": "high",
+        "method": "No operational non-Hormuz route for Qatar's crude, condensate, LPG, or refined products.",
+        "sources": "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz",
+    },
+    ("oil", "Other"): {
+        "recoverable": 0.0,
+        "confidence": "low",
+        "method": "Residual Sankey origin is not country-resolved; no separately evidenced operational bypass is assigned.",
+        "sources": "https://www.eia.gov/todayinenergy/detail.php?id=65504",
+    },
+    ("LNG", "Qatar"): {
+        "recoverable": 0.0,
+        "confidence": "high",
+        "method": "No route can deliver Qatar LNG from Ras Laffan to the global market without transiting Hormuz.",
+        "sources": "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz|https://www.iea.org/reports/gas-market-report-q3-2026/executive-summary",
+    },
+    ("LNG", "United Arab Emirates"): {
+        "recoverable": 0.0,
+        "confidence": "high",
+        "method": "No route can deliver UAE LNG from Das Island to the global market without transiting Hormuz.",
+        "sources": "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz|https://adnocgas.ae/en/Our-Operations/LNG",
+    },
+}
 
 COLORS = {
-    "route": "#087f75",
-    "route_soft": "#dff3ef",
-    "removed": "#b42318",
-    "removed_soft": "#fde7e5",
-    "delayed": "#b56b12",
-    "delayed_soft": "#fff0d6",
-    "line": "#d8dee8",
+    "oil": "#087f75",
+    "oil_soft": "#dff3ef",
+    "lng": "#315c99",
+    "lng_soft": "#e3ebf7",
     "ink": "#172033",
     "muted": "#5d687a",
+    "line": "#d8dee8",
+    "grid": "#e8edf3",
     "panel": "#ffffff",
     "bg": "#f6f7f9",
 }
 
-ROUTE_ANCHORS = [
-    {
-        "country": "Saudi Arabia",
-        "figure_label": "Saudi East-West",
-        "product": "East-West crude pipeline",
-        "commodity_group": "oil liquids",
-        "value_text": "5-7 mb/d physical route",
-        "mechanism": "bypass capacity",
-        "evidence_class": "observed route capacity",
-        "source_note": "EIA/Aramco/IEA via kmz.2; near-term spare capacity is tighter than nameplate.",
-    },
-    {
-        "country": "UAE",
-        "figure_label": "UAE ADCOP/Fujairah",
-        "product": "ADCOP / Fujairah crude route",
-        "commodity_group": "oil liquids",
-        "value_text": "~0.7 mb/d extra room",
-        "mechanism": "bypass capacity",
-        "evidence_class": "observed route capacity",
-        "source_note": "IEA/EIA/ADNOC via kmz.2; helps UAE crude, not LNG.",
-    },
-    {
-        "country": "Iraq",
-        "figure_label": "Iraq-Ceyhan",
-        "product": "Kirkuk-Ceyhan northern route",
-        "commodity_group": "oil liquids",
-        "value_text": "~0.25-0.4 mb/d practical",
-        "mechanism": "partial bypass",
-        "evidence_class": "observed route capacity",
-        "source_note": "EIA/Reuters via kmz.2; does not replace southern Iraqi exports.",
-    },
-    {
-        "country": "Qatar / UAE",
-        "figure_label": "Qatar/UAE LNG",
-        "product": "LNG export route",
-        "commodity_group": "LNG",
-        "value_text": "0 practical bypass",
-        "mechanism": "no bypass",
-        "evidence_class": "observed route constraint",
-        "source_note": "IEA/EIA via kmz.2; Qatari/UAE LNG must move by sea through Hormuz.",
-    },
-]
-
-FIGURE_ROWS = [
-    {
-        "row_id": "saudi-crude-2026",
-        "section": "Route cushion: oil liquids with alternate pipeline or port options",
-        "section_note": "Bars show modeled base disrupted share of normal exposed flow; pale remainder is not disrupted in the base case.",
-        "mechanism": "rerouted / partly preserved",
-        "mechanism_group": "route optionality",
-        "color_group": "route",
-        "display_product": "crude + condensate",
-    },
-    {
-        "row_id": "uae-crude-products-2026",
-        "section": "Route cushion: oil liquids with alternate pipeline or port options",
-        "section_note": "Bars show modeled base disrupted share of normal exposed flow; pale remainder is not disrupted in the base case.",
-        "mechanism": "rerouted / partly preserved",
-        "mechanism_group": "route optionality",
-        "color_group": "route",
-        "display_product": "crude/products",
-    },
-    {
-        "row_id": "saudi-refined-products-2026",
-        "section": "Route cushion: oil liquids with alternate pipeline or port options",
-        "section_note": "Bars show modeled base disrupted share of normal exposed flow; pale remainder is not disrupted in the base case.",
-        "mechanism": "delayed / rerouted",
-        "mechanism_group": "route optionality",
-        "color_group": "route",
-        "display_product": "refined products",
-    },
-    {
-        "row_id": "uae-refined-products-2026",
-        "section": "Route cushion: oil liquids with alternate pipeline or port options",
-        "section_note": "Bars show modeled base disrupted share of normal exposed flow; pale remainder is not disrupted in the base case.",
-        "mechanism": "rerouted / partly preserved",
-        "mechanism_group": "route optionality",
-        "color_group": "route",
-        "display_product": "refined products",
-    },
-    {
-        "row_id": "qatar-lng-2026",
-        "section": "No-bypass or severe route limit: LNG and Gulf oil liquids",
-        "section_note": "LNG is the clearest hard-stop case; Iraq/Kuwait/Qatar liquids lack Saudi/UAE-scale bypass.",
-        "mechanism": "removed supply",
-        "mechanism_group": "no practical bypass",
-        "color_group": "removed",
-        "display_product": "LNG",
-    },
-    {
-        "row_id": "uae-lng-2026",
-        "section": "No-bypass or severe route limit: LNG and Gulf oil liquids",
-        "section_note": "LNG is the clearest hard-stop case; Iraq/Kuwait/Qatar liquids lack Saudi/UAE-scale bypass.",
-        "mechanism": "removed supply",
-        "mechanism_group": "no practical bypass",
-        "color_group": "removed",
-        "display_product": "LNG",
-    },
-    {
-        "row_id": "iraq-crude-2026",
-        "section": "No-bypass or severe route limit: LNG and Gulf oil liquids",
-        "section_note": "LNG is the clearest hard-stop case; Iraq/Kuwait/Qatar liquids lack Saudi/UAE-scale bypass.",
-        "mechanism": "shut-in / delayed",
-        "mechanism_group": "severe route limit",
-        "color_group": "removed",
-        "display_product": "crude + condensate",
-    },
-    {
-        "row_id": "kuwait-crude-products-2026",
-        "section": "No-bypass or severe route limit: LNG and Gulf oil liquids",
-        "section_note": "LNG is the clearest hard-stop case; Iraq/Kuwait/Qatar liquids lack Saudi/UAE-scale bypass.",
-        "mechanism": "shut-in / delayed",
-        "mechanism_group": "severe route limit",
-        "color_group": "removed",
-        "display_product": "crude/products",
-    },
-    {
-        "row_id": "qatar-refined-products-2026",
-        "section": "No-bypass or severe route limit: LNG and Gulf oil liquids",
-        "section_note": "LNG is the clearest hard-stop case; Iraq/Kuwait/Qatar liquids lack Saudi/UAE-scale bypass.",
-        "mechanism": "delayed / removed",
-        "mechanism_group": "severe route limit",
-        "color_group": "removed",
-        "display_product": "LPG/naphtha/products",
-    },
-    {
-        "row_id": "qatar-crude-condensate-2026",
-        "section": "No-bypass or severe route limit: LNG and Gulf oil liquids",
-        "section_note": "LNG is the clearest hard-stop case; Iraq/Kuwait/Qatar liquids lack Saudi/UAE-scale bypass.",
-        "mechanism": "delayed / removed",
-        "mechanism_group": "severe route limit",
-        "color_group": "removed",
-        "display_product": "crude + condensate",
-    },
-    {
-        "row_id": "iran-crude-condensate-2026",
-        "section": "No-bypass or severe route limit: LNG and Gulf oil liquids",
-        "section_note": "LNG is the clearest hard-stop case; Iraq/Kuwait/Qatar liquids lack Saudi/UAE-scale bypass.",
-        "mechanism": "delayed / removed",
-        "mechanism_group": "severe route limit",
-        "color_group": "removed",
-        "display_product": "crude + condensate",
-    },
-    {
-        "row_id": "qatar-urea-2026",
-        "section": "Delayed export availability: fertilizer, sulphur, aluminium",
-        "section_note": "Annualized non-energy rows are scenario estimates, not cargo-manifest observations.",
-        "mechanism": "delayed export availability",
-        "mechanism_group": "industrial delay",
-        "color_group": "delayed",
-        "display_product": "urea",
-    },
-    {
-        "row_id": "saudi-urea-2026",
-        "section": "Delayed export availability: fertilizer, sulphur, aluminium",
-        "section_note": "Annualized non-energy rows are scenario estimates, not cargo-manifest observations.",
-        "mechanism": "delayed export availability",
-        "mechanism_group": "industrial delay",
-        "color_group": "delayed",
-        "display_product": "urea",
-    },
-    {
-        "row_id": "uae-sulphur-2026",
-        "section": "Delayed export availability: fertilizer, sulphur, aluminium",
-        "section_note": "Annualized non-energy rows are scenario estimates, not cargo-manifest observations.",
-        "mechanism": "rerouted / delayed",
-        "mechanism_group": "industrial delay",
-        "color_group": "delayed",
-        "display_product": "sulphur",
-    },
-    {
-        "row_id": "qatar-ammonia-2026",
-        "section": "Delayed export availability: fertilizer, sulphur, aluminium",
-        "section_note": "Annualized non-energy rows are scenario estimates, not cargo-manifest observations.",
-        "mechanism": "delayed export availability",
-        "mechanism_group": "industrial delay",
-        "color_group": "delayed",
-        "display_product": "ammonia",
-    },
-    {
-        "row_id": "qatar-sulphur-2026",
-        "section": "Delayed export availability: fertilizer, sulphur, aluminium",
-        "section_note": "Annualized non-energy rows are scenario estimates, not cargo-manifest observations.",
-        "mechanism": "delayed export availability",
-        "mechanism_group": "industrial delay",
-        "color_group": "delayed",
-        "display_product": "sulphur",
-    },
-    {
-        "row_id": "bahrain-aluminium-2026",
-        "section": "Delayed export availability: fertilizer, sulphur, aluminium",
-        "section_note": "Annualized non-energy rows are scenario estimates, not cargo-manifest observations.",
-        "mechanism": "delayed export availability",
-        "mechanism_group": "industrial delay",
-        "color_group": "delayed",
-        "display_product": "aluminium",
-    },
-]
+STYLE = (
+    "text{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;"
+    "fill:#172033;letter-spacing:0}"
+    ".title{font-size:32px;font-weight:760}"
+    ".section{font-size:16px;font-weight:760;text-transform:uppercase}"
+    ".label{font-size:15px;font-weight:720}"
+    ".small{font-size:13px;font-weight:560;fill:#5d687a}"
+    ".axis{font-size:11px;font-weight:560;fill:#5d687a}"
+    ".note{font-size:13px;font-weight:560;fill:#5d687a}"
+    ".value{font-size:14px;font-weight:720}"
+)
 
 
-def fmt_num(value: float) -> str:
-    if value >= 10:
-        return f"{value:.0f}"
+def load_origin_totals(path: Path) -> dict[str, float]:
+    totals: dict[str, float] = defaultdict(float)
+    with path.open(newline="") as handle:
+        for row in csv.DictReader(handle):
+            if row["flow_side"] == "origin_to_hormuz":
+                totals[row["source"]] += float(row["value"])
+    return dict(totals)
+
+
+def build_rows() -> list[dict[str, str | float]]:
+    oil = load_origin_totals(OIL_INPUT)
+    lng = load_origin_totals(LNG_INPUT)
+    rows: list[dict[str, str | float]] = []
+    for section, order, totals, unit in (
+        ("oil", OIL_ORDER, oil, "mb/d"),
+        ("LNG", LNG_ORDER, lng, "Bcf/d"),
+    ):
+        for supplier in order:
+            baseline = totals[supplier]
+            estimate = ESTIMATES[(section, supplier)]
+            recoverable = float(estimate["recoverable"])
+            if recoverable > baseline:
+                raise ValueError(f"recoverable volume exceeds baseline for {supplier}")
+            rows.append(
+                {
+                    "section": section,
+                    "supplier": supplier,
+                    "baseline_volume": f"{baseline:.6f}",
+                    "recoverable_volume": f"{recoverable:.6f}",
+                    "unrecoverable_volume": f"{baseline - recoverable:.6f}",
+                    "recoverable_share": f"{recoverable / baseline if baseline else 0.0:.6f}",
+                    "unit": unit,
+                    "confidence": estimate["confidence"],
+                    "method": estimate["method"],
+                    "sources": estimate["sources"],
+                }
+            )
+    return rows
+
+
+def display_number(value: float) -> str:
+    if value == 0:
+        return "0"
     if value >= 1:
         return f"{value:.1f}"
     return f"{value:.2f}"
 
 
-def confidence_short(confidence: str) -> str:
-    return {
-        "high": "high",
-        "medium-high": "med-high",
-        "medium": "med",
-        "medium-low": "med-low",
-        "low-medium": "low-med",
-        "low": "low",
-    }.get(confidence, confidence)
-
-
-def mechanism_short(row: dict[str, str]) -> str:
-    if row["color_group"] == "route":
-        return "route cushion"
-    if row["color_group"] == "removed":
-        if row["mechanism"] == "removed supply":
-            return "removed"
-        return "shut-in/delay"
-    return "industrial delay"
-
-
-def load_input() -> dict[str, dict[str, str]]:
-    with INPUT.open(newline="") as f:
-        return {row["row_id"]: row for row in csv.DictReader(f)}
-
-
-def commodity_group(product: str, unit: str) -> str:
-    p = product.lower()
-    if unit == "Bcf/d":
-        return "LNG"
-    if unit == "mb/d":
-        return "oil liquids"
-    if "aluminium" in p:
-        return "aluminium"
-    if "sulphur" in p:
-        return "sulphur"
-    return "fertilizer"
-
-
-def build_rows() -> list[dict[str, str]]:
-    raw = load_input()
-    rows: list[dict[str, str]] = []
-    for anchor in ROUTE_ANCHORS:
-        rows.append(
-            {
-                "row_type": "route_anchor",
-                "row_id": "",
-                "section": "Observed route-capacity anchors",
-                "country": anchor["country"],
-                "product": anchor["product"],
-                "commodity_group": anchor["commodity_group"],
-                "baseline_volume": "",
-                "baseline_unit": "",
-                "base_disrupted_volume": "",
-                "disruption_unit": "",
-                "base_disrupted_share_of_baseline": "",
-                "mechanism": anchor["mechanism"],
-                "mechanism_group": anchor["mechanism"],
-                "color_group": "removed" if anchor["mechanism"] == "no bypass" else "route",
-                "evidence_class": anchor["evidence_class"],
-                "confidence": "",
-                "value_text": anchor["value_text"],
-                "source_basis": anchor["source_note"],
-                "method_note": "",
-                "double_counting_note": "",
-            }
-        )
-
-    for spec in FIGURE_ROWS:
-        source = raw[spec["row_id"]]
-        baseline = float(source["baseline_volume"])
-        disrupted = float(source["base_disrupted_volume"])
-        share = disrupted / baseline if baseline else 0.0
-        rows.append(
-            {
-                "row_type": "disruption_row",
-                "row_id": spec["row_id"],
-                "section": spec["section"],
-                "country": source["country"],
-                "product": spec["display_product"],
-                "commodity_group": commodity_group(source["product"], source["baseline_unit"]),
-                "baseline_volume": f"{baseline:.6f}",
-                "baseline_unit": source["baseline_unit"],
-                "base_disrupted_volume": f"{disrupted:.6f}",
-                "disruption_unit": source["disruption_unit"],
-                "base_disrupted_share_of_baseline": f"{share:.6f}",
-                "mechanism": spec["mechanism"],
-                "mechanism_group": spec["mechanism_group"],
-                "color_group": spec["color_group"],
-                "evidence_class": "modeled disruption; mechanism inferred from route constraints",
-                "confidence": source["confidence"],
-                "value_text": f"{fmt_num(disrupted)} of {fmt_num(baseline)} {source['baseline_unit']}",
-                "source_basis": source["source_basis"],
-                "method_note": source["method_note"],
-                "double_counting_note": source["double_counting_note"],
-            }
-        )
-    return rows
-
-
-def write_csv(rows: list[dict[str, str]]) -> None:
+def write_csv(rows: list[dict[str, str | float]]) -> None:
     fields = [
-        "row_type",
-        "row_id",
         "section",
-        "country",
-        "product",
-        "commodity_group",
+        "supplier",
         "baseline_volume",
-        "baseline_unit",
-        "base_disrupted_volume",
-        "disruption_unit",
-        "base_disrupted_share_of_baseline",
-        "mechanism",
-        "mechanism_group",
-        "color_group",
-        "evidence_class",
+        "recoverable_volume",
+        "unrecoverable_volume",
+        "recoverable_share",
+        "unit",
         "confidence",
-        "value_text",
-        "source_basis",
-        "method_note",
-        "double_counting_note",
+        "method",
+        "sources",
     ]
-    OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
-    with OUT_CSV.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
+    with OUT_CSV.open("w", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
 
-def pill(parts: list[str], x: float, y: float, width: float, color: str, soft: str) -> None:
-    parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{width:.1f}" height="54" rx="8" fill="{soft}" stroke="{color}" stroke-opacity="0.28"/>')
+def write_svg(rows: list[dict[str, str | float]]) -> None:
+    width, height = 1440, 820
+    left, label_x = 72, 96
+    bar_x, bar_w, bar_h = 360, 690, 20
+    value_x = 1080
+    chart_top, row_h = 190, 44
+    oil_rows = [row for row in rows if row["section"] == "oil"]
+    lng_rows = [row for row in rows if row["section"] == "LNG"]
 
-
-def write_svg(rows: list[dict[str, str]]) -> None:
-    width = 1440
-    height = 1180
-    left = 72
-    label_x = 100
-    bar_x = 430
-    bar_w = 700
-    value_x = 1152
-    chart_top = 292
-    row_h = 36
-    bar_h = 16
-    section_gap = 58
-
-    parts: list[str] = [
+    parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         f'<rect width="100%" height="100%" fill="{COLORS["bg"]}"/>',
         f'<rect x="24" y="24" width="{width - 48}" height="{height - 48}" rx="8" fill="{COLORS["panel"]}" stroke="#dfe4ec"/>',
+        "<defs>",
+        '<pattern id="oilHatch" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">',
+        f'<line x1="0" y1="0" x2="0" y2="8" stroke="{COLORS["oil"]}" stroke-opacity="0.30" stroke-width="2"/>',
+        "</pattern>",
+        '<pattern id="lngHatch" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">',
+        f'<line x1="0" y1="0" x2="0" y2="8" stroke="{COLORS["lng"]}" stroke-opacity="0.30" stroke-width="2"/>',
+        "</pattern>",
+        "</defs>",
         f"<style>{STYLE}</style>",
-        '<text x="72" y="66" class="title">How Gulf suppliers cushion a Hormuz export shock</text>',
-        '<text x="72" y="92" class="subtitle">Pipeline optionality protects some crude flows; LNG and industrial inputs have much thinner route cushions.</text>',
+        '<text x="72" y="70" class="title">How Gulf suppliers cushion a Hormuz export shock</text>',
+        f'<rect x="72" y="106" width="30" height="14" rx="2" fill="{COLORS["oil"]}"/>',
+        '<text x="112" y="118" class="small">recoverable</text>',
+        f'<rect x="222" y="106" width="30" height="14" rx="2" fill="{COLORS["oil_soft"]}"/>',
+        '<rect x="222" y="106" width="30" height="14" rx="2" fill="url(#oilHatch)"/>',
+        '<text x="262" y="118" class="small">unrecoverable</text>',
     ]
 
-    parts.append('<text x="72" y="132" class="section">Observed route-capacity anchors</text>')
-    anchor_y = 152
-    anchor_w = 302
-    for idx, anchor in enumerate(ROUTE_ANCHORS):
-        x = left + idx * (anchor_w + 20)
-        color_key = "removed" if anchor["mechanism"] == "no bypass" else "route"
-        pill(parts, x, anchor_y, anchor_w, COLORS[color_key], COLORS[f"{color_key}_soft"])
-        parts.append(f'<text x="{x + 16}" y="{anchor_y + 20}" class="tiny">{escape(anchor["evidence_class"].upper())}</text>')
-        parts.append(f'<text x="{x + 16}" y="{anchor_y + 39}" class="label">{escape(anchor["figure_label"])}</text>')
-        parts.append(f'<text x="{x + anchor_w - 16}" y="{anchor_y + 39}" text-anchor="end" class="value">{escape(anchor["value_text"])}</text>')
-
-    legend_y = 244
-    legend = [
-        ("route", "base disrupted where route cushion exists"),
-        ("removed", "base removed / shut-in or delayed"),
-        ("delayed", "annualized industrial export delay"),
-    ]
-    x = left
-    for key, label in legend:
-        parts.append(f'<rect x="{x}" y="{legend_y - 12}" width="16" height="16" rx="3" fill="{COLORS[key]}"/>')
-        parts.append(f'<rect x="{x + 20}" y="{legend_y - 12}" width="16" height="16" rx="3" fill="{COLORS[key + "_soft"]}" stroke="{COLORS[key]}" stroke-opacity="0.18"/>')
-        parts.append(f'<text x="{x + 44}" y="{legend_y + 1}" class="small">{escape(label)}</text>')
-        x += 335
-    grid_bottom = 1012
-    for pct in [0, 25, 50, 75, 100]:
-        gx = bar_x + bar_w * pct / 100
-        parts.append(f'<line x1="{gx:.1f}" y1="268" x2="{gx:.1f}" y2="{grid_bottom}" stroke="#e8edf3"/>')
-
-    disruption_rows = [r for r in rows if r["row_type"] == "disruption_row"]
-    y = chart_top
-    current_section = ""
-    for r in disruption_rows:
-        if r["section"] != current_section:
-            if current_section:
-                y += section_gap - row_h
-            current_section = r["section"]
-            section_note = next(spec["section_note"] for spec in FIGURE_ROWS if spec["section"] == current_section)
-            parts.append(f'<text x="{left}" y="{y - 18}" class="section">{escape(current_section)}</text>')
-            parts.append(f'<text x="{left}" y="{y}" class="section_note">{escape(section_note)}</text>')
-            y += 22
-
-        share = min(1.0, float(r["base_disrupted_share_of_baseline"]))
-        color_key = r["color_group"]
-        color = COLORS[color_key]
-        soft = COLORS[f"{color_key}_soft"]
-        bar_y = y + 5
-        w = share * bar_w
-
-        label = f'{r["country"]} - {r["product"]}'
-        parts.append(f'<text x="{label_x}" y="{y + 18}" class="label">{escape(label)}</text>')
-        parts.append(f'<text x="{bar_x - 18}" y="{y + 18}" text-anchor="end" class="small">{escape(r["commodity_group"])}</text>')
-        parts.append(f'<rect x="{bar_x}" y="{bar_y}" width="{bar_w}" height="{bar_h}" rx="3" fill="{soft}"/>')
-        parts.append(f'<rect x="{bar_x}" y="{bar_y}" width="{w:.1f}" height="{bar_h}" rx="3" fill="{color}"/>')
-        if w > 38:
-            parts.append(
-                f'<text x="{bar_x + min(w - 8, w / 2 + 18):.1f}" y="{y + 18}" text-anchor="end" class="pct">{share:.0%}</text>'
-            )
-        parts.append(f'<text x="{value_x}" y="{y + 13}" class="value">{escape(r["value_text"])}</text>')
-        brief = f'{mechanism_short(r)}; {confidence_short(r["confidence"])} conf.'
-        parts.append(f'<text x="{value_x}" y="{y + 29}" class="small">{escape(brief)}</text>')
-        y += row_h
-
-    axis_y = y + 4
-    for pct in [0, 25, 50, 75, 100]:
+    grid_top, grid_bottom = 154, 672
+    for pct in (0, 25, 50, 75, 100):
         x = bar_x + bar_w * pct / 100
-        parts.append(f'<text x="{x:.1f}" y="{axis_y + 10}" text-anchor="middle" class="axis">{pct}%</text>')
-    parts.append(f'<text x="{bar_x + bar_w / 2}" y="{axis_y + 34}" text-anchor="middle" class="axis">base disrupted share of normal exposed flow</text>')
+        parts.append(f'<line x1="{x:.1f}" y1="{grid_top}" x2="{x:.1f}" y2="{grid_bottom}" stroke="{COLORS["grid"]}"/>')
 
-    note_y = height - 86
-    parts.append(f'<rect x="72" y="{note_y - 18}" width="1296" height="1" fill="{COLORS["line"]}"/>')
+    def add_section(section_rows: list[dict[str, str | float]], y: float, section: str) -> float:
+        color_key = "oil" if section == "oil" else "lng"
+        soft_key = f"{color_key}_soft"
+        section_label = "OIL" if section == "oil" else "LNG"
+        parts.append(f'<text x="{left}" y="{y}" class="section" fill="{COLORS[color_key]}">{section_label}</text>')
+        y += 20
+        for row in section_rows:
+            share = float(row["recoverable_share"])
+            recoverable_w = bar_w * share
+            bar_y = y + 6
+            supplier = str(row["supplier"])
+            if supplier == "United Arab Emirates":
+                supplier = "UAE"
+            parts.append(f'<text x="{label_x}" y="{y + 22}" class="label">{escape(supplier)}</text>')
+            parts.append(f'<rect x="{bar_x}" y="{bar_y}" width="{bar_w}" height="{bar_h}" rx="3" fill="{COLORS[soft_key]}"/>')
+            parts.append(f'<rect x="{bar_x}" y="{bar_y}" width="{bar_w}" height="{bar_h}" rx="3" fill="url(#{color_key}Hatch)"/>')
+            if recoverable_w:
+                parts.append(f'<rect x="{bar_x}" y="{bar_y}" width="{recoverable_w:.1f}" height="{bar_h}" rx="3" fill="{COLORS[color_key]}"/>')
+            value = f'~{display_number(float(row["recoverable_volume"]))} of {display_number(float(row["baseline_volume"]))} {row["unit"]}'
+            parts.append(f'<text x="{value_x}" y="{y + 22}" class="value">{escape(value)}</text>')
+            y += row_h
+        return y
+
+    y = add_section(oil_rows, chart_top, "oil")
+    y += 22
+    y = add_section(lng_rows, y, "LNG")
+
+    axis_y = 694
+    for pct in (0, 25, 50, 75, 100):
+        x = bar_x + bar_w * pct / 100
+        parts.append(f'<text x="{x:.1f}" y="{axis_y}" text-anchor="middle" class="axis">{pct}%</text>')
+    parts.append(f'<text x="{bar_x + bar_w / 2}" y="{axis_y + 24}" text-anchor="middle" class="axis">share of normal Hormuz-routed exports</text>')
+    parts.append(f'<rect x="72" y="756" width="1296" height="1" fill="{COLORS["line"]}"/>')
+    parts.append('<text x="72" y="785" class="note">Sources: EIA/Vortexa, IEA, Aramco and ADNOC</text>')
     parts.append(
-        f'<text x="72" y="{note_y + 12}" class="note">Sources: EIA/Vortexa, IEA, EIA, WITS/UN Comtrade, USGS, QAFCO, and project KMZ estimates.</text>'
-    )
-    parts.append(
-        f'<text x="72" y="{note_y + 34}" class="note">Route callouts are observed infrastructure/capacity anchors; bars are modeled base-case disruptions; shut-in/delay labels are inferred from route constraints and traffic severity.</text>'
-    )
-    parts.append(
-        '<metadata>Generated by scripts/build_ccx_supplier_side_cushioning.py from data/derived/hormuz_kmz_3_country_product_disruption_estimates.csv. Units differ across rows; chart compares percentage of each row baseline, not additive volumes.</metadata>'
+        '<metadata>Generated by scripts/build_ccx_supplier_side_cushioning.py from the two EIA/Vortexa baseline Sankey data files; methodology and uncertainty are documented in docs/hormuz-supplier-side-cushioning.md.</metadata>'
     )
     parts.append("</svg>")
     OUT_SVG.write_text("\n".join(parts) + "\n")
+
+
 def main() -> None:
     rows = build_rows()
     write_csv(rows)
