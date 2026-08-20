@@ -1,0 +1,13 @@
+geography,parent,value_million_bbl,frame,measure
+Asia and Oceania,World,346.066,march_july,consumption below frozen-February 2026 EIA STEO path
+China,Asia and Oceania,136.440,march_july,consumption below frozen-February 2026 EIA STEO path
+India,Asia and Oceania,64.897,march_july,consumption below frozen-February 2026 EIA STEO path
+Japan and South Korea,Asia and Oceania,52.564,march_july,consumption below frozen-February 2026 EIA STEO path
+Rest of Asia and Oceania,Asia and Oceania,92.166,march_july,consumption below frozen-February 2026 EIA STEO path
+Middle East,World,150.415,march_july,consumption below frozen-February 2026 EIA STEO path
+Africa,World,35.075,march_july,consumption below frozen-February 2026 EIA STEO path
+Europe,World,33.472,march_july,consumption below frozen-February 2026 EIA STEO path
+Eurasia,World,9.138,march_july,consumption below frozen-February 2026 EIA STEO path
+North America,World,2.037,march_july,consumption below frozen-February 2026 EIA STEO path
+Central and South America,World,-5.867,march_july,consumption below frozen-February 2026 EIA STEO path
+World,,570.336,march_july,consumption below frozen-February 2026 EIA STEO path

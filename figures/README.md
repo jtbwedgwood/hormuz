@@ -13,12 +13,14 @@ This directory contains blog-candidate SVG figures plus machine-readable figure 
 - Product rows are not additive. Crude, refined products, LPG/NGL, petrochemicals, fertilizer inputs, sulphur, aluminium, and freight/insurance channels overlap.
 - Route/logistics shocks and physical supply outages are different. Historical comparison scores keep them visible together, but they should not be read as one mechanical barrel-equivalent table.
 - Low-confidence or proxy rows are kept because they are useful for synthesis, but final blog claims should foreground high and medium-confidence values.
+- Balance residuals are not measurements. EIA's "implied inventory draw" is defined as supply minus demand minus expected build, so it absorbs genuine unobserved stock change and every supply/demand estimation error indistinguishably. Figures should show what was observed separately from what is only a plug.
 
 ## Figures
 
 | Figure | Main Use | Key Caveat |
 |---|---|---|
 | `fig-2y7-public-hormuz-daily-transits.svg` | Daily public Strait of Hormuz transit tracker. | Counts broad chokepoint calls, not cargoes or vessel identities. |
+| `fig-r3v-hormuz-absorption-sankey.svg` | August-vintage March-June Hormuz route and market-clearing bridge, colour-coded by evidence quality. | Uses net global supply loss as a waist node: rerouting is upstream and market clearing downstream. July is deliberately excluded because no period-matched public route reconstruction exists; the 184.8 mb plug is a sibling of observed stocks, not a kind of stock draw. |
 | `fig-kmz-oil-hormuz-baseline-sankey.svg` | 2024 crude/condensate plus refined-products/LPG baseline through Hormuz. | Crude/condensate origin and destination totals are EIA aggregates; refined-products/LPG origin split is indicative and product destinations are grouped because public splits are unavailable. |
 | `fig-kmz-lng-hormuz-baseline-sankey.svg` | 2024 LNG origin and destination baseline through Hormuz. | Same origin/destination caveat; Qatar dominates exports, but exact Qatar-to-importer pairings are not public in this figure data. |
 | `fig-f6r-crude-importer-adjustment.svg` | Base-case importer adjustment buckets for direct crude/product exposure. | Scenario bridge estimates, not cargo-by-cargo replacement accounting. |

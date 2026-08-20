@@ -7,10 +7,14 @@ import csv
 import html
 import json
 from pathlib import Path
+from statistics import mean
 
 
 INPUT = Path("data/derived/hormuz_2y7_public_daily_tracker.csv")
 OUTPUT = Path("blogpost/hormuz-ship-tracker-widget.html")
+FETCH_DATE = "2026-08-18"
+BASELINE_START = "2019-01-01"
+BASELINE_END = "2024-12-31"
 
 
 def load_rows() -> list[dict[str, object]]:
@@ -45,6 +49,12 @@ def build_html(rows: list[dict[str, object]]) -> str:
     first_date = rows[0]["date"]
     last_date = rows[-1]["date"]
     latest = rows[-1]
+    baseline_total = mean(
+        float(row["n_total"])
+        for row in rows
+        if BASELINE_START <= str(row["date"]) <= BASELINE_END
+    )
+    default_start_index = next(i for i, row in enumerate(rows) if row["date"] >= "2026-01-01")
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -420,7 +430,7 @@ def build_html(rows: list[dict[str, object]]) -> str:
         <div class="slider-wrap">
           <div class="track"></div>
           <div id="trackActive" class="track-active"></div>
-          <input id="startRange" type="range" min="0" max="{len(rows) - 1}" value="2557" aria-label="Start date">
+          <input id="startRange" type="range" min="0" max="{len(rows) - 1}" value="{default_start_index}" aria-label="Start date">
           <input id="endRange" type="range" min="0" max="{len(rows) - 1}" value="{len(rows) - 1}" aria-label="End date">
         </div>
       </div>
@@ -443,15 +453,15 @@ def build_html(rows: list[dict[str, object]]) -> str:
       <aside class="side" aria-label="Selected range summary">
         <div class="metric">
           <div class="metric-label">Latest selected day</div>
-          <div class="metric-value" id="latestTotal">27 <small>total</small></div>
+          <div class="metric-value" id="latestTotal">{latest["n_total"]} <small>total</small></div>
         </div>
         <div class="metric">
           <div class="metric-label">Tanker calls</div>
-          <div class="metric-value" id="latestTanker">12 <small>tankers</small></div>
+          <div class="metric-value" id="latestTanker">{latest["n_tanker"]} <small>tankers</small></div>
         </div>
         <div class="metric">
           <div class="metric-label">Vs. baseline</div>
-          <div class="metric-value" id="latestBaseline">29.8% <small>total</small></div>
+          <div class="metric-value" id="latestBaseline">{latest["pct_baseline_total"]}% <small>total</small></div>
         </div>
         <div class="metric">
           <div class="metric-label">Lowest total in range</div>
@@ -463,7 +473,7 @@ def build_html(rows: list[dict[str, object]]) -> str:
     <section class="notes">
       <div class="note">
         <h2>Source</h2>
-        <p>IMF PortWatch Daily Chokepoints Data, chokepoint6, fetched into the project on 2026-07-06.</p>
+        <p>IMF PortWatch Daily Chokepoints Data, chokepoint6, fetched into the project on {FETCH_DATE}; latest observation {last_date}.</p>
       </div>
       <div class="note">
         <h2>Tanker</h2>
@@ -481,7 +491,7 @@ def build_html(rows: list[dict[str, object]]) -> str:
   <script>
     const DATA = {data_json};
     const MS_PER_DAY = 86400000;
-    const baselineTotal = 90.5;
+    const baselineTotal = {baseline_total:.6f};
     const shockDate = "2026-02-28";
     const defaultStart = "2026-01-01";
     const parseDate = d => new Date(d + "T00:00:00Z");
@@ -621,7 +631,7 @@ def build_html(rows: list[dict[str, object]]) -> str:
           <g>${{xTicks}}</g>
           <g>${{rawBars(selected, x, y, m.top + innerH)}}</g>
           <line x1="${{m.left}}" x2="${{w - m.right}}" y1="${{baselineY}}" y2="${{baselineY}}" stroke="#6b7280" stroke-width="1.7" stroke-dasharray="6 6"/>
-          <text x="${{w - m.right}}" y="${{Number(baselineY) - 8}}" text-anchor="end" font-size="12" fill="#4b5563">2019-2024 avg total: 90.5/day</text>
+          <text x="${{w - m.right}}" y="${{Number(baselineY) - 8}}" text-anchor="end" font-size="12" fill="#4b5563">2019-2024 avg total: {baseline_total:.1f}/day</text>
           ${{shockVisible ? `<line x1="${{shockX}}" x2="${{shockX}}" y1="${{m.top}}" y2="${{m.top + innerH}}" stroke="var(--red)" stroke-width="1.8" stroke-dasharray="5 5"/><text x="${{Math.min(w - 142, Number(shockX) + 8)}}" y="${{m.top + 16}}" font-size="12" fill="var(--red)">Feb. 28 shock</text>` : ""}}
           <path d="${{linePath(selected, x, y, "n_total_7d_avg")}}" fill="none" stroke="var(--teal)" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
           <path d="${{linePath(selected, x, y, "n_tanker_7d_avg")}}" fill="none" stroke="var(--amber)" stroke-width="3.1" stroke-linejoin="round" stroke-linecap="round"/>

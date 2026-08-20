@@ -6,18 +6,27 @@ from __future__ import annotations
 import argparse
 import csv
 from collections import deque
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
+from math import sqrt
 from pathlib import Path
-from statistics import mean
+from statistics import mean, stdev
 
 
 DEFAULT_INPUT = Path("data/external/portwatch/hormuz_daily_chokepoint.csv")
 DEFAULT_OUTPUT = Path("data/derived/hormuz_2y7_public_daily_tracker.csv")
 DEFAULT_FIGURE = Path("figures/fig-2y7-public-hormuz-daily-transits.svg")
 DEFAULT_FIGURE_DATA = Path("figures/fig-2y7-public-hormuz-daily-transits.csv")
+DEFAULT_SCENARIO_BASELINE = Path("data/derived/hormuz_m8q_2_current_traffic_scenario.csv")
 BASELINE_START = date(2019, 1, 1)
 BASELINE_END = date(2024, 12, 31)
 SHOCK_DATE = date(2026, 2, 28)
+CURRENT_REGIME_START = date(2026, 7, 8)
+SCENARIO_HORIZONS = (
+    date(2026, 7, 31),
+    date(2026, 9, 30),
+    date(2026, 12, 31),
+    date(2027, 3, 31),
+)
 
 
 def parse_date(value: str) -> date:
@@ -80,10 +89,72 @@ def build_tracker(rows: list[dict[str, str]]) -> tuple[list[dict[str, object]], 
     return output, metrics
 
 
+def build_scenario_baseline(
+    rows: list[dict[str, object]], metrics: dict[str, float]
+) -> list[dict[str, object]]:
+    """Hold the latest low-traffic regime constant for scenario bookkeeping.
+
+    The uncertainty interval is an approximate 95% interval for the regime mean
+    (Student-t critical value 2.131 for the initial 16-day window). It captures
+    daily sampling variation, not source revisions, AIS gaps, or cargo uncertainty.
+    """
+    latest = parse_date(str(rows[-1]["date"]))
+    regime = [row for row in rows if CURRENT_REGIME_START <= parse_date(str(row["date"])) <= latest]
+    if len(regime) < 7:
+        raise ValueError("current traffic regime needs at least 7 observations")
+
+    scenario_rows: list[dict[str, object]] = []
+    for metric, baseline_key in (("n_total", "baseline_total"), ("n_tanker", "baseline_tanker")):
+        values = [float(row[metric]) for row in regime]
+        central = mean(values)
+        sample_sd = stdev(values)
+        # 1.96 is a reasonable large-sample fallback after the initial 16-day window.
+        critical_value = 2.131 if len(values) == 16 else 1.96
+        margin = critical_value * sample_sd / sqrt(len(values))
+        low = max(0.0, central - margin)
+        high = central + margin
+        baseline = metrics[baseline_key]
+        for horizon in SCENARIO_HORIZONS:
+            # Once a horizon is observed it belongs in history, not in the
+            # forward scenario.  This also removes the superseded July nowcast.
+            if horizon <= latest:
+                continue
+            projection_days = (horizon - latest).days
+            scenario_rows.append(
+                {
+                    "scenario_id": "constant_current_portwatch_traffic",
+                    "metric": f"{metric}_calls_per_day",
+                    "data_as_of": latest.isoformat(),
+                    "current_window_start": CURRENT_REGIME_START.isoformat(),
+                    "current_window_end": latest.isoformat(),
+                    "current_window_days": len(regime),
+                    "current_mean_calls_per_day": round(central, 3),
+                    "current_sample_sd_calls_per_day": round(sample_sd, 3),
+                    "mean_sampling_low": round(low, 3),
+                    "mean_sampling_high": round(high, 3),
+                    "2019_2024_baseline_calls_per_day": round(baseline, 3),
+                    "current_pct_of_baseline": round(100 * central / baseline, 1),
+                    "projection_start": (latest + timedelta(days=1)).isoformat(),
+                    "scenario_horizon": horizon.isoformat(),
+                    "horizon_role": "future_closure_scenario",
+                    "projection_days_after_data_as_of": projection_days,
+                    "projected_calls_central": round(central * projection_days, 1),
+                    "projected_calls_sampling_low": round(low * projection_days, 1),
+                    "projected_calls_sampling_high": round(high * projection_days, 1),
+                    "history_treatment": "observed PortWatch history retained through data_as_of, including June relaxation",
+                    "assumption": "hold the July 8-through-latest revised mean daily call rate constant after data_as_of",
+                    "uncertainty_note": "sampling interval only; excludes revisions, AIS-dark traffic, direction, vessel mix, and cargo onboard",
+                    "oil_mapping_note": "vessel calls are not loaded oil volume and must not be converted mechanically to mb/d",
+                    "source": "IMF PortWatch Daily_Chokepoints_Data chokepoint6; project calculation",
+                }
+            )
+    return scenario_rows
+
+
 def write_csv(rows: list[dict[str, object]], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
@@ -168,15 +239,19 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--figure", type=Path, default=DEFAULT_FIGURE)
     parser.add_argument("--figure-data", type=Path, default=DEFAULT_FIGURE_DATA)
+    parser.add_argument("--scenario-baseline", type=Path, default=DEFAULT_SCENARIO_BASELINE)
     args = parser.parse_args()
 
     tracker_rows, metrics = build_tracker(load_rows(args.input))
+    scenario_rows = build_scenario_baseline(tracker_rows, metrics)
     write_csv(tracker_rows, args.output)
     write_csv(tracker_rows, args.figure_data)
+    write_csv(scenario_rows, args.scenario_baseline)
     write_svg(tracker_rows, metrics, args.figure)
     latest = tracker_rows[-1]
     print(f"wrote {len(tracker_rows)} tracker rows to {args.output}")
     print(f"wrote figure to {args.figure}")
+    print(f"wrote {len(scenario_rows)} scenario rows to {args.scenario_baseline}")
     print(f"latest {latest['date']}: total={latest['n_total']} tanker={latest['n_tanker']}")
     return 0
 

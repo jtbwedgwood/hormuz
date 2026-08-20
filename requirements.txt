@@ -5,4 +5,6 @@
 # Test tooling lives here too so `.venv/bin/python -m pytest ...` works
 # consistently for local validation.
 pandas==3.0.3
+pypdf==6.1.1
 pytest==8.4.2
+xlrd==2.0.2

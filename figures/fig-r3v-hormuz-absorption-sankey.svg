@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="920" viewBox="0 0 1800 920">
+<rect width="1800" height="920" fill="#f6f7f9"/>
+<rect x="24" y="24" width="1752" height="872" rx="8" fill="white" stroke="#dfe4ec"/>
+<style>text{font-family:Inter,system-ui,sans-serif;fill:#172033}.title{font-size:28px;font-weight:760}.sub{font-size:15px;fill:#5d687a}.lab{font-size:15px;font-weight:720}.val{font-size:13px;fill:#5d687a}</style>
+<text x="64" y="68" class="title">Where the Hormuz barrels went, March-June 2026</text>
+<text x="64" y="94" class="sub">August-vintage market balance; million barrels. Rerouting is upstream of the waist and is not added to downstream market clearing.</text>
+<rect x="260" y="170" width="30" height="635.12" fill="#172033" opacity=".82" rx="3"/>
+<text x="242" y="477.6" text-anchor="end" class="lab">Expected transit absent</text><text x="242" y="497.6" text-anchor="end" class="val">1,924.6 mb</text>
+<path d="M290 170.0 C500 170.0 570 170.0 790 170.0 L790 289.5 C570 289.5 500 289.5 290 289.5Z" fill="#b56b12" opacity=".30"/>
+<rect x="790" y="170.0" width="30" height="119.5" fill="#b56b12" rx="3"/><text x="835" y="227.7" class="lab">Preserved by Gulf bypass</text><text x="835" y="246.7" class="val">362.1 mb</text>
+<path d="M290 289.5 C500 289.5 570 289.5 790 289.5 L790 315.7 C570 315.7 500 315.7 290 315.7Z" fill="#315c99" opacity=".30"/>
+<rect x="790" y="289.5" width="30" height="26.2" fill="#315c99" rx="3"/><text x="835" y="300.6" class="lab">Non-Gulf + Oman production</text><text x="835" y="319.6" class="val">79.3 mb</text>
+<path d="M290 315.7 C500 315.7 570 315.7 790 315.7 L790 355.6 C570 355.6 500 355.6 290 355.6Z" fill="#6b7280" opacity=".30"/>
+<rect x="790" y="315.7" width="30" height="39.9" fill="#6b7280" rx="3"/><text x="835" y="333.6" class="lab">Route/taxonomy/timing residual</text><text x="835" y="352.6" class="val">120.9 mb</text>
+<path d="M290 355.6 C500 355.6 570 355.6 790 355.6 L790 805.1 C570 805.1 500 805.1 290 805.1Z" fill="#315c99" opacity=".28"/>
+<rect x="790" y="355.6" width="30" height="449.6" fill="#172033" opacity=".85" rx="3"/><text x="835" y="576.3" class="lab">Net global supply loss</text><text x="835" y="597.3" class="val">1,362.3 mb · the waist</text>
+<path d="M820 355.6 C970 355.6 1080 355.6 1250 355.6 L1250 500.9 C1080 500.9 970 500.9 820 500.9Z" fill="#b56b12" opacity=".34"/>
+<rect x="1250" y="355.6" width="30" height="145.3" fill="#b56b12" rx="3"/><text x="1295" y="426.2" class="lab">Lower consumption</text><text x="1295" y="445.2" class="val">440.4 mb · 32.3%</text>
+<path d="M820 500.9 C970 500.9 1080 500.9 1250 500.9 L1250 631.6 C1080 631.6 970 631.6 820 631.6Z" fill="#315c99" opacity=".34"/>
+<rect x="1250" y="500.9" width="30" height="130.7" fill="#315c99" rx="3"/><text x="1295" y="564.3" class="lab">Expected build that never happened</text><text x="1295" y="583.3" class="val">396.1 mb · 29.1%</text>
+<path d="M820 631.6 C970 631.6 1080 631.6 1250 631.6 L1250 744.1 C1080 744.1 970 744.1 820 744.1Z" fill="#2f7d48" opacity=".34"/>
+<rect x="1250" y="631.6" width="30" height="112.5" fill="#2f7d48" rx="3"/><text x="1295" y="685.9" class="lab">Observed inventory draw</text><text x="1295" y="704.9" class="val">341.0 mb · 25.0%</text>
+<path d="M820 744.1 C970 744.1 1080 744.1 1250 744.1 L1250 805.1 C1080 805.1 970 805.1 820 805.1Z" fill="#6b7280" opacity=".34"/>
+<rect x="1250" y="744.1" width="30" height="61.0" fill="#6b7280" rx="3"/><text x="1295" y="772.6" class="lab">Unreconciled balance plug</text><text x="1295" y="791.6" class="val">184.8 mb · 13.6%</text>
+<rect x="64" y="118" width="26" height="11" fill="#2f7d48"/><text x="98" y="128" class="val">Directly observed</text>
+<rect x="294" y="118" width="26" height="11" fill="#315c99"/><text x="328" y="128" class="val">Reasonably assumed</text>
+<rect x="524" y="118" width="26" height="11" fill="#b56b12"/><text x="558" y="128" class="val">Educated guess</text>
+<rect x="754" y="118" width="26" height="11" fill="#6b7280"/><text x="788" y="128" class="val">Unknown</text>
+<text x="64" y="858" class="sub">The downstream identity closes exactly: 440.4 + 396.1 + 341.0 + 184.8 = 1,362.3 mb.</text>
+<text x="64" y="880" class="val">Sources: EIA February/August 2026 STEO; IEA August 2026 OMR and route commentary. July route flows are not extrapolated.</text></svg>

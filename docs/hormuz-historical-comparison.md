@@ -1,10 +1,23 @@
 # Hormuz Historical Shock Comparison
 
-Last updated: 2026-07-06.
+Last updated: 2026-08-18.
 
 ## Bottom Line
 
-The current Hormuz shock is not best understood as "the biggest oil shock ever." It is more interesting than that. On crude oil alone, partial Saudi/UAE bypass capacity, strategic stocks, inventory draw, and demand response keep the current case from outranking the 1970s oil shocks or some long maritime-risk episodes. But product-specific Hormuz exposure looks sharper: LPG/NGL, LNG, and sulphur rank above the crude aggregate in the first-pass score table because they have weaker bypass options and thinner public buffer evidence.
+The IEA calls the current episode **"the largest supply disruption in the history of the
+global oil market."** Its stated basis is peak physical volume: in a 20 March report, the
+agency said the volume of fuel supply offline exceeded the 1973 loss and every disruption
+since, after flows of roughly 15 mb/d of crude and 5 mb/d of products through Hormuz slowed
+to a trickle and Gulf production fell by at least 10 mb/d. That verified peak-flow
+superlative is not the same as saying this is unambiguously the most severe oil shock on
+every dimension.
+
+The current Hormuz shock is therefore not best understood as a context-free "biggest oil
+shock ever." On crude oil alone, partial Saudi/UAE bypass capacity, strategic stocks,
+inventory draw, demand response and duration still matter when comparing overall severity
+with the 1970s oil shocks or long maritime-risk episodes. Product-specific Hormuz exposure
+looks sharper: LPG/NGL, LNG, and sulphur rank above the crude aggregate in the first-pass
+score table because they have weaker bypass options and thinner public buffer evidence.
 
 For the blog post, the cleanest framing is:
 
@@ -59,6 +72,10 @@ The ranking table says "Hormuz is product-weird." It does not say every product 
 
 Use:
 
+- "The IEA calls this the largest oil-supply disruption in history by peak physical volume:
+  it says the amount of fuel offline exceeded 1973 and every disruption since. That does not
+  make it automatically the most severe shock after duration, bypasses, stocks and demand
+  response are considered."
 - "Hormuz ranks differently depending on what you measure: crude looks bufferable relative to the worst historical oil shocks, while LNG, LPG/NGL, and sulphur look much less substitutable."
 - "Abqaiq shows why peak barrels alone are misleading."
 - "The route analogues are about persistence, insurance, and rerouting friction, not simple barrels removed."
@@ -90,5 +107,7 @@ Avoid:
 - EIA, World Oil Transit Chokepoints: https://www.eia.gov/international/analysis/special-topics/world_oil_transit_Chokepoints
 - IEA oil security and emergency response: https://www.iea.org/about/oil-security-and-emergency-response
 - IEA Middle East energy markets: https://www.iea.org/topics/the-middle-east-and-global-energy-markets
+- IEA, *Sheltering From Oil Shocks*, published 2026-03-20 (exact superlative and
+  peak-volume scope): https://www.iea.org/reports/sheltering-from-oil-shocks/introduction-and-context
 - World Bank Commodity Markets: https://www.worldbank.org/en/research/commodity-markets
 - IMF PortWatch methodology/data: https://portwatch.imf.org/pages/data-and-methodology
